@@ -3,6 +3,7 @@ Hierarchical State Machine for the player, and something similar for the enemy a
 
 Guide to create a solid Markdown: https://guides.github.com/features/mastering-markdown/
 
+
 Implementing a hierarchichal state machine for the character
 Movement/physics/attacks/dashes/crouching/sliding
 
