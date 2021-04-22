@@ -1,18 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerStateMachine : MonoBehaviour
+// All the player state machine is a variable that holds a reference to our current state, and a function to initialize and change what our current state is
+public class PlayerStateMachine
 {
-    // Start is called before the first frame update
-    void Start()
+    public PlayerState CurrentState { get; private set; } // Any other script that has a reference to this may grab/read the value, but only this script set's the state
+
+    public void Initialize(PlayerState startingState)
     {
-        
+        CurrentState = startingState;
+        CurrentState.Enter();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeState(PlayerState newState)
     {
-        
+        CurrentState.Exit();
+        CurrentState = newState;
+        CurrentState.Enter();
     }
+
 }

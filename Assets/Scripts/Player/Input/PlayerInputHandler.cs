@@ -13,11 +13,11 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnJumpInput(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started) // context.started is set to true when pressed, and then immediately set to false (input.GetButtonDown)
         {
             Debug.Log("Started jump!");
         }
-        if (context.performed)
+        if (context.performed) // context.performed is set to true when pressed, and 
         {
             Debug.Log("Holding down jump!");
         }

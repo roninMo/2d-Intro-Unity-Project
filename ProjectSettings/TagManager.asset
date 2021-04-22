@@ -48,3 +48,6 @@ TagManager:
   - name: Backgrounds
     uniqueID: 3471533025
     locked: 0
+  - name: Player
+    uniqueID: 1308532727
+    locked: 0
