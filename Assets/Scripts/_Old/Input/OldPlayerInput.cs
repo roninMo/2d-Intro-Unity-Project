@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+public class OldPlayerInput : MonoBehaviour
 {
     // Character Inputs
     [HideInInspector] public float movementInput;

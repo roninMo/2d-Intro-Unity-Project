@@ -253,36 +253,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1302721131}
---- !u!1 &276110318
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 276110319}
-  m_Layer: 8
-  m_Name: Hitbox
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &276110319
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276110318}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 832088041}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1387,36 +1357,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &626202633
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 626202634}
-  m_Layer: 8
-  m_Name: GroundAndPlatformDetection
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &626202634
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 626202633}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 832088041}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &742263624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1458,13 +1398,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 832088041}
-  - component: {fileID: 832088046}
-  - component: {fileID: 832088048}
-  - component: {fileID: 832088045}
   - component: {fileID: 832088044}
   - component: {fileID: 832088043}
   - component: {fileID: 832088042}
   - component: {fileID: 832088047}
+  - component: {fileID: 832088046}
+  - component: {fileID: 832088045}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1482,9 +1421,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -93.47, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 626202634}
-  - {fileID: 276110319}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1595,17 +1532,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 832088040}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e214cb2a59346988e810f0de30586f, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d91f25a98fcc40888c265cfc5c22206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementInput: 0
-  jump: 0
-  crouch: 0
-  holdingJump: 0
-  holdingCrouch: 0
-  dash: 0
-  attack: 0
-  autoAttack: 0
 --- !u!114 &832088046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1615,20 +1544,66 @@ MonoBehaviour:
   m_GameObject: {fileID: 832088040}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dc7c6ee72e894a7d86f6046ac8e8482, type: 3}
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 540
-  jumpForce: 25
-  wallSlidingSpeed: 4
-  wallJumpForce: 1000
-  hitPoints: 40
-  baseDamage: 5
-  animator: {fileID: 832088047}
-  wallCheck: {fileID: 832088041}
-  platformLayerMask:
-    serializedVersion: 2
-    m_Bits: 1536
+  m_Actions: {fileID: -944628639613478452, guid: 306f835f0b36d4bb4acf32e72257f52d,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 832088045}
+        m_MethodName: OnMoveInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 158d6434-5aeb-4dd8-a15f-431e5d283b53
+    m_ActionName: Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 832088045}
+        m_MethodName: OnJumpInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4259d568-0204-4afa-8f37-72c9f40136e0
+    m_ActionName: Gameplay/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bb3398d7-9411-4ce0-a441-eaffdb0af9e2
+    m_ActionName: Gameplay/Crouch[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 92bb3756-7ec7-47a0-b880-eaff36c1322d
+    m_ActionName: Dialouge/New action
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!95 &832088047
 Animator:
   serializedVersion: 3
@@ -1648,20 +1623,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &832088048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 832088040}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6832e08006d464f93bd69164fb8d3913, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  downardJumpGravity: 10
-  upwardJumpGravity: 10
 --- !u!1 &833889949
 GameObject:
   m_ObjectHideFlags: 3
