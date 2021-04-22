@@ -1019,7 +1019,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 14
+      m_TileSpriteIndex: 15
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1064,7 +1064,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 13
+      m_TileSpriteIndex: 14
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1333,14 +1333,14 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: -2727701079242259943, guid: bce86b91ee0b54ae3a6396e8b6f41048,
       type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 3798119944334448809, guid: bce86b91ee0b54ae3a6396e8b6f41048,
       type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -4605452704950003837, guid: bce86b91ee0b54ae3a6396e8b6f41048,
       type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 73
     m_Data:
@@ -1619,7 +1619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runSpeed: 540
-  jumpForce: 34
+  jumpForce: 25
   wallSlidingSpeed: 4
   wallJumpForce: 1000
   hitPoints: 40
