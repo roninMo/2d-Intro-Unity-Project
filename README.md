@@ -2,6 +2,7 @@
 Hierarchical State Machine for the player, and something similar for the enemy ai. 
 
 Guide to create a solid Markdown: https://guides.github.com/features/mastering-markdown/
+Here's a good example: https://github.com/pyenv/pyenv
 
 
 Implementing a hierarchichal state machine for the character
