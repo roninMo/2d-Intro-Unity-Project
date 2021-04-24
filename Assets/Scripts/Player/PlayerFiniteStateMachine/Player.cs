@@ -9,7 +9,9 @@ public class Player : MonoBehaviour
     public PlayerInputHandler InputHandler { get; private set; } // This is like chaining values together via funnel. Playerinput get goes to the player, which then goes to the states. So each state as access to the inputs
     public Animator Anim { get; private set; } // We add the getters and setters so our states have access to the animator
     public Rigidbody2D rb { get; private set; }
+
     public Vector2 currentVelocity { get; private set; }
+    public int facingDirection { get; private set; }
 
     [SerializeField]
     private PlayerData playerData;
@@ -30,6 +32,8 @@ public class Player : MonoBehaviour
         InputHandler = GetComponent<PlayerInputHandler>();
         rb = GetComponent<Rigidbody2D>();
 
+        facingDirection = 1;
+
         StateMachine.Initialize(IdleState);
     }
 
@@ -48,11 +52,27 @@ public class Player : MonoBehaviour
     }
 
 
-    // So we're going to have a bunch of functions that our player states call from our player script for mechanics and movement
+    //////////////////  FUNCTIONS   //////////////////
+    ///So we're going to have a bunch of functions that our player states call from our player script for mechanics and movement
+    //
     public void setVelocityX(float velocity)
     {
         workspace.Set(velocity, currentVelocity.y);
         rb.velocity = workspace;
         currentVelocity = workspace; // Since we're changing the velocity to avoid the physics/logic update overwriting each other, set the current velocity to the new velocity
+    }
+
+    public void CheckIfShouldFlip(float input)
+    {
+        if (input != 0 && input != facingDirection)
+        {
+            Flip();
+        }
+    }
+
+    private void Flip()
+    {
+        facingDirection *= -1;
+        transform.Rotate(0, 180.0f, 0);
     }
 }

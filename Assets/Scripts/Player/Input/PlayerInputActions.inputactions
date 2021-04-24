@@ -34,7 +34,7 @@
                 {
                     "name": "WASDEE",
                     "id": "f52ff7af-a697-4bd9-85b2-c467ebc65c04",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=1)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -91,7 +91,7 @@
                     "id": "af5e3cdb-af16-4c33-877e-08a98cd02f6c",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "groups": "Gamepad",
                     "action": "Movement",
                     "isComposite": false,
