@@ -2,22 +2,28 @@
 
 public class Player : MonoBehaviour
 {
+    # region State Variables
     public PlayerStateMachine StateMachine { get; private set; }
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
+    [SerializeField] private PlayerData playerData;
+    #endregion
 
+    #region Components    
     public PlayerInputHandler InputHandler { get; private set; } // This is like chaining values together via funnel. Playerinput get goes to the player, which then goes to the states. So each state as access to the inputs
     public Animator Anim { get; private set; } // We add the getters and setters so our states have access to the animator
     public Rigidbody2D rb { get; private set; }
+    #endregion
 
+    #region Other Variables
     public Vector2 currentVelocity { get; private set; }
     public int facingDirection { get; private set; }
 
-    [SerializeField]
-    private PlayerData playerData;
     private Vector2 workspace; // Everytime we want to apply velocity we don't have to create a new vector2 when we say what we want the velocity to be, just use this variable
+    #endregion
 
 
+    #region Unity Callback Functions 
     private void Awake()
     {
         StateMachine = new PlayerStateMachine();
@@ -50,18 +56,20 @@ public class Player : MonoBehaviour
     {
         StateMachine.CurrentState.PhysicsUpdate();
     }
+    #endregion
 
 
-    //////////////////  FUNCTIONS   //////////////////
-    ///So we're going to have a bunch of functions that our player states call from our player script for mechanics and movement
-    //
+    #region My Functions
+    #region Set Functions
     public void setVelocityX(float velocity)
     {
         workspace.Set(velocity, currentVelocity.y);
         rb.velocity = workspace;
         currentVelocity = workspace; // Since we're changing the velocity to avoid the physics/logic update overwriting each other, set the current velocity to the new velocity
     }
+    #endregion
 
+    #region Check Functions
     public void CheckIfShouldFlip(float input)
     {
         if (input != 0 && input != facingDirection)
@@ -69,10 +77,14 @@ public class Player : MonoBehaviour
             Flip();
         }
     }
+    #endregion
 
+    #region Other Functions
     private void Flip()
     {
         facingDirection *= -1;
         transform.Rotate(0, 180.0f, 0);
     }
+    #endregion
+    #endregion
 }
