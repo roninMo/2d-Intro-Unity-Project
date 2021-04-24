@@ -25,7 +25,7 @@ public class PlayerGroundedState : PlayerState
     public override void LogicUpdate() // This overrides the normal function, and in it we run the function plus some extra code for all things in the grounded State
     {
         base.LogicUpdate();
-        input = player.InputHandler.MovementInput; // Now we grab the movement input in the super state to share amongst the sub states 
+        input.x = player.InputHandler.RawMovementInput.x; // Now we grab the movement input in the super state to share amongst the sub states 
     }
 
 

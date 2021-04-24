@@ -3,13 +3,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    public Vector2 MovementInput { get; private set; }
-
+    public Vector2 RawMovementInput { get; private set; }
+    public int NormalizedInputX { get; private set; }
+    public int NormalizedInputY { get; private set; }
 
     public void OnMoveInput(InputAction.CallbackContext context)
     {
-        MovementInput = context.ReadValue<Vector2>();
-        Debug.Log(MovementInput);
+        RawMovementInput = context.ReadValue<Vector2>();
+        //NormalizedInputX = (int)(RawMovementInput * Vector2.right).normalized.x;
+        //NormalizedInputY = (int)(RawMovementInput * Vector2.up).normalized.y;
+
+        Debug.Log(RawMovementInput);
     }
 
 
