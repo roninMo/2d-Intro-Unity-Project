@@ -39,8 +39,8 @@ public class Slime : MonoBehaviour
         ContactPoint2D contact = collision.GetContact(0);
         Vector2 contactPoint = contact.normal;
 
-        Debug.Log("\ncontact Normal" + contactPoint);
-        Debug.Log("Compare tage to player" + collision.gameObject.CompareTag("Player"));
+        //Debug.Log("\ncontact Normal" + contactPoint);
+        //Debug.Log("Compare tage to player" + collision.gameObject.CompareTag("Player"));
         if (collision.gameObject.CompareTag("Player")) // If the slime comes in contact with the player...
         {
             if (contactPoint.y <= -0.2) // If it landed on enough of the top of the slime, then have the slime take damage

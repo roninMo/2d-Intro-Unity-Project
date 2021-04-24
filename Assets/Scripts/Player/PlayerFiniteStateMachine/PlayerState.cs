@@ -16,31 +16,37 @@ public class PlayerState
         this.currentAnimation = currentAnimation;
     }
 
-    // So now we code out the functions for each state
+
+        // So now we code out the functions for each state
     // Every state must have an enter and exit function, as well as an update and fixedUpdate function
     // We're naming the update function as "LogicUpdate", and fixedUpate as "PhysicsUpdate"
 
     public virtual void Enter() // virtual means this function may be overriden from classes that inherit this class
     {
         DoChecks();
-        StartTime = Time.time;
         player.Anim.SetBool(currentAnimation, true);
+        StartTime = Time.time;
+        Debug.Log("Current Animation: " + currentAnimation);
     }
+
 
     public virtual void Exit()
     {
         player.Anim.SetBool(currentAnimation, false);
     }
 
+
     public virtual void LogicUpdate()
     {
 
     }
 
+
     public virtual void PhysicsUpdate()
     {
         DoChecks();
     }
+
 
     public virtual void DoChecks()
     {
