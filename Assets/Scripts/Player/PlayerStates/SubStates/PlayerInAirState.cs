@@ -3,7 +3,7 @@
 public class PlayerInAirState : PlayerState
 {
     private Vector2 input;
-    private bool jumpInput;
+    //private bool jumpInput;
     private bool isGrounded;
 
     public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string currentAnimation) : base(player, stateMachine, playerData, currentAnimation)
@@ -27,15 +27,15 @@ public class PlayerInAirState : PlayerState
     {
         base.LogicUpdate();
         input = player.InputHandler.RawMovementInput;
-        jumpInput = player.InputHandler.JumpInput;
+        //jumpInput = player.InputHandler.JumpInput;
 
-        if(isGrounded)
+        if (isGrounded)
         {
-            if (jumpInput)
-            {
-                player.InputHandler.UseJumpInput();
-                stateMachine.ChangeState(player.JumpState);
-            }
+            //    if (jumpInput)
+            //    {
+            //        player.InputHandler.UseJumpInput();
+            //        stateMachine.ChangeState(player.JumpState);
+            //    }
             if (player.currentVelocity.y < 0.01)
             {
                 stateMachine.ChangeState(player.LandState);
