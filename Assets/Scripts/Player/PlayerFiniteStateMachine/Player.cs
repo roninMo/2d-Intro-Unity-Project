@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
         MoveState = new PlayerMoveState(this, StateMachine, playerData, "move");
         JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
         InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
-        LandState = new PlayerLandState(this, StateMachine, playerData, "move");
+        LandState = new PlayerLandState(this, StateMachine, playerData, "land");
     }
 
 
@@ -97,7 +97,6 @@ public class Player : MonoBehaviour
     public bool CheckIfTouchingGround()
     {
         int numberOfGroundCollisions = boxCollider.Cast(Vector2.down, new RaycastHit2D[10], playerData.groundCheckRadius, true);
-        Debug.Log("Ground Collisions: " + numberOfGroundCollisions);
         return numberOfGroundCollisions != 0 ? true : false;
         // The other way to do this with layermasks (Though cast is awesome, it creates a rectangle not a circle), is this:
         //return Physics2D.OverlapCircle(groundCheck.position, playerData.groundCheckRadius, playerData.whatIsGround); // groundChekc is the transform of a gameobject attached to the player
@@ -113,6 +112,10 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Other Functions
+    private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
+    private void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
+
+
     private void Flip()
     {
         facingDirection *= -1;

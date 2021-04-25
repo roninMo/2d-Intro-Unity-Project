@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAbilityState : PlayerState
 {
     protected bool isAbilityDone;
-    private bool isGrounded;
+    protected bool isGrounded;
 
     public PlayerAbilityState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string currentAnimation) : base(player, stateMachine, playerData, currentAnimation)
     {
@@ -15,7 +15,6 @@ public class PlayerAbilityState : PlayerState
     public override void Enter()
     {
         base.Enter();
-
         isAbilityDone = false;
     }
 

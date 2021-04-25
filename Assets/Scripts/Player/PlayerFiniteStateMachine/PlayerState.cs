@@ -7,6 +7,7 @@ public class PlayerState
     protected PlayerData playerData;
     private string currentAnimation;
     protected float StartTime; // Start time gets set everytime we're in a state, that way we have a reference for how long we've been in any state (good for mechanics)
+    protected bool isAnimationFinished;
 
     public PlayerState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string currentAnimation)
     {
@@ -26,6 +27,7 @@ public class PlayerState
         DoChecks();
         player.Anim.SetBool(currentAnimation, true);
         StartTime = Time.time;
+        isAnimationFinished = false;
         Debug.Log("Current Animation: " + currentAnimation);
     }
 
@@ -53,4 +55,11 @@ public class PlayerState
         // DoCheck is a function we're going to call from physics update and enter. It will check for things like if we're touching the ground or look for walls,
         // things like that. That way we're not declaring them twice in every state
     }
+
+    public virtual void AnimationTrigger()
+    {
+
+    }
+
+    public virtual void AnimationFinishTrigger() => isAnimationFinished = true;
 }

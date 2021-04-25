@@ -50,6 +50,15 @@ TextureImporter:
   - first:
       213: 5373894488101195288
     second: Apollo_15
+  - first:
+      213: -333922540225636563
+    second: Apollo_16
+  - first:
+      213: -1462121608648682739
+    second: Apollo_17
+  - first:
+      213: 1116079861442529986
+    second: Apollo_18
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -478,6 +487,69 @@ TextureImporter:
       bones: []
       spriteID: 81e83b79098e39a40800000000000000
       internalID: 5373894488101195288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Apollo_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d27da57083bad5bf0800000000000000
+      internalID: -333922540225636563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Apollo_17
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d039212c42085bbe0800000000000000
+      internalID: -1462121608648682739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Apollo_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cacf3288bc1d7f00800000000000000
+      internalID: 1116079861442529986
       vertices: []
       indices: 
       edges: []

@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerInAirState : PlayerState
 {
-    private Vector2 input; 
+    private Vector2 input;
+    private bool jumpInput;
     private bool isGrounded;
 
     public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string currentAnimation) : base(player, stateMachine, playerData, currentAnimation)
@@ -28,15 +27,28 @@ public class PlayerInAirState : PlayerState
     {
         base.LogicUpdate();
         input = player.InputHandler.RawMovementInput;
+        jumpInput = player.InputHandler.JumpInput;
 
-        if (isGrounded && player.currentVelocity.y < 0.01f)
+        if(isGrounded)
         {
-            stateMachine.ChangeState(player.LandState);
+            if (jumpInput)
+            {
+                player.InputHandler.UseJumpInput();
+                stateMachine.ChangeState(player.JumpState);
+            }
+            if (player.currentVelocity.y < 0.01)
+            {
+                stateMachine.ChangeState(player.LandState);
+            }
         }
         else
         {
             player.CheckIfShouldFlip(input.x);
             player.setAirVelocityX(playerData.movementVelocity * input.x);
+
+            player.Anim.SetFloat("yVelocity", player.currentVelocity.y);
+            player.Anim.SetFloat("xVelocity", Mathf.Abs(player.currentVelocity.x));
+
         }
     }
 
