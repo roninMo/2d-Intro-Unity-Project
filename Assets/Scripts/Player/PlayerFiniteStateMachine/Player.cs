@@ -20,8 +20,8 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Other Variables
-    public Vector2 currentVelocity { get; private set; }
-    public int facingDirection { get; private set; }
+    public Vector2 CurrentVelocity { get; private set; }
+    public int FacingDirection { get; private set; }
 
     private Vector2 workspace; // Everytime we want to apply velocity we don't have to create a new vector2 when we say what we want the velocity to be, just use this variable
     #endregion
@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
 
-        facingDirection = 1;
+        FacingDirection = 1;
 
         StateMachine.Initialize(IdleState);
     }
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         // Instead of running the logic for each and every mechanic, we run the LogicUpdate Function, and the state machine handle the individual mechanic within this call
-        currentVelocity = rb.velocity; // Instead of calling rb.velocity.x/y multiple times, save memory and call it once
+        CurrentVelocity = rb.velocity; // Instead of calling rb.velocity.x/y multiple times, save memory and call it once
         StateMachine.CurrentState.LogicUpdate();
     }
 
@@ -68,28 +68,28 @@ public class Player : MonoBehaviour
 
 
     #region Set Functions
-    public void setVelocityX(float velocity)
+    public void SetVelocityX(float velocity)
     {
-        workspace.Set(velocity, currentVelocity.y);
+        workspace.Set(velocity, CurrentVelocity.y);
         rb.velocity = workspace;
-        currentVelocity = workspace; // Since we're changing the velocity to avoid the physics/logic update overwriting each other, set the current velocity to the new velocity
+        CurrentVelocity = workspace; // Since we're changing the velocity to avoid the physics/logic update overwriting each other, set the current velocity to the new velocity
     }
 
-    public void setAirVelocityX(float velocity)
+    public void SetAirVelocityX(float velocity)
     {
         workspace.Set(velocity, 0);
         rb.AddForce(workspace, ForceMode2D.Force);
         workspace.Set(rb.velocity.x, rb.velocity.y); // Use the current velocity value instead maybe?
         workspace.x = Mathf.Clamp(workspace.x, -8.8f, 8.8f);
         rb.velocity = workspace;
-        currentVelocity = workspace;
+        CurrentVelocity = workspace;
     }
 
-    public void setVelocityY(float velocity)
+    public void SetVelocityY(float velocity)
     {
-        workspace.Set(currentVelocity.x, velocity);
+        workspace.Set(CurrentVelocity.x, velocity);
         rb.velocity = workspace;
-        currentVelocity = workspace;
+        CurrentVelocity = workspace;
     }
     #endregion
 
@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
 
     public void CheckIfShouldFlip(float input)
     {
-        if (input != 0 && input != facingDirection)
+        if (input != 0 && input != FacingDirection)
         {
             Flip();
         }
@@ -118,7 +118,7 @@ public class Player : MonoBehaviour
 
     private void Flip()
     {
-        facingDirection *= -1;
+        FacingDirection *= -1;
         transform.Rotate(0, 180.0f, 0);
     }
     #endregion

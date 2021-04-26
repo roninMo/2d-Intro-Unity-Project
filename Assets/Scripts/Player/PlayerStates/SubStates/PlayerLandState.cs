@@ -10,7 +10,7 @@ public class PlayerLandState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
-        player.setVelocityX(0);
+        player.SetVelocityX(0);
     }
 
 
@@ -18,15 +18,15 @@ public class PlayerLandState : PlayerGroundedState
     {
         base.LogicUpdate();
 
-        
-        if (input.x != 0)
+        if (input.x != 0 && isGrounded)
         {
-            stateMachine.ChangeState(player.MoveState);
+            StateMachine.ChangeState(player.MoveState);
         }
         else if (isAnimationFinished)
         {
-            stateMachine.ChangeState(player.IdleState);
+            StateMachine.ChangeState(player.IdleState);
         }
+
 
     }
 

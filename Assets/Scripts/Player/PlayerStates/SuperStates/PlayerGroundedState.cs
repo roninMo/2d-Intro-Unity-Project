@@ -5,7 +5,7 @@ public class PlayerGroundedState : PlayerState
 {
     protected Vector2 input; // This value is defined once here while we reference it in multiple areas within our different sub states
     protected bool jumpInput;
-    //protected bool isGrounded;
+    protected bool isGrounded;
 
     public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string currentAnimation) : base(player, stateMachine, playerData, currentAnimation)
     {
@@ -15,6 +15,7 @@ public class PlayerGroundedState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        player.JumpState.ResetAmountOfJumpsLeft();
     }
 
 
@@ -30,10 +31,15 @@ public class PlayerGroundedState : PlayerState
         input.x = player.InputHandler.RawMovementInput.x; // Now we grab the movement input in the super state to share amongst the sub states
         jumpInput = player.InputHandler.JumpInput;
 
-        if (jumpInput) // isGrounded && 
+        if (jumpInput && player.JumpState.CanJump() && Time.time >= StartTime + playerData.jumpDelay) // isGrounded && 
         {
             player.InputHandler.UseJumpInput();
-            stateMachine.ChangeState(player.JumpState);
+            StateMachine.ChangeState(player.JumpState);
+        }
+        else if (!isGrounded)
+        {
+            player.InAirState.StartCoyoteTime();
+            StateMachine.ChangeState(player.InAirState);
         }
     }
 
@@ -47,6 +53,6 @@ public class PlayerGroundedState : PlayerState
     public override void DoChecks()
     {
         base.DoChecks();
-        //isGrounded = player.CheckIfTouchingGround();
+        isGrounded = player.CheckIfTouchingGround();
     }
 }

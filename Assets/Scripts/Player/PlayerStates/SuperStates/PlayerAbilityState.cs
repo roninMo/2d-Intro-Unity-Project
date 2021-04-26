@@ -15,6 +15,7 @@ public class PlayerAbilityState : PlayerState
     public override void Enter()
     {
         base.Enter();
+
         isAbilityDone = false;
     }
 
@@ -28,17 +29,16 @@ public class PlayerAbilityState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
         if (isAbilityDone)
         {
-            if (isGrounded && player.currentVelocity.y < 0.01f)
-            {
-                stateMachine.ChangeState(player.IdleState);
-            }
-            else
-            {
-                stateMachine.ChangeState(player.InAirState);
-            }
+            //if (isGrounded)// && player.CurrentVelocity.y < 0.01f
+            //{
+            //    stateMachine.ChangeState(player.IdleState);
+            //}
+            //else
+            //{
+                StateMachine.ChangeState(player.InAirState);
+            //}
         }
     }
 

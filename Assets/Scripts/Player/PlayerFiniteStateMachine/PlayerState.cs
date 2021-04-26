@@ -3,7 +3,7 @@
 public class PlayerState
 {
     protected Player player; // protected means private but shared between components that inherit the class
-    protected PlayerStateMachine stateMachine;
+    protected PlayerStateMachine StateMachine;
     protected PlayerData playerData;
     private string currentAnimation;
     protected float StartTime; // Start time gets set everytime we're in a state, that way we have a reference for how long we've been in any state (good for mechanics)
@@ -12,7 +12,7 @@ public class PlayerState
     public PlayerState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string currentAnimation)
     {
         this.player = player;
-        this.stateMachine = stateMachine;
+        this.StateMachine = stateMachine;
         this.playerData = playerData;
         this.currentAnimation = currentAnimation;
     }
@@ -28,7 +28,7 @@ public class PlayerState
         player.Anim.SetBool(currentAnimation, true);
         StartTime = Time.time;
         isAnimationFinished = false;
-        Debug.Log("Current Animation: " + currentAnimation);
+        //Debug.Log("Current Animation: " + currentAnimation);
     }
 
 

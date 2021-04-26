@@ -10,11 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bf8617f245a04dbb81fd2eb3082e185, type: 3}
-  m_Name: newPlayerData
+  m_Name: PlayerData
   m_EditorClassIdentifier: 
   movementVelocity: 10
   jumpVelocity: 25
+  amountOfJumps: 2
+  jumpDelay: 0.05
   groundCheckRadius: 0.4
   whatIsGround:
     serializedVersion: 2
     m_Bits: 0
+  coyoteTime: 0.2
