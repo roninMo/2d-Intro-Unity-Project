@@ -31,11 +31,11 @@ The initial setup for state machines:
 - This is the hub state. The state machine just manages each of these, but PlayerState is the root of the tree. Everything extends from this base function, ex: PlayerState to a GroundState, which trees down into an Idle or a Move State. 
 - The functions it holds are the standard script functions, well they're mapped to the standard functions and passed down to each state, which then adds onto each of them.
 - The functions are Enter(), Exit(), LogicUpdate(), PhysicsUpdate(), and to reduce clutter I'd recommend a function called DoChecks().
-- -- Enter is called whenever you change a state, also in StateMachine InitializeState when it's initially rendered.
-- -- Exit is called at the end of a state before it changes into a new state. Each of these functions are only called once
-- -- LogicUpdate is called every frame, aka the update function. In the player script it's called in the Update function just once, and is chained down into each of the nested states.
-- -- PhysicsUpde is called every physics step, we call it in the FixedUpdate function in the player script
-- -- DoChecks is called in the PhysicsUpdate and on Enter, and it's very handy for checking for collisions or whatever you should check for. For my ground state I have a call in the DoChecks to check if the player is touching the ground, and that then gets passed into my move and idle state for if the player wants to jump.
+- - Enter is called whenever you change a state, also in StateMachine InitializeState when it's initially rendered.
+- - Exit is called at the end of a state before it changes into a new state. Each of these functions are only called once
+- - LogicUpdate is called every frame, aka the update function. In the player script it's called in the Update function just once, and is chained down into each of the nested states.
+- - PhysicsUpde is called every physics step, we call it in the FixedUpdate function in the player script
+- - DoChecks is called in the PhysicsUpdate and on Enter, and it's very handy for checking for collisions or whatever you should check for. For my ground state I have a call in the DoChecks to check if the player is touching the ground, and that then gets passed into my move and idle state for if the player wants to jump.
 
 ###### What Does That Mean?
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  *Essentially the playerState maps to your standard update functions the way you would normally, then adds the functionality you'd normally implement. Then each state holds the individual mechanics within the respective state, and adds onto those mapped functions. Stopping you from tangling actions like differing air and ground movement, jump forces with movement forces, etc. It keeps it clean and easy to read, and each state transitions just like the animation controller (The animation controller is also based on a state machine).*
