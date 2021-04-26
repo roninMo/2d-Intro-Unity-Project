@@ -8,7 +8,7 @@ The state machine pattern untangles a whole bunch of logic for moving the charac
 A good example of what I mean is:
 * Say you have functionality implemented for moving your character around on the ground, and you want a different type of movement in the air. Building all the conditional logic for this is fine, until you then implement jumping, wall sliding, wall jumping, crouching, etc, all on top of that
 
-The physics for your movement will override the logic of your wall jump, all the conditionals tangle together into a cluttered mess. It's really annoying, and state machine stops that.
+`The physics for your movement will override the logic of your wall jump, all the conditionals tangle together into a cluttered mess. It's really annoying, and state machine stops that.`
 
 You just create a file to hold or change the current state, and then files for the functionality of each of your states, making it a lot easier on both you and the system.
 
