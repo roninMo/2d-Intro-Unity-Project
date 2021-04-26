@@ -47,7 +47,7 @@ This should clear up a bunch of stuff, and as you build your own it will all com
 <br />
 
 ###### What Does That Mean?
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  *Essentially the playerState maps to your standard update functions the way you would normally, then adds the functionality you'd normally implement. Then each state holds the individual mechanics within the respective state, and adds onto those mapped functions. Stopping you from tangling actions like differing air and ground movement, jump forces with movement forces, etc. It keeps it clean and easy to read, and each state transitions just like the animation controller (The animation controller is also based on a state machine).*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    *Essentially the playerState maps to your standard update functions the way you would normally, then adds the functionality you'd normally implement. Then each state holds the individual mechanics within the respective state, and adds onto those mapped functions. Stopping you from tangling actions like differing air and ground movement, jump forces with movement forces, etc. It keeps it clean and easy to read, and each state transitions just like the animation controller (The animation controller is also based on a state machine).*
 
 <br />
 
@@ -55,6 +55,7 @@ This should clear up a bunch of stuff, and as you build your own it will all com
 
         This makes the code easier to understand, hard to read at first, unifies tangled logic, 
         and is very fun to build when you start to get a good understanding of it.
+
 ---
 
 #### Super States
@@ -66,7 +67,7 @@ A super state is a state that's inherited by states. Move and Idle states would 
 A sub state inherits from the super state, and are what states your player invokes. These are the move, idle, jump, ability mechanics that all implement the functionality individually to keep your code clean and organized.
 
 ### That's All
-*Just Start by creating the State Machine, A player script, a player state script and a couple states to understand how all this stuff ties together!*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    *Just Start by creating the State Machine, A player script, a player state script and a couple states to understand how all this stuff ties together!*
 
 <br />
 
