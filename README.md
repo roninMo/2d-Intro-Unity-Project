@@ -18,18 +18,21 @@ You just create a file to hold or change the current state, and then files for t
 #### Understanding the State Machine Pattern
 This should clear up a bunch of stuff, and as you build your own it will all come together and make a buncha sense.
 
+<br />
 ###### The initial setup for state machines:
 * StateMachine script for handling the state (this doesn't get attached to anything)
     - Holds the value of the current state your player is in (the functionality that is currently implemented on teh character)
     - Has a function to change the state (transition from one state to another)
     - Also has an init state, for when the state is first rendered (generally to idle)
 
+<br />
 * Player script to tie everything together (this is the only script attached to your character and like the hub of the state)
     - This bad boy holds a reference to all the different state scripts, and each of the states constructors hold reference to this (all chained together)
     - It holds the player inputs, which then get passed down into the states like a daisy chain
     - It holds all the standard components (rigidbody, boxcolliders, etc, animations)
     - Also holds reference to functions you wanna call in multiple states (SetVelocityX for when you're both on ground and in air)
 
+<br />
 * PlayerState script 
     - This is the hub state. The state machine just manages each of these, but PlayerState is the root of the tree. Everything extends from this base function, ex: PlayerState to a GroundState, which trees down into an Idle or a Move State. 
     - The functions it holds are the standard script functions, well they're mapped to the standard functions and passed down to each state, which then adds onto each of them.
