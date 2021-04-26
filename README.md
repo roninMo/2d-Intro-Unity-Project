@@ -12,10 +12,10 @@ The physics for your movement will override the logic of your wall jump, all the
 
 You just create a file to hold or change the current state, and then files for the functionality of each of your states, making it a lot easier on both you and the system.
 
-###### Understanding the State Machine Pattern
+##### Understanding the State Machine Pattern
 This should clear up a bunch of stuff, and as you build your own it will all come together and make a buncha sense.
 
-The initial setup for state machines:
+###### The initial setup for state machines:
 * StateMachine script for handling the state (this doesn't get attached to anything)
 - Holds the value of the current state your player is in (the functionality that is currently implemented on teh character)
 - Has a function to change the state (transition from one state to another)
