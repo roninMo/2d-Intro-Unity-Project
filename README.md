@@ -39,8 +39,7 @@ This should clear up a bunch of stuff, and as you build your own it will all com
         - LogicUpdate is called every frame, aka the update function. In the player script it's called in the Update function just once, and is chained down into each of the nested states.
         - PhysicsUpde is called every physics step, we call it in the FixedUpdate function in the player script
         - DoChecks is called in the PhysicsUpdate and on Enter, and it's very handy for checking for collisions or whatever you should check for. For my ground state I have a call in the DoChecks to check if the player is touching the ground, and that then gets passed into my move and idle state for if the player wants to jump.
-<br />
-<br />
+
 <br />
 <br />
 
