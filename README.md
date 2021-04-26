@@ -68,15 +68,16 @@ A sub state inherits from the super state, and are what states your player invok
 ##### That's All
 Just Start by creating the State Machine, A player script, a player state script and a couple states to understand how all this stuff ties together!
 
+<br />
+
 ---
 
 # 2d-Intro-Unity-Project
 Hierarchical State Machine for the player, and something similar for the enemy ai. 
 
-Guide to create a solid Markdown: https://guides.github.com/features/mastering-markdown/
-Here's a good example: https://github.com/pyenv/pyenv
+`Actual Guide to this State Machine: https://www.youtube.com/watch?v=OjreMoAG9Ec`
 
-
+###### my own notes
 Implementing a hierarchichal state machine for the character
 Movement/physics/attacks/dashes/crouching/sliding
 
