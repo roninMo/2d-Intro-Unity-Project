@@ -43,6 +43,7 @@ This should clear up a bunch of stuff, and as you build your own it will all com
 \
 \
 \
+
 ###### What Does That Mean?
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  *Essentially the playerState maps to your standard update functions the way you would normally, then adds the functionality you'd normally implement. Then each state holds the individual mechanics within the respective state, and adds onto those mapped functions. Stopping you from tangling actions like differing air and ground movement, jump forces with movement forces, etc. It keeps it clean and easy to read, and each state transitions just like the animation controller (The animation controller is also based on a state machine).*
 
