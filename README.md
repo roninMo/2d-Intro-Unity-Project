@@ -8,11 +8,12 @@ The state machine pattern untangles a whole bunch of logic for moving the charac
 A good example of what I mean is:
 * Say you have functionality implemented for moving your character around on the ground, and you want a different type of movement in the air. Building all the conditional logic for this is fine, until you then implement jumping, wall sliding, wall jumping, crouching, etc, all on top of that
 
-
-        git clone https://github.com/pyenv/pyenv.git ~/The physics for your movement will override the logic of your wall jump, all the conditionals tangle together into a cluttered mess. It's really annoying, and state machine stops that.pyenv
-`The physics for your movement will override the logic of your wall jump, all the conditionals tangle together into a cluttered mess. It's really annoying, and state machine stops that.`
+        The physics for your movement will override the logic of your wall jump, all the conditionals tangle 
+        together into a cluttered mess. It's really annoying, and state machine stops that.pyenv
 
 You just create a file to hold or change the current state, and then files for the functionality of each of your states, making it a lot easier on both you and the system.
+
+---
 
 #### Understanding the State Machine Pattern
 This should clear up a bunch of stuff, and as you build your own it will all come together and make a buncha sense.
@@ -46,6 +47,8 @@ This should clear up a bunch of stuff, and as you build your own it will all com
 
 This makes the code easier to understand, hard to read at first, unifies tangled logic, and is very fun to build when you start to get a good understanding of it.
 
+---
+
 #### Super States
 A super state is a state that's inherited by states. Move and Idle states would Inherit the ground state, and ground state holds the logic for if you wanna jump. This cleans up code, and the only states you transition to are the Idle/Move State.
 
@@ -54,7 +57,7 @@ A super state is a state that's inherited by states. Move and Idle states would 
 #### Sub States
 A sub state inherits from the super state, and are what states your player invokes. These are the move, idle, jump, ability mechanics that all implement the functionality individually to keep your code clean and organized.
 
-
+---
 
 # 2d-Intro-Unity-Project
 Hierarchical State Machine for the player, and something similar for the enemy ai. 
