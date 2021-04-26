@@ -6,7 +6,7 @@ This goes through the basics of creating the state machine, and then two super s
 The state machine pattern untangles a whole bunch of logic for moving the character around and makes it a lot easier to build heaps of functionality for your character without creating clutter or tripping over your current functionality.
 
 A good example of what I mean is:
-* Say you have functionality implemented for moving your character around on the ground, and you want a different type of movement in the air. Building all the conditional logic for this is fine, until you then implement jumping, wall sliding, wall jumping, crouching, etc, all on top of that
+* Say you have functionality implemented for moving your character around on the ground, and you want a different type of movement in the air. Building all the conditional logic for this is fine, until you then implement jumping, wall sliding, wall jumping, crouching, etc, all on top of that. `The Problem is:`
 
         The physics for your movement will override the logic of your wall jump, all the conditionals tangle 
         together into a cluttered mess. It's really annoying, and state machine stops that.pyenv
