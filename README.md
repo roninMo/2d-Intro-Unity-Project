@@ -65,7 +65,7 @@ A super state is a state that's inherited by states. Move and Idle states would 
 #### Sub States
 A sub state inherits from the super state, and are what states your player invokes. These are the move, idle, jump, ability mechanics that all implement the functionality individually to keep your code clean and organized.
 
-##### That's All
+### That's All
 Just Start by creating the State Machine, A player script, a player state script and a couple states to understand how all this stuff ties together!
 
 <br />
