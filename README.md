@@ -77,7 +77,9 @@ Hierarchical State Machine for the player, and something similar for the enemy a
 
 `Actual Guide to this State Machine: https://www.youtube.com/watch?v=OjreMoAG9Ec`
 
-###### my own notes
+<br />
+
+###### My Own Notes:
 Implementing a hierarchichal state machine for the character
 Movement/physics/attacks/dashes/crouching/sliding
 
