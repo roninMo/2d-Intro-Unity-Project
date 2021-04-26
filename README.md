@@ -38,7 +38,7 @@ The initial setup for state machines:
 - -- DoChecks is called in the PhysicsUpdate and on Enter, and it's very handy for checking for collisions or whatever you should check for. For my ground state I have a call in the DoChecks to check if the player is touching the ground, and that then gets passed into my move and idle state for if the player wants to jump.
 
 ###### What Does That Mean?
-*Essentially the playerState maps to your standard update functions the way you would normally, then adds the functionality you'd normally implement. Then each state holds the individual mechanics within the respective state, and adds onto those mapped functions. Stopping you from tangling actions like differing air and ground movement, jump forces with movement forces, etc. It keeps it clean and easy to read, and each state transitions just like the animation controller (The animation controller is also based on a state machine).*
+  *Essentially the playerState maps to your standard update functions the way you would normally, then adds the functionality you'd normally implement. Then each state holds the individual mechanics within the respective state, and adds onto those mapped functions. Stopping you from tangling actions like differing air and ground movement, jump forces with movement forces, etc. It keeps it clean and easy to read, and each state transitions just like the animation controller (The animation controller is also based on a state machine).*
 
 - One last thing, these states are classes with constructors, and each of them grab all the base data stored from the player (Inputs, meta/saveData, colliders, rb components, etc). They're all chained together, and pass down the information from one source, making it very organized and easy to access.
 
@@ -51,7 +51,6 @@ A super state is a state that's inherited by states. Move and Idle states would 
 
 #### Sub States
 A sub state inherits from the super state, and are what states your player invokes. These are the move, idle, jump, ability mechanics that all implement the functionality individually to keep your code clean and organized.
-
 
 
 
