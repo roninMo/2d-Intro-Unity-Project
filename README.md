@@ -45,8 +45,8 @@ This should clear up a bunch of stuff, and as you build your own it will all com
 
 - One last thing, these states are classes with constructors, and each of them grab all the base data stored from the player (Inputs, meta/saveData, colliders, rb components, etc). They're all chained together, and pass down the information from one source, making it very organized and easy to access.
 
-This makes the code easier to understand, hard to read at first, unifies tangled logic, and is very fun to build when you start to get a good understanding of it.
-
+        This makes the code easier to understand, hard to read at first, unifies tangled logic, and is very fun to build when you start to 
+        get a good understanding of it.
 ---
 
 #### Super States
