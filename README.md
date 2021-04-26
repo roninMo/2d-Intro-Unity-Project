@@ -18,8 +18,6 @@ You just create a file to hold or change the current state, and then files for t
 #### Understanding the State Machine Pattern
 This should clear up a bunch of stuff, and as you build your own it will all come together and make a buncha sense.
 
-<br />
-
 ###### The initial setup for state machines:
 * StateMachine script for handling the state (this doesn't get attached to anything)
     - Holds the value of the current state your player is in (the functionality that is currently implemented on teh character)
@@ -46,7 +44,6 @@ This should clear up a bunch of stuff, and as you build your own it will all com
         - PhysicsUpde is called every physics step, we call it in the FixedUpdate function in the player script
         - DoChecks is called in the PhysicsUpdate and on Enter, and it's very handy for checking for collisions or whatever you should check for. For my ground state I have a call in the DoChecks to check if the player is touching the ground, and that then gets passed into my move and idle state for if the player wants to jump.
 
-<br />
 <br />
 
 ###### What Does That Mean?
