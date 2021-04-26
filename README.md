@@ -19,14 +19,14 @@ You just create a file to hold or change the current state, and then files for t
 This should clear up a bunch of stuff, and as you build your own it will all come together and make a buncha sense.
 
 ###### The initial setup for state machines:
-* StateMachine script for handling the state (this doesn't get attached to anything)
+* `StateMachine script` for handling the state (this doesn't get attached to anything)
     - Holds the value of the current state your player is in (the functionality that is currently implemented on teh character)
     - Has a function to change the state (transition from one state to another)
     - Also has an init state, for when the state is first rendered (generally to idle)
 
 <br />
 
-* Player script to tie everything together (this is the only script attached to your character and like the hub of the state)
+* `Player script` to tie everything together (this is the only script attached to your character and like the hub of the state)
     - This bad boy holds a reference to all the different state scripts, and each of the states constructors hold reference to this (all chained together)
     - It holds the player inputs, which then get passed down into the states like a daisy chain
     - It holds all the standard components (rigidbody, boxcolliders, etc, animations)
@@ -34,24 +34,24 @@ This should clear up a bunch of stuff, and as you build your own it will all com
 
 <br />
 
-* PlayerState script 
+* `PlayerState script` The root or foundation state
     - This is the hub state. The state machine just manages each of these, but PlayerState is the root of the tree. Everything extends from this base function, ex: PlayerState to a GroundState, which trees down into an Idle or a Move State. 
     - The functions it holds are the standard script functions, well they're mapped to the standard functions and passed down to each state, which then adds onto each of them.
-    - The functions are Enter(), Exit(), LogicUpdate(), PhysicsUpdate(), and to reduce clutter I'd recommend a function called DoChecks().
-        - Enter is called whenever you change a state, also in StateMachine InitializeState when it's initially rendered.
-        - Exit is called at the end of a state before it changes into a new state. Each of these functions are only called once
-        - LogicUpdate is called every frame, aka the update function. In the player script it's called in the Update function just once, and is chained down into each of the nested states.
-        - PhysicsUpde is called every physics step, we call it in the FixedUpdate function in the player script
-        - DoChecks is called in the PhysicsUpdate and on Enter, and it's very handy for checking for collisions or whatever you should check for. For my ground state I have a call in the DoChecks to check if the player is touching the ground, and that then gets passed into my move and idle state for if the player wants to jump.
+    - The functions are `Enter()`, `Exit()`, `LogicUpdate()`, `PhysicsUpdate()`, and to reduce clutter I'd recommend a function called `DoChecks()`.
+        - `Enter` is called whenever you change a state, also in `StateMachine` `InitializeState` when it's initially rendered.
+        - `Exit` is called at the end of a state before it changes into a new state. Each of these functions are only called once
+        - `LogicUpdate` is called every frame, aka the Update function. In the player script it's called in the Update function just once, and is chained down into each of the nested states.
+        - `PhysicsUpdate` is called every physics step, we call it in the FixedUpdate function in the player script
+        - `DoChecks` is called in the `PhysicsUpdate` and on `Enter`, and it's very handy for checking for collisions or whatever you should check for. For my GroundState I have a call in the `DoChecks` to check if the player is touching the ground, and that then gets passed into my Move and Idle state for if the player wants to jump.
 
 <br />
 
 ###### What Does That Mean?
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    *Essentially the playerState maps to your standard update functions the way you would normally, then adds the functionality you'd normally implement. Then each state holds the individual mechanics within the respective state, and adds onto those mapped functions. Stopping you from tangling actions like differing air and ground movement, jump forces with movement forces, etc. It keeps it clean and easy to read, and each state transitions just like the animation controller (The animation controller is also based on a state machine).*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    *Essentially the playerState `maps` to your `Unity Callback functions (Update, FixedUpdate, etc)` the way you would normally, then expands on the functionality you'd normally implement but with less clutter. Then each state holds the individual mechanics within the respective state, and adds onto those mapped functions. Stopping you from tangling actions like differing air and ground movement, jump forces with movement forces, etc. It keeps it clean and easy to read, and each state transitions just like the animation controller (The animation controller is also based on a state machine).*
 
 <br />
 
-- One last thing, these states are classes with constructors, and each of them grab all the base data stored from the player (Inputs, meta/saveData, colliders, rb components, etc). They're all chained together, and pass down the information from one source, making it very organized and easy to access.
+- One last thing, these states are classes with `constructors`, and each of them grab all the base data stored from the player (Inputs, meta/saveData, colliders, rb components, etc). They're all chained together, and pass down the information from one source, making it very organized and easy to access.
 
         This makes the code easier to understand, hard to read at first, unifies tangled logic, 
         and is very fun to build when you start to get a good understanding of it.
@@ -59,12 +59,12 @@ This should clear up a bunch of stuff, and as you build your own it will all com
 ---
 
 #### Super States
-A super state is a state that's inherited by states. Move and Idle states would Inherit the ground state, and ground state holds the logic for if you wanna jump. This cleans up code, and the only states you transition to are the Idle/Move State.
+A `Super State` is a state that's inherited by states. Move and Idle states would Inherit the ground state, and ground state holds the logic for if you wanna jump. This cleans up code, and the only states you transition to are the Idle/Move State.
 
 * These are essentially super/parent classes, and as you go down in the states you'll find more unique functionality/mechanics
 
 #### Sub States
-A sub state inherits from the super state, and are what states your player invokes. These are the move, idle, jump, ability mechanics that all implement the functionality individually to keep your code clean and organized.
+A `Sub State` inherits from the super state, and are what states your player invokes. These are the move, idle, jump, ability mechanics that all implement the functionality individually to keep your code clean and organized.
 
 ### That's All
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    *Just Start by creating the State Machine, A player script, a player state script and a couple states to understand how all this stuff ties together!*
