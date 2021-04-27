@@ -31,7 +31,7 @@ public class PlayerGroundedState : PlayerState
         input.x = player.InputHandler.RawMovementInput.x; // Now we grab the movement input in the super state to share amongst the sub states
         jumpInput = player.InputHandler.JumpInput;
 
-        if (jumpInput && player.JumpState.CanJump() && Time.time >= StartTime + playerData.jumpDelay) // isGrounded && 
+        if (jumpInput && player.JumpState.CanJump() && Time.time >= StartTime + playerData.jumpDelay) // The delay fixes a bug
         {
             player.InputHandler.UseJumpInput();
             StateMachine.ChangeState(player.JumpState);

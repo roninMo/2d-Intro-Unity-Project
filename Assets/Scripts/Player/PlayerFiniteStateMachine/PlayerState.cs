@@ -28,7 +28,7 @@ public class PlayerState
         player.Anim.SetBool(currentAnimation, true);
         StartTime = Time.time;
         isAnimationFinished = false;
-        //Debug.Log("Current Animation: " + currentAnimation);
+        Debug.Log("Current Animation: " + currentAnimation);
     }
 
 

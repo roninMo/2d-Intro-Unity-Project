@@ -16,9 +16,11 @@ public class PlayerJumpState : PlayerAbilityState
     {
         base.Enter();
 
+
         player.SetVelocityY(playerData.jumpVelocity);
         isAbilityDone = true;
         amountOfJumpsLeft--;
+        Debug.Log("Jumps left: " + amountOfJumpsLeft);
         player.InAirState.SetIsJumping();
     }
 
@@ -36,6 +38,13 @@ public class PlayerJumpState : PlayerAbilityState
     }
 
 
-    public void ResetAmountOfJumpsLeft() => amountOfJumpsLeft = playerData.amountOfJumps;
-    public void DecreaseAmountOfJumpsLeft() => amountOfJumpsLeft--;
+    public void ResetAmountOfJumpsLeft()
+    {
+        amountOfJumpsLeft = playerData.amountOfJumps;
+    }
+    public void DecreaseAmountOfJumpsLeft()
+    {
+        amountOfJumpsLeft--;
+        Debug.Log("Jumps left call: " + amountOfJumpsLeft);
+    }
 }

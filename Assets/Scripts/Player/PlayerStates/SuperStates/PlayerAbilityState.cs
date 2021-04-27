@@ -31,14 +31,7 @@ public class PlayerAbilityState : PlayerState
         base.LogicUpdate();
         if (isAbilityDone)
         {
-            //if (isGrounded)// && player.CurrentVelocity.y < 0.01f
-            //{
-            //    stateMachine.ChangeState(player.IdleState);
-            //}
-            //else
-            //{
-                StateMachine.ChangeState(player.InAirState);
-            //}
+            StateMachine.ChangeState(player.InAirState);
         }
     }
 

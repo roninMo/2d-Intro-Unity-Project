@@ -9,6 +9,10 @@ public class Player : MonoBehaviour
     public PlayerJumpState JumpState { get; private set; }
     public PlayerInAirState InAirState { get; private set; }
     public PlayerLandState LandState { get; private set; }
+    //public PlayerWallSlideState WallSlideState { get; private set; }
+    //public PlayerWallGrabState WallGrabState { get; private set; }
+    //public PlayerWallClimbState WallClimbState { get; private set; }
+
     [SerializeField] private PlayerData playerData;
     #endregion
 
@@ -17,6 +21,10 @@ public class Player : MonoBehaviour
     public Animator Anim { get; private set; } // We add the getters and setters so our states have access to the animator
     public Rigidbody2D rb { get; private set; }
     public BoxCollider2D boxCollider { get; private set; }
+    #endregion
+
+    #region Check Transforms
+    [SerializeField] private Transform wallCheck;
     #endregion
 
     #region Other Variables
@@ -36,6 +44,9 @@ public class Player : MonoBehaviour
         JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
         InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
         LandState = new PlayerLandState(this, StateMachine, playerData, "land");
+        //WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
+        //WallGrabState = new PlayerWallGrabState(this, StateMachine, playerData, "wallGrab");
+        //WallClimbState = new PlayerWallClimbState(this, StateMachine, playerData, "wallClimb");
     }
 
 
@@ -100,6 +111,11 @@ public class Player : MonoBehaviour
         return numberOfGroundCollisions != 0 ? true : false;
         // The other way to do this with layermasks (Though cast is awesome, it creates a rectangle not a circle), is this:
         //return Physics2D.OverlapCircle(groundCheck.position, playerData.groundCheckRadius, playerData.whatIsGround); // groundChekc is the transform of a gameobject attached to the player
+    }
+
+    public bool CheckIfTouchingWall()
+    {
+        return Physics2D.Raycast(wallCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
     }
 
     public void CheckIfShouldFlip(float input)

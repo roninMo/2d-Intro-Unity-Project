@@ -4,10 +4,12 @@ public class PlayerInAirState : PlayerState
 {
     private Vector2 input;
     private bool isGrounded;
+    private bool isJumping;
+    private bool isTouchingWall;
     private bool jumpInput;
     private bool jumpInputStop;
     private bool coyoteTime;
-    private bool isJumping;
+    private bool jumpSaver;
 
     public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string currentAnimation) : base(player, stateMachine, playerData, currentAnimation)
     {
@@ -17,6 +19,7 @@ public class PlayerInAirState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        jumpSaver = true;
     }
 
 
@@ -36,20 +39,26 @@ public class PlayerInAirState : PlayerState
         jumpInput = player.InputHandler.JumpInput;
         jumpInputStop = player.InputHandler.JumpInputStop;
 
+        // When they press and hold jump, jumpInput is true, and junpInputStop is false
+        // When they release jump, jumpInputStop is true
+
+        // when they press jump we want to stop the function from being called again until they release the button (this has to be done by handling a variable in multiple states
+
         CheckJumpMultiplier();
 
         if (isGrounded && player.CurrentVelocity.y < 0.01)
         {
             StateMachine.ChangeState(player.LandState);
         }
-        else if(jumpInput && player.JumpState.CanJump())
+        else if(jumpSaver && jumpInput && player.JumpState.CanJump())
         {
+            StopCoyoteTime();
             StateMachine.ChangeState(player.JumpState);
         }
         else
         {
             player.CheckIfShouldFlip(input.x);
-            player.SetAirVelocityX(playerData.movementVelocity * input.x);
+            player.SetAirVelocityX(playerData.airMovementVelocity * input.x);
 
             player.Anim.SetFloat("yVelocity", player.CurrentVelocity.y);
             player.Anim.SetFloat("xVelocity", Mathf.Abs(player.CurrentVelocity.x));
@@ -92,11 +101,13 @@ public class PlayerInAirState : PlayerState
     {
         if (coyoteTime && Time.time >= StartTime + playerData.coyoteTime)
         {
+            Debug.Log("Coyote limit reached");
             coyoteTime = false;
             player.JumpState.DecreaseAmountOfJumpsLeft();
         }
     }
 
     public void StartCoyoteTime() => coyoteTime = true;
+    public void StopCoyoteTime() => coyoteTime = false;
     public void SetIsJumping() => isJumping = true;
 }

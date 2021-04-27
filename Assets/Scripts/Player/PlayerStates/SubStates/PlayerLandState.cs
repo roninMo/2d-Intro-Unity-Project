@@ -2,6 +2,7 @@
 
 public class PlayerLandState : PlayerGroundedState
 {
+    private bool finishAnimation;
 
     public PlayerLandState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string currentAnimation) : base(player, stateMachine, playerData, currentAnimation)
     {
@@ -10,7 +11,15 @@ public class PlayerLandState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
-        player.SetVelocityX(0);
+        if (input.x == 0)
+        {
+            finishAnimation = true;
+            player.SetVelocityX(0);
+        }
+        else
+        {
+            finishAnimation = false;
+        }
     }
 
 
@@ -18,13 +27,20 @@ public class PlayerLandState : PlayerGroundedState
     {
         base.LogicUpdate();
 
-        if (input.x != 0 && isGrounded)
+        if (finishAnimation)
+        {
+            if (input.x != 0) // If they decide to move during the animation
+            {
+                StateMachine.ChangeState(player.MoveState);
+            }
+            if (isAnimationFinished) // If they stand still, finish the animation
+            {
+                StateMachine.ChangeState(player.IdleState);
+            }
+        }
+        else if (player.CurrentVelocity.x != 0 && isGrounded) // If they landing moving, don't freeze them in a landing animation
         {
             StateMachine.ChangeState(player.MoveState);
-        }
-        else if (isAnimationFinished)
-        {
-            StateMachine.ChangeState(player.IdleState);
         }
 
 
