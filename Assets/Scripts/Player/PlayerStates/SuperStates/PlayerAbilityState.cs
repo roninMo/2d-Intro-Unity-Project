@@ -29,6 +29,8 @@ public class PlayerAbilityState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        // State logic
         if (isAbilityDone)
         {
             StateMachine.ChangeState(player.InAirState);

@@ -1632,6 +1632,21 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 92bb3756-7ec7-47a0-b880-eaff36c1322d
     m_ActionName: Dialouge/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 832088045}
+        m_MethodName: OnGrabInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e4a66687-dd46-4fa1-8ba6-6737c755dafb
+    m_ActionName: Gameplay/WallGrab[/Keyboard/l]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Gameplay
@@ -1669,7 +1684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: bf00c1d58a57243d5a72c5ed1502f0ec, type: 2}
-  wallCheck: {fileID: 0}
+  wallCheck: {fileID: 485202186}
 --- !u!1 &833889949
 GameObject:
   m_ObjectHideFlags: 3

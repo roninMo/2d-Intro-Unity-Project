@@ -8,6 +8,7 @@ public class PlayerInputHandler : MonoBehaviour
     //public int NormalizedInputY { get; private set; }
     public bool JumpInput { get; private set; }
     public bool JumpInputStop { get; private set; }
+    public bool GrabInput { get; private set; }
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
@@ -21,6 +22,7 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
 
+    #region Input Grab Functions
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         RawMovementInput = context.ReadValue<Vector2>();
@@ -43,6 +45,19 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+
+    public void OnGrabInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            GrabInput = true;
+        }
+        if (context.canceled)
+        {
+            GrabInput = false;
+        }
+    }
+    #endregion
 
     public void UseJumpInput() => JumpInput = false;
 

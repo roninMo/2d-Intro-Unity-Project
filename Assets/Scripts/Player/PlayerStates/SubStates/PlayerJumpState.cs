@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerJumpState : PlayerAbilityState
 {
@@ -16,11 +14,10 @@ public class PlayerJumpState : PlayerAbilityState
     {
         base.Enter();
 
-
         player.SetVelocityY(playerData.jumpVelocity);
         isAbilityDone = true;
         amountOfJumpsLeft--;
-        Debug.Log("Jumps left: " + amountOfJumpsLeft);
+        //Debug.Log("Jumps left: " + amountOfJumpsLeft);
         player.InAirState.SetIsJumping();
     }
 
@@ -42,9 +39,11 @@ public class PlayerJumpState : PlayerAbilityState
     {
         amountOfJumpsLeft = playerData.amountOfJumps;
     }
+
+
     public void DecreaseAmountOfJumpsLeft()
     {
         amountOfJumpsLeft--;
-        Debug.Log("Jumps left call: " + amountOfJumpsLeft);
+        //Debug.Log("Jumps left call: " + amountOfJumpsLeft);
     }
 }

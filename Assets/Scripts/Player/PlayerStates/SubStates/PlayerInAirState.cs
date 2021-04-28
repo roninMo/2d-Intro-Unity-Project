@@ -3,13 +3,13 @@
 public class PlayerInAirState : PlayerState
 {
     private Vector2 input;
-    private bool isGrounded;
-    private bool isJumping;
-    private bool isTouchingWall;
     private bool jumpInput;
     private bool jumpInputStop;
+    private bool grabInput;
+    private bool isTouchingGround;
+    private bool isTouchingWall;
+    private bool isJumping;
     private bool coyoteTime;
-    private bool jumpSaver;
 
     public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string currentAnimation) : base(player, stateMachine, playerData, currentAnimation)
     {
@@ -19,7 +19,6 @@ public class PlayerInAirState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        jumpSaver = true;
     }
 
 
@@ -33,29 +32,33 @@ public class PlayerInAirState : PlayerState
     {
         base.LogicUpdate();
 
-        CheckCoyoteTime();
-
         input = player.InputHandler.RawMovementInput;
         jumpInput = player.InputHandler.JumpInput;
         jumpInputStop = player.InputHandler.JumpInputStop;
+        grabInput = player.InputHandler.GrabInput;
 
-        // When they press and hold jump, jumpInput is true, and junpInputStop is false
-        // When they release jump, jumpInputStop is true
+        CheckCoyoteTime();
+        CheckJumpMultiplier(); // Controls the jump height
 
-        // when they press jump we want to stop the function from being called again until they release the button (this has to be done by handling a variable in multiple states
-
-        CheckJumpMultiplier();
-
-        if (isGrounded && player.CurrentVelocity.y < 0.01)
+        // State logic
+        if (isTouchingGround && player.CurrentVelocity.y < 0.01) // Land State
         {
             StateMachine.ChangeState(player.LandState);
         }
-        else if(jumpSaver && jumpInput && player.JumpState.CanJump())
+        else if (jumpInput && player.JumpState.CanJump()) // Jump State
         {
             StopCoyoteTime();
             StateMachine.ChangeState(player.JumpState);
         }
-        else
+        else if (isTouchingWall && grabInput) // Wall Grab State
+        {
+            StateMachine.ChangeState(player.WallGrabState);
+        }
+        else if (isTouchingWall && input.x == player.FacingDirection && player.CurrentVelocity.y < 0.01) // Wall Slide State
+        {
+            StateMachine.ChangeState(player.WallSlideState);
+        }
+        else // While still in Air State
         {
             player.CheckIfShouldFlip(input.x);
             player.SetAirVelocityX(playerData.airMovementVelocity * input.x);
@@ -93,7 +96,8 @@ public class PlayerInAirState : PlayerState
     public override void DoChecks()
     {
         base.DoChecks();
-        isGrounded = player.CheckIfTouchingGround();
+        isTouchingGround = player.CheckIfTouchingGround();
+        isTouchingWall = player.CheckIfTouchingWall();
     }
 
 
