@@ -32,8 +32,8 @@ public class PlayerGroundedState : PlayerState
         base.LogicUpdate();
         input.x = player.InputHandler.RawMovementInput.x; // Now we grab the movement input in the super state to share amongst the sub states
         jumpInput = player.InputHandler.JumpInput;
-        grabInput = player.InputHandler.GrabInput;
 
+        // State logic
         if (jumpInput && player.JumpState.CanJump() && Time.time >= StartTime + playerData.jumpDelay) // The delay fixes a bug
         {
             player.InputHandler.UseJumpInput();
@@ -43,10 +43,6 @@ public class PlayerGroundedState : PlayerState
         {
             player.InAirState.StartCoyoteTime();
             StateMachine.ChangeState(player.InAirState);
-        }
-        else if (isTouchingWall && grabInput)
-        {
-            StateMachine.ChangeState(player.WallGrabState);
         }
     }
 
@@ -61,6 +57,5 @@ public class PlayerGroundedState : PlayerState
     {
         base.DoChecks();
         isTouchingGround = player.CheckIfTouchingGround();
-        isTouchingWall = player.CheckIfTouchingWall();
     }
 }

@@ -9,9 +9,6 @@ public class Player : MonoBehaviour
     public PlayerJumpState JumpState { get; private set; }
     public PlayerInAirState InAirState { get; private set; }
     public PlayerLandState LandState { get; private set; }
-    public PlayerWallSlideState WallSlideState { get; private set; }
-    public PlayerWallGrabState WallGrabState { get; private set; }
-    public PlayerWallClimbState WallClimbState { get; private set; }
 
     [SerializeField] private PlayerData playerData;
     #endregion
@@ -44,9 +41,6 @@ public class Player : MonoBehaviour
         JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
         InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
         LandState = new PlayerLandState(this, StateMachine, playerData, "land");
-        WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
-        WallGrabState = new PlayerWallGrabState(this, StateMachine, playerData, "wallGrab");
-        WallClimbState = new PlayerWallClimbState(this, StateMachine, playerData, "wallClimb");
     }
 
 
@@ -86,6 +80,7 @@ public class Player : MonoBehaviour
         CurrentVelocity = workspace; // Since we're changing the velocity to avoid the physics/logic update overwriting each other, set the current velocity to the new velocity
     }
 
+
     public void SetAirVelocityX(float velocity)
     {
         workspace.Set(velocity, 0);
@@ -96,6 +91,7 @@ public class Player : MonoBehaviour
         CurrentVelocity = workspace;
     }
 
+
     public void SetVelocityY(float velocity)
     {
         workspace.Set(CurrentVelocity.x, velocity);
@@ -103,6 +99,7 @@ public class Player : MonoBehaviour
         CurrentVelocity = workspace;
     }
     #endregion
+
 
     #region Check Functions
     public bool CheckIfTouchingGround()
@@ -113,10 +110,12 @@ public class Player : MonoBehaviour
         //return Physics2D.OverlapCircle(groundCheck.position, playerData.groundCheckRadius, playerData.whatIsGround); // groundChekc is the transform of a gameobject attached to the player
     }
 
+
     public bool CheckIfTouchingWall()
     {
         return Physics2D.Raycast(wallCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
     }
+
 
     public void CheckIfShouldFlip(float input)
     {
@@ -126,6 +125,7 @@ public class Player : MonoBehaviour
         }
     }
     #endregion
+
 
     #region Other Functions
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
