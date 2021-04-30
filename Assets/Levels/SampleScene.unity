@@ -1625,7 +1625,18 @@ MonoBehaviour:
     m_ActionId: 4259d568-0204-4afa-8f37-72c9f40136e0
     m_ActionName: Gameplay/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 832088045}
+        m_MethodName: OnCrouchInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: bb3398d7-9411-4ce0-a441-eaffdb0af9e2
     m_ActionName: Gameplay/Crouch[/Keyboard/shift]
   - m_PersistentCalls:

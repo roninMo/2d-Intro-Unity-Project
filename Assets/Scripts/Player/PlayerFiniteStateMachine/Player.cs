@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     public PlayerJumpState JumpState { get; private set; }
     public PlayerInAirState InAirState { get; private set; }
     public PlayerLandState LandState { get; private set; }
+    public PlayerWallSlideState wallSlideState { get; private set; }
+    public PlayerWallGrabState wallGrabState { get; private set; }
+    public PlayerWallClimbState wallClimbState { get; private set; }
 
     [SerializeField] private PlayerData playerData;
     #endregion
@@ -41,6 +44,9 @@ public class Player : MonoBehaviour
         JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
         InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
         LandState = new PlayerLandState(this, StateMachine, playerData, "land");
+        wallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
+        wallGrabState = new PlayerWallGrabState(this, StateMachine, playerData, "wallGrab");
+        wallClimbState = new PlayerWallClimbState(this, StateMachine, playerData, "wallClimb");
     }
 
 
@@ -86,7 +92,7 @@ public class Player : MonoBehaviour
         workspace.Set(velocity, 0);
         rb.AddForce(workspace, ForceMode2D.Force);
         workspace.Set(rb.velocity.x, rb.velocity.y); // Use the current velocity value instead maybe?
-        workspace.x = Mathf.Clamp(workspace.x, -8.8f, 8.8f);
+        workspace.x = Mathf.Clamp(workspace.x, -9.4f, 9.4f);
         rb.velocity = workspace;
         CurrentVelocity = workspace;
     }
@@ -132,7 +138,7 @@ public class Player : MonoBehaviour
     private void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
 
 
-    private void Flip()
+    public void Flip()
     {
         FacingDirection *= -1;
         transform.Rotate(0, 180.0f, 0);

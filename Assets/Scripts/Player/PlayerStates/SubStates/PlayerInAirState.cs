@@ -35,6 +35,7 @@ public class PlayerInAirState : PlayerState
         input = player.InputHandler.RawMovementInput;
         jumpInput = player.InputHandler.JumpInput;
         jumpInputStop = player.InputHandler.JumpInputStop;
+        grabInput = player.InputHandler.GrabInput;
 
         CheckCoyoteTime();
         CheckJumpMultiplier(); // Controls the jump height
@@ -48,6 +49,14 @@ public class PlayerInAirState : PlayerState
         {
             StopCoyoteTime();
             StateMachine.ChangeState(player.JumpState);
+        }
+        else if (isTouchingWall && grabInput)
+        {
+            StateMachine.ChangeState(player.wallGrabState);
+        }
+        else if (isTouchingWall && input.x == player.FacingDirection && player.CurrentVelocity.y <= 0) // Wall Slide State 
+        {
+            StateMachine.ChangeState(player.wallSlideState);
         }
         else // While still in Air State
         {
@@ -88,6 +97,7 @@ public class PlayerInAirState : PlayerState
     {
         base.DoChecks();
         isTouchingGround = player.CheckIfTouchingGround();
+        isTouchingWall = player.CheckIfTouchingWall();
     }
 
 

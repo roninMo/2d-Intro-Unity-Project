@@ -162,6 +162,17 @@
                 },
                 {
                     "name": "",
+                    "id": "a9d52e51-3e93-48ea-b101-bbe5e728af8a",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d7119473-d6a5-48a0-a323-18581e14c6ab",
                     "path": "<Keyboard>/l",
                     "interactions": "",

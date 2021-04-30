@@ -9,6 +9,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool JumpInput { get; private set; }
     public bool JumpInputStop { get; private set; }
     public bool GrabInput { get; private set; }
+    public bool CrouchInput { get; private set; }
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
@@ -26,7 +27,7 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         RawMovementInput = context.ReadValue<Vector2>();
-        //Debug.Log(RawMovementInput);
+        Debug.Log(RawMovementInput);
     }
 
 
@@ -46,13 +47,26 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
 
+    public void OnCrouchInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            CrouchInput = true;
+        }
+        else if (context.canceled)
+        {
+            CrouchInput = false; 
+        }
+    }
+
+
     public void OnGrabInput(InputAction.CallbackContext context)
     {
         if (context.started)
         {
             GrabInput = true;
         }
-        if (context.canceled)
+        else if (context.canceled)
         {
             GrabInput = false;
         }

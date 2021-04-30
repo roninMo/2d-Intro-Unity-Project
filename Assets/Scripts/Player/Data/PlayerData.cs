@@ -26,7 +26,7 @@ public class PlayerData : ScriptableObject
     [Header("Check Variables")]
     public float groundCheckRadius = 0.4f;
     public LayerMask whatIsGround;
-    public float wallCheckDistance = 0.5f;
+    public float wallCheckDistance = 0.6f;
 
     //[Header("Misc Mechanics")]
 }
