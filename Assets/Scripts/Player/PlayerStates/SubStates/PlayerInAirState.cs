@@ -48,6 +48,7 @@ public class PlayerInAirState : PlayerState
         else if (jumpInput && player.JumpState.CanJump()) // Jump State
         {
             StopCoyoteTime();
+            player.InputHandler.UseJumpInput();
             StateMachine.ChangeState(player.JumpState);
         }
         else if (isTouchingWall && grabInput)

@@ -2,6 +2,7 @@
 
 public class PlayerWallGrabState : PlayerTouchingWallState
 {
+    private Vector2 holdPosition;
 
     public PlayerWallGrabState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string currentAnimation) : base(player, stateMachine, playerData, currentAnimation)
     {
@@ -11,6 +12,9 @@ public class PlayerWallGrabState : PlayerTouchingWallState
     public override void Enter()
     {
         base.Enter();
+
+        holdPosition = player.transform.position;
+        HoldPosition();
     }
 
 
@@ -24,8 +28,7 @@ public class PlayerWallGrabState : PlayerTouchingWallState
     {
         base.LogicUpdate();
 
-        player.SetVelocityX(0f);
-        player.SetVelocityY(0f);
+        HoldPosition();
 
         // State logic
         if (input.y > 0)
@@ -48,5 +51,14 @@ public class PlayerWallGrabState : PlayerTouchingWallState
     public override void DoChecks()
     {
         base.DoChecks();
+    }
+
+
+    private void HoldPosition()
+    {
+        player.transform.position = holdPosition;
+
+        player.SetVelocityX(0f);
+        player.SetVelocityY(0f);
     }
 }

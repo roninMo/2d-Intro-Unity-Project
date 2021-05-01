@@ -32,11 +32,11 @@ public class PlayerTouchingWallState : PlayerState
         grabInput = player.InputHandler.GrabInput;
 
         // State logic
-        if (isTouchingGround && !grabInput)
+        if (isTouchingGround && !grabInput) // Idle State
         {
             StateMachine.ChangeState(player.IdleState);
         }
-        else if (!isTouchingWall || (input.x != player.FacingDirection && !grabInput))
+        else if (!isTouchingWall || (input.x != player.FacingDirection && !grabInput)) // In Air State
         {
             StateMachine.ChangeState(player.InAirState);
         }

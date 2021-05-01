@@ -8,6 +8,7 @@ public class PlayerState
     private string currentAnimation;
     protected float StartTime; // Start time gets set everytime we're in a state, that way we have a reference for how long we've been in any state (good for mechanics)
     protected bool isAnimationFinished;
+    protected bool isExitingState; // Very useful, if you run through if/else conditionals in a superState, the substate may still run, and both end up calling a change state. This will stop this from happening
 
     public PlayerState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string currentAnimation)
     {
@@ -28,6 +29,7 @@ public class PlayerState
         player.Anim.SetBool(currentAnimation, true);
         StartTime = Time.time;
         isAnimationFinished = false;
+        isExitingState = false;
         Debug.Log("Current Animation: " + currentAnimation);
     }
 
@@ -35,6 +37,7 @@ public class PlayerState
     public virtual void Exit()
     {
         player.Anim.SetBool(currentAnimation, false);
+        isExitingState = true;
     }
 
 

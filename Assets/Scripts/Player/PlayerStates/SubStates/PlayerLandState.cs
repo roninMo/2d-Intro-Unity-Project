@@ -31,20 +31,23 @@ public class PlayerLandState : PlayerGroundedState
         base.LogicUpdate();
 
         // State logic
-        if (finishAnimation)
+        if (!isExitingState)
         {
-            if (input.x != 0) // If they decide to move during the animation
+            if (finishAnimation)
+            {
+                if (input.x != 0) // If they decide to move during the animation
+                {
+                    StateMachine.ChangeState(player.MoveState);
+                }
+                if (isAnimationFinished) // If they stand still, finish the animation
+                {
+                    StateMachine.ChangeState(player.IdleState);
+                }
+            }
+            else if (player.CurrentVelocity.x != 0 && isTouchingGround) // If they landing moving, don't freeze them in a landing animation
             {
                 StateMachine.ChangeState(player.MoveState);
             }
-            if (isAnimationFinished) // If they stand still, finish the animation
-            {
-                StateMachine.ChangeState(player.IdleState);
-            }
-        }
-        else if (player.CurrentVelocity.x != 0 && isTouchingGround) // If they landing moving, don't freeze them in a landing animation
-        {
-            StateMachine.ChangeState(player.MoveState);
         }
 
 

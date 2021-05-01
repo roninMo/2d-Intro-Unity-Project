@@ -7,6 +7,14 @@ public class PlayerWallClimbState : PlayerTouchingWallState
     }
 
 
+    public override void Enter()
+    {
+        base.Enter();
+
+        player.SetVelocityY(playerData.wallClimbVelocity);
+    }
+
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();
