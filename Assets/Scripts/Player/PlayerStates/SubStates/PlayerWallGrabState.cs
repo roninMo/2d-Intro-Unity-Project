@@ -29,21 +29,19 @@ public class PlayerWallGrabState : PlayerTouchingWallState
             // State logic
             if (input.y > 0)
             {
-                StateMachine.ChangeState(player.wallClimbState);
+                StateMachine.ChangeState(player.WallClimbState);
             }
             else if (input.y < 0 || !grabInput)
             {
-                StateMachine.ChangeState(player.wallSlideState);
+                StateMachine.ChangeState(player.WallSlideState);
             }
         }
     }
 
 
-    private void HoldPosition()
+    private void HoldPosition() // Freeze the player, and stop the physics update velocity step
     {
         player.transform.position = holdPosition;
-
-        player.SetVelocityX(0f);
-        player.SetVelocityY(0f);
+        player.SetVelocityToZero();
     }
 }

@@ -26,7 +26,7 @@ public class PlayerWallClimbState : PlayerTouchingWallState
             // State logic
             if (input.y != 1)
             {
-                StateMachine.ChangeState(player.wallGrabState);
+                StateMachine.ChangeState(player.WallGrabState);
             }
         }
     }

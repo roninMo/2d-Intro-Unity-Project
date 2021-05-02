@@ -46,7 +46,7 @@ public class PlayerGroundedState : PlayerState
         }
         else if (isTouchingWall && grabInput)
         {
-            StateMachine.ChangeState(player.wallGrabState);
+            StateMachine.ChangeState(player.WallGrabState);
         }
     }
 

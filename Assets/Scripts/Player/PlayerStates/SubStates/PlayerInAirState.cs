@@ -6,12 +6,13 @@ public class PlayerInAirState : PlayerState
     private bool jumpInput;
     private bool jumpInputStop;
     private bool grabInput;
+    private bool isJumping;
+    private bool isTouchingLedge;
     private bool isTouchingGround;
     private bool isTouchingWall;
     private bool isBackTouchingWall;
     private bool oldIsTouchingWall;
     private bool oldIsBackTouchingWall;
-    private bool isJumping;
     private bool coyoteTime;
     private bool wallJumpCoyoteTime;
     private float wallJumpCoyoteTimeStart;
@@ -30,6 +31,11 @@ public class PlayerInAirState : PlayerState
     public override void Exit()
     {
         base.Exit();
+
+        oldIsTouchingWall = false;
+        oldIsBackTouchingWall = false;
+        isTouchingWall = false;
+        isBackTouchingWall = false;
     }
 
 
@@ -55,8 +61,8 @@ public class PlayerInAirState : PlayerState
         {
             StopWallJumpCoyoteTime();
             isTouchingWall = player.CheckIfTouchingWall();
-            player.wallJumpState.DetermineWallJumpDirection(isTouchingWall);
-            StateMachine.ChangeState(player.wallJumpState);
+            player.WallJumpState.DetermineWallJumpDirection(isTouchingWall);
+            StateMachine.ChangeState(player.WallJumpState);
         }
         else if (jumpInput && player.JumpState.CanJump()) // Jump State
         {
@@ -65,11 +71,11 @@ public class PlayerInAirState : PlayerState
         }
         else if (isTouchingWall && grabInput)
         {
-            StateMachine.ChangeState(player.wallGrabState);
+            StateMachine.ChangeState(player.WallGrabState);
         }
         else if (isTouchingWall && input.x == player.FacingDirection && player.CurrentVelocity.y <= 0) // Wall Slide State 
         {
-            StateMachine.ChangeState(player.wallSlideState);
+            StateMachine.ChangeState(player.WallSlideState);
         }
         else // While still in Air State
         {
@@ -114,6 +120,12 @@ public class PlayerInAirState : PlayerState
         isTouchingGround = player.CheckIfTouchingGround();
         isTouchingWall = player.CheckIfTouchingWall();
         isBackTouchingWall = player.CheckIfBackTouchingWall();
+        isTouchingLedge = player.CheckIfTouchingLedge();
+
+        if (isTouchingWall && !isTouchingLedge)
+        {
+            player.LedgeClimbState.SetDetectedPosition(player.transform.position);
+        }
 
         if (!wallJumpCoyoteTime && !isTouchingWall && !isBackTouchingWall && (oldIsTouchingWall || oldIsBackTouchingWall))
         {

@@ -36,8 +36,8 @@ public class PlayerTouchingWallState : PlayerState
         // State logic
         if (jumpInput)
         {
-            player.wallJumpState.DetermineWallJumpDirection(isTouchingWall);
-            StateMachine.ChangeState(player.wallJumpState);
+            player.WallJumpState.DetermineWallJumpDirection(isTouchingWall);
+            StateMachine.ChangeState(player.WallJumpState);
         }
         else if (isTouchingGround && !grabInput) // Idle State
         {

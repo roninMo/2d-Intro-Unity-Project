@@ -18,7 +18,7 @@ public class PlayerWallSlideState : PlayerTouchingWallState
             // State logic
             if (grabInput && input.y >= 0)
             {
-                player.StateMachine.ChangeState(player.wallGrabState);
+                player.StateMachine.ChangeState(player.WallGrabState);
             }
         }
     }

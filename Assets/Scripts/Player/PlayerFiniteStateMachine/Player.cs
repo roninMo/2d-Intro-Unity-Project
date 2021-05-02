@@ -9,10 +9,10 @@ public class Player : MonoBehaviour
     public PlayerJumpState JumpState { get; private set; }
     public PlayerInAirState InAirState { get; private set; }
     public PlayerLandState LandState { get; private set; }
-    public PlayerWallSlideState wallSlideState { get; private set; }
-    public PlayerWallGrabState wallGrabState { get; private set; }
-    public PlayerWallClimbState wallClimbState { get; private set; }
-    public PlayerWallJumpState wallJumpState { get; private set; }
+    public PlayerWallSlideState WallSlideState { get; private set; }
+    public PlayerWallGrabState WallGrabState { get; private set; }
+    public PlayerWallClimbState WallClimbState { get; private set; }
+    public PlayerWallJumpState WallJumpState { get; private set; }
 
     [SerializeField] private PlayerData playerData;
     #endregion
@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
 
     #region Check Transforms
     [SerializeField] private Transform wallCheck;
+    [SerializeField] private Transform ledgeCheck;
     #endregion
 
     #region Other Variables
@@ -45,10 +46,10 @@ public class Player : MonoBehaviour
         JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
         InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
         LandState = new PlayerLandState(this, StateMachine, playerData, "land");
-        wallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
-        wallGrabState = new PlayerWallGrabState(this, StateMachine, playerData, "wallGrab");
-        wallClimbState = new PlayerWallClimbState(this, StateMachine, playerData, "wallClimb");
-        wallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "inAir");
+        WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
+        WallGrabState = new PlayerWallGrabState(this, StateMachine, playerData, "wallGrab");
+        WallClimbState = new PlayerWallClimbState(this, StateMachine, playerData, "wallClimb");
+        WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "inAir");
     }
 
 
@@ -81,6 +82,13 @@ public class Player : MonoBehaviour
 
 
     #region Set Functions
+    public void SetVelocityToZero()
+    {
+        rb.velocity = Vector2.zero;
+        CurrentVelocity = Vector2.zero;
+    }
+
+
     public void SetVelocityX(float velocity)
     {
         workspace.Set(velocity, CurrentVelocity.y);
@@ -132,9 +140,16 @@ public class Player : MonoBehaviour
         return Physics2D.Raycast(wallCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
     }
 
+
     public bool CheckIfBackTouchingWall()
     {
         return Physics2D.Raycast(wallCheck.position, Vector2.right * -FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
+    }
+
+
+    public bool CheckIfTouchingLedge()
+    {
+        return Physics2D.Raycast(ledgeCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
     }
 
 
@@ -157,6 +172,24 @@ public class Player : MonoBehaviour
     {
         FacingDirection *= -1;
         transform.Rotate(0, 180.0f, 0);
+    }
+
+
+    public Vector2 DetermineCornerPosition()
+    {
+        // This function takes our wall and ledge check positions, and creates a raycast in the y direction between them to calculate where the ledge is exactly
+        // So - The wallCheck finds the distance from the player to the side of the wall, then stores it
+        // The raycast we create goes out that distance from from the ledgeCheck, and then goes down to find the distance to the top of the ledge and stores it
+        // this is how it determines the corner position and where our player should climb up to
+
+        RaycastHit2D xHit = Physics2D.Raycast(wallCheck.position, Vector2.right, playerData.wallCheckDistance, playerData.whatIsGround);
+        float xDistance = xHit.distance;
+        workspace.Set(xDistance * FacingDirection, 0f); // the distance the player is from the wall
+        RaycastHit2D yHit = Physics2D.Raycast(ledgeCheck.position + (Vector3)(workspace), Vector2.down, ledgeCheck.position.y - wallCheck.position.y, playerData.whatIsGround);
+        float yDistance = yHit.distance;
+
+        workspace.Set(wallCheck.position.x + (xDistance * FacingDirection), ledgeCheck.position.y - yDistance);
+        return workspace;
     }
     #endregion
 }
