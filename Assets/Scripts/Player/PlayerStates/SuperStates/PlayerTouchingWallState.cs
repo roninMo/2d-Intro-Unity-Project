@@ -6,6 +6,7 @@ public class PlayerTouchingWallState : PlayerState
     protected bool isTouchingWall;
     protected Vector2 input;
     protected bool grabInput;
+    protected bool jumpInput;
 
     public PlayerTouchingWallState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string currentAnimation) : base(player, stateMachine, playerData, currentAnimation)
     {
@@ -30,9 +31,15 @@ public class PlayerTouchingWallState : PlayerState
 
         input = player.InputHandler.RawMovementInput;
         grabInput = player.InputHandler.GrabInput;
+        jumpInput = player.InputHandler.JumpInput;
 
         // State logic
-        if (isTouchingGround && !grabInput) // Idle State
+        if (jumpInput)
+        {
+            player.wallJumpState.DetermineWallJumpDirection(isTouchingWall);
+            StateMachine.ChangeState(player.wallJumpState);
+        }
+        else if (isTouchingGround && !grabInput) // Idle State
         {
             StateMachine.ChangeState(player.IdleState);
         }

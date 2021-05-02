@@ -19,11 +19,15 @@ public class PlayerWallClimbState : PlayerTouchingWallState
     {
         base.LogicUpdate();
 
-        player.SetVelocityY(playerData.wallClimbVelocity);
-
-        if (input.y != 1)
+        if (!isExitingState) // Do not set the velocity when exiting the state (otherwise it will cancel out other velocity calls (wallJump))
         {
-            StateMachine.ChangeState(player.wallGrabState);
+            player.SetVelocityY(playerData.wallClimbVelocity);
+
+            // State logic
+            if (input.y != 1)
+            {
+                StateMachine.ChangeState(player.wallGrabState);
+            }
         }
     }
 }

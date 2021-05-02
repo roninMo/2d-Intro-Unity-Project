@@ -11,12 +11,15 @@ public class PlayerWallSlideState : PlayerTouchingWallState
     {
         base.LogicUpdate();
 
-        player.SetVelocityY(-playerData.wallslideVelocity);
-
-        // State logic
-        if (grabInput && input.y >= 0)
+        if (!isExitingState) // Do not set the velocity when exiting the state (otherwise it will cancel out other velocity calls (wallJump))
         {
-            player.StateMachine.ChangeState(player.wallGrabState);
+            player.SetVelocityY(-playerData.wallslideVelocity);
+
+            // State logic
+            if (grabInput && input.y >= 0)
+            {
+                player.StateMachine.ChangeState(player.wallGrabState);
+            }
         }
     }
 }

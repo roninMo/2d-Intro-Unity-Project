@@ -23,6 +23,12 @@ public class PlayerData : ScriptableObject
     [Header("Wall Climb State")]
     public float wallClimbVelocity = 8f;
 
+    [Header("Wall Jump State")]
+    public float wallJumpCoyoteTime = 0.01f;
+    public float wallJumpVelocity = 20f;
+    public float wallJumpTime = 0.4f;
+    public Vector2 wallJumpAngle = new Vector2(1, 2);
+
     [Header("Check Variables")]
     public float groundCheckRadius = 0.4f;
     public LayerMask whatIsGround;

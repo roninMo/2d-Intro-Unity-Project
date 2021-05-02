@@ -37,7 +37,6 @@ public class PlayerGroundedState : PlayerState
         // State logic
         if (jumpInput && player.JumpState.CanJump() && Time.time >= StartTime + playerData.jumpDelay) // The delay fixes a bug
         {
-            player.InputHandler.UseJumpInput();
             StateMachine.ChangeState(player.JumpState);
         }
         else if (!isTouchingGround)

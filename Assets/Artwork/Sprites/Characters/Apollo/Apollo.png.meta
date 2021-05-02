@@ -68,6 +68,9 @@ TextureImporter:
   - first:
       213: 3642285493636480930
     second: Apollo_21
+  - first:
+      213: -8844935118896131515
+    second: Apollo_22
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -622,6 +625,27 @@ TextureImporter:
       bones: []
       spriteID: 2afb2cadb5ffb8230800000000000000
       internalID: 3642285493636480930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Apollo_22
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54291d03f5a704580800000000000000
+      internalID: -8844935118896131515
       vertices: []
       indices: 
       edges: []

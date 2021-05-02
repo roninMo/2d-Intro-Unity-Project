@@ -18,39 +18,24 @@ public class PlayerWallGrabState : PlayerTouchingWallState
     }
 
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        HoldPosition();
-
-        // State logic
-        if (input.y > 0)
+        if (!isExitingState) // Do not set the velocity when exiting the state (otherwise it will cancel out other velocity calls (wallJump))
         {
-            StateMachine.ChangeState(player.wallClimbState);
+            HoldPosition();
+
+            // State logic
+            if (input.y > 0)
+            {
+                StateMachine.ChangeState(player.wallClimbState);
+            }
+            else if (input.y < 0 || !grabInput)
+            {
+                StateMachine.ChangeState(player.wallSlideState);
+            }
         }
-        else if (input.y < 0 || !grabInput)
-        {
-            StateMachine.ChangeState(player.wallSlideState);
-        }
-    }
-
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
-
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
     }
 
 
