@@ -80,7 +80,7 @@ This should clear up a bunch of stuff, and as you build your own it will all com
         and is very fun to build when you start to get a good understanding of it.
 
 ---
-
+### The Different States
 #### Super States
 A `Super State` is a state that's inherited by states. Move and Idle states would Inherit the ground state, and ground state holds the logic for if you wanna jump. This cleans up code, and the only states you transition to are the Idle/Move State.
 
