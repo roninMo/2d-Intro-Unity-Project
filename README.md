@@ -21,7 +21,7 @@ How to create a ui, hud, main menu, inventory, and settings
 
 ---
 
-# A Guide to Building this on Your Own
+# A Guide to Building Your Own
 ## Land and Air States
 This goes through the basics of creating the state machine, and then two super states that create the main functionality for character controls.
 
