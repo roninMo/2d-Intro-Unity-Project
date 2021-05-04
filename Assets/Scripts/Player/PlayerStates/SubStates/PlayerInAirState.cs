@@ -2,17 +2,22 @@
 
 public class PlayerInAirState : PlayerState
 {
+    // Input
     private Vector2 input;
     private bool jumpInput;
     private bool jumpInputStop;
     private bool grabInput;
+    private bool dashInput;
+
+    // Checks
     private bool isJumping;
-    private bool isTouchingLedge;
     private bool isTouchingGround;
     private bool isTouchingWall;
     private bool isBackTouchingWall;
     private bool oldIsTouchingWall;
     private bool oldIsBackTouchingWall;
+
+    // Time vars
     private bool coyoteTime;
     private bool wallJumpCoyoteTime;
     private float wallJumpCoyoteTimeStart;
@@ -47,6 +52,7 @@ public class PlayerInAirState : PlayerState
         jumpInput = player.InputHandler.JumpInput;
         jumpInputStop = player.InputHandler.JumpInputStop;
         grabInput = player.InputHandler.GrabInput;
+        dashInput = player.InputHandler.DashInput;
 
         CheckCoyoteTime();
         CheckWallJumpCoyoteTime();
@@ -76,6 +82,10 @@ public class PlayerInAirState : PlayerState
         else if (isTouchingWall && input.x == player.FacingDirection && player.CurrentVelocity.y <= 0) // Wall Slide State 
         {
             StateMachine.ChangeState(player.WallSlideState);
+        }
+        else if (dashInput && player.dashState.CheckIfCanDash()) // Dash State
+        {
+            StateMachine.ChangeState(player.dashState);
         }
         else // While still in Air State
         {
@@ -120,12 +130,6 @@ public class PlayerInAirState : PlayerState
         isTouchingGround = player.CheckIfTouchingGround();
         isTouchingWall = player.CheckIfTouchingWall();
         isBackTouchingWall = player.CheckIfBackTouchingWall();
-        isTouchingLedge = player.CheckIfTouchingLedge();
-
-        if (isTouchingWall && !isTouchingLedge)
-        {
-            player.LedgeClimbState.SetDetectedPosition(player.transform.position);
-        }
 
         if (!wallJumpCoyoteTime && !isTouchingWall && !isBackTouchingWall && (oldIsTouchingWall || oldIsBackTouchingWall))
         {

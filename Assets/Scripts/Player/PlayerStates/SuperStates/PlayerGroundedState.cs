@@ -6,6 +6,7 @@ public class PlayerGroundedState : PlayerState
     protected Vector2 input; // This value is defined once here while we reference it in multiple areas within our different sub states
     protected bool jumpInput;
     private bool grabInput;
+    private bool dashInput;
     private bool isTouchingGround;
     private bool isTouchingWall;
 
@@ -18,6 +19,7 @@ public class PlayerGroundedState : PlayerState
     {
         base.Enter();
         player.JumpState.ResetAmountOfJumpsLeft();
+        player.dashState.ResetCanDash();
     }
 
 
@@ -33,20 +35,25 @@ public class PlayerGroundedState : PlayerState
         input.x = player.InputHandler.RawMovementInput.x; // Now we grab the movement input in the super state to share amongst the sub states
         jumpInput = player.InputHandler.JumpInput;
         grabInput = player.InputHandler.GrabInput;
+        dashInput = player.InputHandler.DashInput;
 
         // State logic
-        if (jumpInput && player.JumpState.CanJump() && Time.time >= StartTime + playerData.jumpDelay) // The delay fixes a bug
+        if (jumpInput && player.JumpState.CanJump() && Time.time >= StartTime + playerData.jumpDelay) // Jump State (The delay fixes a bug)
         {
             StateMachine.ChangeState(player.JumpState);
         }
-        else if (!isTouchingGround)
+        else if (!isTouchingGround) // Air State
         {
             player.InAirState.StartCoyoteTime();
             StateMachine.ChangeState(player.InAirState);
         }
-        else if (isTouchingWall && grabInput)
+        else if (isTouchingWall && grabInput) // Wall Grab State
         {
             StateMachine.ChangeState(player.WallGrabState);
+        }
+        else if (dashInput && player.dashState.CheckIfCanDash()) // Dash State
+        {
+            StateMachine.ChangeState(player.dashState);
         }
     }
 

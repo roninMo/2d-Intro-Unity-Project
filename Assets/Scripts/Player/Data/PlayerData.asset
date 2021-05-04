@@ -25,6 +25,16 @@ MonoBehaviour:
   wallJumpVelocity: 30
   wallJumpTime: 0.4
   wallJumpAngle: {x: 1, y: 2}
+  dashCooldown: 0.4
+  maxHoldTime: 1
+  holdTimeScale: 0.25
+  dashTime: 0.2
+  dashVelocity: 30
+  drag: 10
+  dashEndYMultiplier: 0.5
+  distBetweenAfterImages: 0.4
+  startOffset: {x: 0, y: 1.8}
+  stopOffset: {x: 0, y: 0}
   groundCheckRadius: 0.4
   whatIsGround:
     serializedVersion: 2

@@ -29,6 +29,16 @@ public class PlayerData : ScriptableObject
     public float wallJumpTime = 0.4f;
     public Vector2 wallJumpAngle = new Vector2(1, 2);
 
+    [Header("Dash State")]
+    public float dashCooldown = 0.4f;
+    public float maxHoldTime = 1f;
+    public float holdTimeScale = 0.25f;
+    public float dashTime = 0.2f;
+    public float dashVelocity = 30f;
+    public float drag = 10f; // This affects the air density while dashing, and the majority recommend this
+    public float dashEndYMultiplier = 0.5f; // This lets you hold the dash rather than pressing it and flying off in the distance
+    public float distBetweenAfterImages = 0.4f;
+
     [Header("Ledge Climb State")]
     public Vector2 startOffset;
     public Vector2 stopOffset;

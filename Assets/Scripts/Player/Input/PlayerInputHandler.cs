@@ -3,22 +3,35 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    private PlayerInput playerInput;
+    private Camera cam;
+
     public Vector2 RawMovementInput { get; private set; }
+    public Vector2 RawDashDirectionInput { get; private set; }
+    public Vector2Int NormalizedDashDirectionInput { get; private set; }
     //public int NormalizedInputX { get; private set; }
     //public int NormalizedInputY { get; private set; }
     public bool JumpInput { get; private set; }
     public bool JumpInputStop { get; private set; }
+    public bool DashInput { get; private set; }
+    public bool DashInputStop { get; private set; }
     public bool GrabInput { get; private set; }
     public bool CrouchInput { get; private set; }
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
     private float jumpInputStartTime;
+    private float dashInputStartTime;
 
-
+    private void Start()
+    {
+        playerInput = GetComponent<PlayerInput>();
+        cam = Camera.main;
+    }
 
     private void Update()
     {
+        CheckDashInputHoldTime();
         CheckJumpInputHoldTime();
     }
 
@@ -44,6 +57,36 @@ public class PlayerInputHandler : MonoBehaviour
         {
             JumpInputStop = true;
         }
+    }
+
+
+    public void OnDashInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            DashInput = true;
+            DashInputStop = false;
+            dashInputStartTime = Time.time;
+        }
+        else if (context.canceled)
+        {
+            DashInputStop = true;
+        }
+    }
+
+
+    public void OnDashDirectionInput(InputAction.CallbackContext context)
+    {
+        RawDashDirectionInput = context.ReadValue<Vector2>();
+
+        //// If we're using a keyboard/mouse/controller
+        //if (playerInput.currentControlScheme == "Keyboard") // If we're using a mouse for the dash direction
+        //{
+        //    // This grabs the point our mouse is clicking on the screen, and subtracts our current player position to determine the dash direction
+        //    RawDashDirectionInput = cam.ScreenToWorldPoint((Vector3)RawDashDirectionInput) - transform.position;
+        //}
+
+        //NormalizedDashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
     }
 
 
@@ -74,6 +117,7 @@ public class PlayerInputHandler : MonoBehaviour
     #endregion
 
     public void UseJumpInput() => JumpInput = false;
+    public void UseDashInput() => DashInput = false;
 
 
     private void CheckJumpInputHoldTime()
@@ -82,5 +126,10 @@ public class PlayerInputHandler : MonoBehaviour
         {
             JumpInput = false;
         }
+    }
+
+    private void CheckDashInputHoldTime()
+    {
+        if (Time.time >= dashInputStartTime + inputHoldTime) ;
     }
 }
