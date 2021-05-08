@@ -9,6 +9,7 @@ public class PlayerGroundedState : PlayerState
     private bool dashInput;
     private bool isTouchingGround;
     private bool isTouchingWall;
+    protected bool willCollideWithCeiling; 
 
     public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string currentAnimation) : base(player, stateMachine, playerData, currentAnimation)
     {
@@ -51,7 +52,7 @@ public class PlayerGroundedState : PlayerState
         {
             StateMachine.ChangeState(player.WallGrabState);
         }
-        else if (dashInput && player.dashState.CheckIfCanDash()) // Dash State
+        else if (dashInput && player.dashState.CheckIfCanDash() && !willCollideWithCeiling) // Dash State
         {
             StateMachine.ChangeState(player.dashState);
         }
@@ -69,5 +70,6 @@ public class PlayerGroundedState : PlayerState
         base.DoChecks();
         isTouchingGround = player.CheckIfTouchingGround();
         isTouchingWall = player.CheckIfTouchingWall();
+        willCollideWithCeiling = player.CheckIfTouchingCeiling();
     }
 }

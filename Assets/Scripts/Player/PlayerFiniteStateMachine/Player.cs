@@ -151,6 +151,15 @@ public class Player : MonoBehaviour
     }
 
 
+    public bool CheckIfTouchingCeiling()
+    {
+        int numberOfCeilingCollisions = boxCollider.Cast(Vector2.up, new RaycastHit2D[10], playerData.ceilingCheckDistance, true);
+        return numberOfCeilingCollisions != 0 ? true : false;
+        // The other way to do this with layermasks (Though cast is awesome, it creates a rectangle not a circle), is this:
+        //return Physics2D.OverlapCircle(groundCheck.position, playerData.groundCheckRadius, playerData.whatIsGround); // groundChekc is the transform of a gameobject attached to the player
+    }
+
+
     public bool CheckIfTouchingWall()
     {
         return Physics2D.Raycast(wallCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
@@ -188,6 +197,18 @@ public class Player : MonoBehaviour
     {
         FacingDirection *= -1;
         transform.Rotate(0, 180.0f, 0);
+    }
+
+
+    public void SetColliderHeight(float height)
+    {
+        Vector2 center = boxCollider.offset;
+        workspace.Set(boxCollider.size.x, height);
+
+        center.y += (height - boxCollider.size.y) / 2;
+
+        boxCollider.size = workspace;
+        boxCollider.offset = center;
     }
 
 

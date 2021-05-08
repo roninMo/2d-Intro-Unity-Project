@@ -42,7 +42,13 @@ public class PlayerData : ScriptableObject
 
     [Header("Crouch States")]
     public float crouchMovementVelocity = 5f;
+    public float crouchColliderHeight = 1.3f;
+    public float standColliderHeight = 2.31f;
+    public float standColliderWidth = 0.75f;
+    public float slideColliderHeight = 1f; // Implement a sliding mechanic
+    public float slideColliderWidth = 1f;
     // Implement the raycast data for the uncrouch detection
+    public float ceilingCheckDistance = 4f;
 
     [Header("Ledge Climb State")]
     public Vector2 startOffset;
