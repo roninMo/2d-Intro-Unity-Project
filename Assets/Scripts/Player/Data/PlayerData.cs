@@ -6,12 +6,12 @@ public class PlayerData : ScriptableObject
 {
     [Header("Move State")]
     public float movementVelocity = 10f;
-    public float airMovementVelocity = 10f;
+    public float airMovementVelocity = 64f;
 
     [Header("Jump State")]
     public float jumpVelocity = 25f;
     public int amountOfJumps = 2;
-    public float jumpDelay = 0.0125f;
+    public float jumpDelay = 0.05f;
 
     [Header("In Air State")]
     public float coyoteTime = 0.2f;
@@ -25,7 +25,8 @@ public class PlayerData : ScriptableObject
 
     [Header("Wall Jump State")]
     public float wallJumpCoyoteTime = 0.01f;
-    public float wallJumpVelocity = 20f;
+    public float wallJumpVelocity = 30f;
+    public float verticalWallJumpVelocity = 25f;
     public float wallJumpTime = 0.4f;
     public Vector2 wallJumpAngle = new Vector2(1, 2);
 
@@ -37,7 +38,11 @@ public class PlayerData : ScriptableObject
     public float dashVelocity = 30f;
     public float drag = 10f; // This affects the air density while dashing, and the majority recommend this
     public float dashEndYMultiplier = 0.5f; // This lets you hold the dash rather than pressing it and flying off in the distance
-    public float distBetweenAfterImages = 0.4f;
+    public float distBetweenAfterImages = 0.8f;
+
+    [Header("Crouch States")]
+    public float crouchMovementVelocity = 5f;
+    // Implement the raycast data for the uncrouch detection
 
     [Header("Ledge Climb State")]
     public Vector2 startOffset;
@@ -46,7 +51,7 @@ public class PlayerData : ScriptableObject
     [Header("Check Variables")]
     public float groundCheckRadius = 0.4f;
     public LayerMask whatIsGround;
-    public float wallCheckDistance = 0.6f;
+    public float wallCheckDistance = 0.5f;
 
     //[Header("Misc Mechanics")]
 }

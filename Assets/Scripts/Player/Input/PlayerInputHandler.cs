@@ -130,6 +130,9 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void CheckDashInputHoldTime()
     {
-        if (Time.time >= dashInputStartTime + inputHoldTime) ;
+        if (Time.time >= dashInputStartTime + inputHoldTime)
+        {
+            DashInput = false;
+        }
     }
 }

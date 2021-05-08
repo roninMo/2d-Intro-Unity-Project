@@ -29,9 +29,13 @@ public class PlayerMoveState : PlayerGroundedState
         // State logic
         if (!isExitingState)
         {
-            if (input.x == 0)
+            if (input.x == 0) // Idle State
             {
                 StateMachine.ChangeState(player.IdleState);
+            }
+            else if (input.y == -1) // Crouch Move State
+            {
+                StateMachine.ChangeState(player.crouchMoveState);
             }
         }
     }

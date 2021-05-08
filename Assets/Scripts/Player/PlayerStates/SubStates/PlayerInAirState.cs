@@ -75,7 +75,7 @@ public class PlayerInAirState : PlayerState
             StopCoyoteTime();
             StateMachine.ChangeState(player.JumpState);
         }
-        else if (isTouchingWall && grabInput)
+        else if (isTouchingWall && grabInput) // Wall Grab State
         {
             StateMachine.ChangeState(player.WallGrabState);
         }

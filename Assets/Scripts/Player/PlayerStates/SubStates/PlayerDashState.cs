@@ -6,6 +6,7 @@ public class PlayerDashState : PlayerAbilityState
     private bool dashInputStop;
     private float lastDashTime;
     private bool isHolding;
+    private bool isTouchingGround;
     private Vector2 dashDirection;
     private Vector2 dashDirectionInput;
     private Vector2 lastAfterImagePosition;
@@ -64,7 +65,13 @@ public class PlayerDashState : PlayerAbilityState
                 float angle = Vector2.SignedAngle(Vector2.right, dashDirection);
                 player.DashDirectionIndicator.rotation = Quaternion.Euler(0f, 0f, angle - 45f);
 
-                if(dashInputStop || Time.unscaledTime >= StartTime + playerData.maxHoldTime)
+                // If the player touches the ground while in slow mo, stop him from sliding
+                if (isTouchingGround)
+                {
+                    player.SetVelocityToZero();
+                }
+
+                if(dashInputStop || Time.unscaledTime >= StartTime + playerData.maxHoldTime) // the dash code 
                 {
                     isHolding = false;
                     Time.timeScale = 1f;
@@ -90,6 +97,13 @@ public class PlayerDashState : PlayerAbilityState
             }
             
         }
+    }
+
+
+    public override void DoChecks()
+    {
+        base.DoChecks();
+        isTouchingGround = player.CheckIfTouchingGround();
     }
 
 

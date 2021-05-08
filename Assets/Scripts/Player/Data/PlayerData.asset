@@ -17,12 +17,13 @@ MonoBehaviour:
   jumpVelocity: 25
   amountOfJumps: 1
   jumpDelay: 0.05
-  coyoteTime: 500
+  coyoteTime: 0.2
   variableJumpHeightMultiplier: 0.5
   wallslideVelocity: 4
   wallClimbVelocity: 8
   wallJumpCoyoteTime: 0.01
   wallJumpVelocity: 30
+  verticalWallJumpVelocity: 24
   wallJumpTime: 0.4
   wallJumpAngle: {x: 1, y: 2}
   dashCooldown: 0.4
@@ -32,7 +33,7 @@ MonoBehaviour:
   dashVelocity: 30
   drag: 10
   dashEndYMultiplier: 0.5
-  distBetweenAfterImages: 0.4
+  distBetweenAfterImages: 1.2
   startOffset: {x: 0, y: 1.8}
   stopOffset: {x: 0, y: 0}
   groundCheckRadius: 0.4

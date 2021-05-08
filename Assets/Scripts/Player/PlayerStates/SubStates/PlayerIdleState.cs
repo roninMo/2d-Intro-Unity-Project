@@ -26,9 +26,16 @@ public class PlayerIdleState : PlayerGroundedState
         base.LogicUpdate();
 
         // State logic
-        if (input.x != 0 && !isExitingState)
+        if (!isExitingState)
         {
-            StateMachine.ChangeState(player.MoveState);
+            if (input.x != 0) // Move State
+            {
+                StateMachine.ChangeState(player.MoveState);
+            }
+            else if (input.y == -1) // Crouch Idle State
+            {
+                StateMachine.ChangeState(player.crouchIdleState);
+            }
         }
     }
 
