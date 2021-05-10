@@ -11,9 +11,10 @@ Implementing a hierarchichal state machine for the character
 Movement/physics/attacks/dashes/crouching/sliding
 
 Enemy ai state machine
-Necromancer that spawns skelly boys
 
-Let's get weird
+Necromancer that spawns skelly boys, 
+
+some new enemy ideas
 
 Build all the artwork
 Learn how to create solid backgrounds/animatedBackgrounds/props woven in throughout the tileset
