@@ -11,6 +11,7 @@ Implementing a hierarchichal state machine for the character
 Movement/physics/attacks/dashes/crouching/sliding
 
 Enemy ai state machine
+Necromancer that spawns skelly boys
 Let's get weird
 
 Build all the artwork
