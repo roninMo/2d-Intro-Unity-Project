@@ -1992,7 +1992,7 @@ GameObject:
   - component: {fileID: 1120420197}
   - component: {fileID: 1120420198}
   m_Layer: 0
-  m_Name: Enemy 1._8
+  m_Name: Dingus__0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
