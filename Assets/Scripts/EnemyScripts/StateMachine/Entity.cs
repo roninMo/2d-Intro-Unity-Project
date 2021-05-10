@@ -15,10 +15,13 @@ public class Entity : MonoBehaviour
 
     public virtual void Start()
     {
-        stateMachine = new FiniteStateMachine();
+        facingDirection = 1;
+
         aliveGameObject = transform.Find("Alive").gameObject;
         rb = aliveGameObject.GetComponent<Rigidbody2D>();
         anim = aliveGameObject.GetComponent<Animator>();
+
+        stateMachine = new FiniteStateMachine();
     }
 
     public virtual void Update()
@@ -59,5 +62,15 @@ public class Entity : MonoBehaviour
         aliveGameObject.transform.Rotate(0, 180.0f, 0);
     }
 
+    #endregion
+
+    #region Utilities
+    public virtual void OnDrawGizmos()
+    {
+        // wallCheck gizmo example
+        Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.wallCheckDistance));
+        // ledgeCheck gizmo example
+        Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
+    }
     #endregion
 }

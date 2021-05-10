@@ -15,6 +15,8 @@ public class Dingus : Entity
         base.Start();
 
         moveState = new Dingus_MoveState(this, stateMachine, "move", moveStateData, this);
-        //idleState = new Dingus_IdleState(this, stateMachine, "idle", idleStateData,);
+        idleState = new Dingus_IdleState(this, stateMachine, "idle", idleStateData, this);
+
+        stateMachine.Initialize(moveState);
     }
 }
