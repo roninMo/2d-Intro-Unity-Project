@@ -5,6 +5,9 @@ public class PlayerWallJumpState : PlayerAbilityState
     private int wallJumpDirection;
     private float xInput;
     private float yInput;
+    private bool jumpInput;
+    private bool isTouchingWall;
+    private bool isBackTouchingWall;
 
     public PlayerWallJumpState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string currentAnimation) : base(player, stateMachine, playerData, currentAnimation)
     {
@@ -37,6 +40,8 @@ public class PlayerWallJumpState : PlayerAbilityState
         base.LogicUpdate();
 
         xInput = player.InputHandler.RawMovementInput.x;
+        yInput = player.InputHandler.RawMovementInput.y;
+        jumpInput = player.InputHandler.JumpInput;
         player.Anim.SetFloat("yVelocity", player.CurrentVelocity.y);
         player.Anim.SetFloat("xVelocity", Mathf.Abs(player.CurrentVelocity.x));
 
@@ -48,6 +53,14 @@ public class PlayerWallJumpState : PlayerAbilityState
         if (Time.time > StartTime + playerData.wallJumpTime)
         {
             isAbilityDone = true;
+        }
+
+        // State Logic (If they're consecutively jumping from wall to wall)
+        if (jumpInput && (isTouchingWall || isBackTouchingWall) && yInput != 1)
+        {
+            isTouchingWall = player.CheckIfTouchingWall();
+            player.WallJumpState.DetermineWallJumpDirection(isTouchingWall);
+            StateMachine.ChangeState(player.WallJumpState);
         }
     }
 
@@ -62,5 +75,12 @@ public class PlayerWallJumpState : PlayerAbilityState
         {
             wallJumpDirection = player.FacingDirection;
         }
+    }
+
+    public override void DoChecks()
+    {
+        base.DoChecks();
+        isTouchingWall = player.CheckIfTouchingWall();
+        isBackTouchingWall = player.CheckIfBackTouchingWall();
     }
 }

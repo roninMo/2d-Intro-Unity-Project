@@ -40,7 +40,7 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         RawMovementInput = context.ReadValue<Vector2>();
-        Debug.Log(RawMovementInput);
+        //Debug.Log(RawMovementInput);
     }
 
 

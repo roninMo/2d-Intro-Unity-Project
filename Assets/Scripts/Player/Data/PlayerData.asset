@@ -26,6 +26,7 @@ MonoBehaviour:
   verticalWallJumpVelocity: 24
   wallJumpTime: 0.4
   wallJumpAngle: {x: 1, y: 2}
+  consecutiveWallJumpDelay: 0.0000001
   dashCooldown: 0.4
   maxHoldTime: 1
   holdTimeScale: 0.25
