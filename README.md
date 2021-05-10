@@ -52,8 +52,8 @@ This should clear up a bunch of stuff, and as you build your own it will all com
 * `Player script` to tie everything together (this is the only script attached to your character and like the hub of the state)
     - This bad boy holds a reference to all the different state scripts, and each of the states constructors hold reference to this (all chained together)
     - It holds the player inputs, which then get passed down into the states like a daisy chain
-    - It holds all the standard components (rigidbody, boxcolliders, etc, animations)
-    - Also holds reference to functions you wanna call in multiple states (SetVelocityX for when you're both on ground and in air)
+    - It holds all the main components (rigidbody, boxcolliders, etc, animations)
+    - It also holds reference to functions you wanna call in multiple states (SetVelocity for when you're both on ground and in air)
 
 <br />
 
