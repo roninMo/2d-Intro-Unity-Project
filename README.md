@@ -2,7 +2,7 @@
 # 2d-Intro-Unity-Project
 Hierarchical State Machine for the player, and something similar for the enemy ai. 
 
-`Actual Guide to this State Machine: https://www.youtube.com/watch?v=OjreMoAG9Ec`
+`Bardent is the go to guide for learning State Machine boys: https://www.youtube.com/watch?v=OjreMoAG9Ec`
 
 <br />
 
