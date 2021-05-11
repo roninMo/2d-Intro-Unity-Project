@@ -136,3 +136,52 @@ A `Sub State` inherits from the super state, and are what states your player inv
 ### 1 Pixel Movement
 ![Pixel Movement Reference](https://i.pinimg.com/originals/97/0c/e7/970ce7651ac970c0bc11bf29804ca04c.gif)
 
+# Fun animations to draw inspiration from
+
+#### fireball and attack animation
+![fireball and attack animation](https://i.pinimg.com/originals/4a/8c/9f/4a8c9f7135e53620b626ad2f0622108a.gif)
+
+#### slime animation
+![slime animation](https://img.itch.zone/aW1nLzIzODcxODAuZ2lm/original/UvbnlZ.gif)
+
+#### skelly boy animation
+![skelly boy animation](https://img.itch.zone/aW1hZ2UvMjY3NzIwLzE1MjI0NDEuZ2lm/original/80MHBb.gif)
+
+#### pay my respects animation
+![pay my respects animation](https://i.pinimg.com/originals/82/0f/a6/820fa6d481aa86454e5bd9a0f5c2c7bc.gif)
+
+#### mage animation
+![mage animation](https://i.pinimg.com/originals/14/f2/3e/14f23eb92992cc46e907ff639c5b43b7.gif)
+
+##### no outline animation
+![no outline animation](https://i.pinimg.com/originals/7c/52/d5/7c52d590b52375b1b52a00a294695a18.gif)
+
+#### attack combo animation
+![attack combo animation](https://cdna.artstation.com/p/assets/images/images/009/353/448/original/sven-thole-knight-attack.gif?1518493622)
+
+#### aoe boop dude
+![aoe boop dude](https://i.pinimg.com/originals/3e/77/e9/3e77e9d81ac939ff528f136735b4fb29.gif)
+
+#### beautiful no effects animation
+![beautiful no effects animation](https://i.pinimg.com/originals/12/e9/aa/12e9aa3d985b6001ebe1174256cf48b8.gif)
+
+#### shrak
+![srhak](https://i.pinimg.com/originals/6e/a3/b3/6ea3b3d49760fab3d42b0570f1f9e69a.gif)
+
+#### kappa demon
+![kappa demon](https://i.pinimg.com/originals/95/d8/a1/95d8a10aa6d6369ec7d3c39469083368.gif)
+
+#### hark the dingus
+![hark the dingus](https://64.media.tumblr.com/1304340172c3b9b190c5d12f115adcee/tumblr_o9fu2eYPx61tgc7nao1_500.gifv)
+
+#### weird attacks electricish
+![yis](https://cdn.pixilart.com/photos/large/5afffd08ee54bc9.gif)
+
+#### @(^.^)@
+![yah](https://i.imgur.com/CKeF0Q0.gif)
+
+#### anotha one
+![anotha one](https://cdn.pixilart.com/photos/large/e9832eabc0e6178.png)
+
+#### bogingus
+![bogingus](https://64.media.tumblr.com/3e8b3bfab3bdfdb5a418e5a81c7a4fc5/tumblr_oomh73qHh21qciqqno6_250.gifv)
