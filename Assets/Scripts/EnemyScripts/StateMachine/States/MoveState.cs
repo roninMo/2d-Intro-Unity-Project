@@ -20,7 +20,7 @@ public class MoveState : EnemyState
         entity.SetVelocity(stateData.movementSpeed);
 
         isDetectingLedge = entity.CheckLedge();
-        isDetectingWall = entity.CheckLedge();
+        isDetectingWall = entity.CheckWall();
     }
 
 
@@ -45,6 +45,6 @@ public class MoveState : EnemyState
     {
         base.DoChecks();
         isDetectingLedge = entity.CheckLedge();
-        isDetectingWall = entity.CheckLedge();
+        isDetectingWall = entity.CheckWall();
     }
 }

@@ -143,7 +143,6 @@ public class PlayerInAirState : PlayerState
     {
         if (coyoteTime && Time.time >= StartTime + playerData.coyoteTime)
         {
-            Debug.Log("Coyote limit reached");
             coyoteTime = false;
             player.JumpState.DecreaseAmountOfJumpsLeft();
         }
