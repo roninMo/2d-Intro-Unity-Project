@@ -93,3 +93,47 @@ A `Sub State` inherits from the super state, and are what states your player inv
 
 ### That's All
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    *Just Start by creating the State Machine, A player script, a player state script and a couple states to understand how all this stuff ties together!*
+
+
+# But Wait, There's More!
+## Pixel Art for Aspiring Autists!
+![Yee haww](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+
+`In reality just go checkout AdamCYouncis and all of his pixel art class videos, also the rest of his videos, but here's good some references I found`
+
+*Also, the only editor you should be building in is Aseprite, it's 100% the way to go*
+
+### Squash and Stretch Fundamentals
+![Squash/Stretch Reference](https://i.pinimg.com/originals/a6/83/63/a683630de95203052028c0702c4dff97.gif)
+
+### Animation Easing Fundamentals
+![Animation Easing Reference](https://64.media.tumblr.com/aa1ee58decd2fb3100c47429ea61f31d/tumblr_inline_ozd9ghhZz31qdiwz3_540.gifv)
+
+### 1 Pixel Movement
+![Pixel Movement Reference](https://i.pinimg.com/originals/97/0c/e7/970ce7651ac970c0bc11bf29804ca04c.gif)
+
+### Idle Animation
+![Idle Reference](https://steamuserimages-a.akamaihd.net/ugc/850474042999442728/E4EDF44AA0A99CEE973859CC153424B6AAB4EAB0/)
+
+### Outlines
+![Outlines Reference](https://i.pinimg.com/originals/bc/09/be/bc09beec48c73a76b44e667a5bdc315f.gif)
+
+### Breaking Objects
+![Breaking Objects Reference](https://i.pinimg.com/originals/2c/a0/f2/2ca0f2a129f609ffaf36e94bc67b276a.gif)
+
+### Wall Slide-Kick Reference
+![Wall Climb Reference](https://i.pinimg.com/originals/1d/12/36/1d1236767b5284d083f0406b04e73074.gif)
+
+### Slide-Roll-Dash Reference
+![Slide/Roll/Dash Reference](https://i.pinimg.com/originals/43/ef/b5/43efb5ee656e99313ae7c72d3831a705.gif)
+
+### Run Cycle Example
+![Run Example](https://i.pinimg.com/originals/4a/c2/17/4ac2171493af90e2359f99917d92ffc0.gif)
+
+### Walk Cycle Example
+![Walk Example](https://i.pinimg.com/originals/24/e3/60/24e3602cb471b3a4ea861827a28eef35.gif)
+
+### Sword Attack Animation Example
+![Sword Attack Example](https://i.pinimg.com/originals/fd/ca/c7/fdcac74bff054ccc050d5b6def925081.gif)
+
+
