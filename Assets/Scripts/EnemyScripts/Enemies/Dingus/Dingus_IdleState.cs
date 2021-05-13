@@ -27,7 +27,11 @@ public class Dingus_IdleState : IdleState
         base.LogicUpdate();
 
         // State logic
-        if (isIdleTimeOver) // Move State
+        if (isPlayerInMinAgroRange) // Player Detected State
+        {
+            stateMachine.ChangeState(enemy.playerDetectedState); 
+        }
+        else if (isIdleTimeOver) // Move State
         {
             stateMachine.ChangeState(enemy.moveState);
         }

@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
 
-public class MoveState : EnemyState
+public class PlayerDetectedState : EnemyState
 {
-    protected D_MoveState stateData;
+    protected D_PlayerDetected stateData;
 
-    protected bool isDetectingWall;
-    protected bool isDetectingLedge;
     protected bool isPlayerInMinAgroRange;
+    protected bool isPlayerInMaxAgroRange;
 
-    public MoveState(Entity entity, FiniteStateMachine stateMachine, string currentAnimation, D_MoveState stateData) : base(entity, stateMachine, currentAnimation)
+    public PlayerDetectedState(Entity entity, FiniteStateMachine stateMachine, string currentAnimation, D_PlayerDetected stateData) : base(entity, stateMachine, currentAnimation)
     {
         this.stateData = stateData;
     }
@@ -19,7 +18,7 @@ public class MoveState : EnemyState
         base.Enter();
         DoChecks();
 
-        entity.SetVelocity(stateData.movementSpeed);
+        entity.SetVelocity(0f);
     }
 
 
@@ -40,11 +39,12 @@ public class MoveState : EnemyState
         base.PhysicsUpdate();
     }
 
+
     public override void DoChecks()
     {
         base.DoChecks();
-        isDetectingLedge = entity.CheckLedge();
-        isDetectingWall = entity.CheckWall();
         isPlayerInMinAgroRange = entity.CheckPlayerInMinRange();
+        isPlayerInMaxAgroRange = entity.CheckPlayerInMaxRange();
     }
+
 }

@@ -5,6 +5,7 @@ public class IdleState : EnemyState
     protected D_IdleState stateData;
     protected bool flipAfterIdle;
     protected bool isIdleTimeOver;
+    protected bool isPlayerInMinAgroRange;
     protected float idleTime;
 
     public IdleState(Entity entity, FiniteStateMachine stateMachine, string currentAnimation, D_IdleState stateData) : base(entity, stateMachine, currentAnimation)
@@ -16,6 +17,7 @@ public class IdleState : EnemyState
     public override void Enter()
     {
         base.Enter();
+        DoChecks();
 
         entity.SetVelocity(0f);
         isIdleTimeOver = false;
@@ -54,6 +56,7 @@ public class IdleState : EnemyState
     public override void DoChecks()
     {
         base.DoChecks();
+        isPlayerInMinAgroRange = entity.CheckPlayerInMinRange();
     }
 
 

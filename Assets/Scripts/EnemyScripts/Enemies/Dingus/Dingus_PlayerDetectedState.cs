@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public class Dingus_MoveState : MoveState
+public class Dingus_PlayerDetectedState : PlayerDetectedState
 {
     private Dingus enemy;
 
-    public Dingus_MoveState(Entity entity, FiniteStateMachine stateMachine, string currentAnimation, D_MoveState stateData, Dingus enemy) : base(entity, stateMachine, currentAnimation, stateData)
+    public Dingus_PlayerDetectedState(Entity entity, FiniteStateMachine stateMachine, string currentAnimation, D_PlayerDetected stateData, Dingus enemy) : base(entity, stateMachine, currentAnimation, stateData)
     {
         this.enemy = enemy;
     }
@@ -27,13 +27,9 @@ public class Dingus_MoveState : MoveState
         base.LogicUpdate();
 
         // State logic
-        if (isPlayerInMinAgroRange) // Player Detected State
+        if (!isPlayerInMaxAgroRange) // Idle State
         {
-            stateMachine.ChangeState(enemy.playerDetectedState);
-        }
-        else if (isDetectingWall || !isDetectingLedge) // Idle State
-        {
-            enemy.idleState.SetFlipAfterIdle(true);
+            enemy.idleState.SetFlipAfterIdle(false);
             stateMachine.ChangeState(enemy.idleState);
         }
     }
