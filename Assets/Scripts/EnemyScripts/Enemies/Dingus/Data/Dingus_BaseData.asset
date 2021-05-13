@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72acba69ac1bb4170a901a2de50c409e, type: 3}
   m_Name: Dingus_BaseData
   m_EditorClassIdentifier: 
-  wallCheckDistance: 0.35
+  wallCheckDistance: 0.2
   ledgeCheckDistance: 0.4
+  minAgroDistance: 9
+  maxAgroDistance: 15
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 3840
+    m_Bits: 1536
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 256

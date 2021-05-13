@@ -6,6 +6,8 @@ public class PlayerDetectedState : EnemyState
 
     protected bool isPlayerInMinAgroRange;
     protected bool isPlayerInMaxAgroRange;
+    protected bool performLongRangeAction;
+    protected bool performShortRangeAction;
 
     public PlayerDetectedState(Entity entity, FiniteStateMachine stateMachine, string currentAnimation, D_PlayerDetected stateData) : base(entity, stateMachine, currentAnimation)
     {
@@ -16,8 +18,8 @@ public class PlayerDetectedState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        DoChecks();
 
+        performLongRangeAction = false;
         entity.SetVelocity(0f);
     }
 
@@ -31,6 +33,11 @@ public class PlayerDetectedState : EnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        if (Time.time >= startTime + stateData.longRangeActionTime)
+        {
+            performLongRangeAction = true;
+        }
     }
 
 

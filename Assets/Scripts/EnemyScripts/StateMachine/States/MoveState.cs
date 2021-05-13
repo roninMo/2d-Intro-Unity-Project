@@ -2,13 +2,13 @@
 
 public class MoveState : EnemyState
 {
-    protected D_MoveState stateData;
+    protected D_Move stateData;
 
     protected bool isDetectingWall;
     protected bool isDetectingLedge;
     protected bool isPlayerInMinAgroRange;
 
-    public MoveState(Entity entity, FiniteStateMachine stateMachine, string currentAnimation, D_MoveState stateData) : base(entity, stateMachine, currentAnimation)
+    public MoveState(Entity entity, FiniteStateMachine stateMachine, string currentAnimation, D_Move stateData) : base(entity, stateMachine, currentAnimation)
     {
         this.stateData = stateData;
     }
@@ -17,7 +17,6 @@ public class MoveState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        DoChecks();
 
         entity.SetVelocity(stateData.movementSpeed);
     }

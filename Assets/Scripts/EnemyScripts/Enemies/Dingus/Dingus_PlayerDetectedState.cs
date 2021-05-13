@@ -10,39 +10,18 @@ public class Dingus_PlayerDetectedState : PlayerDetectedState
     }
 
 
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
         // State logic
-        if (!isPlayerInMaxAgroRange) // Idle State
+        if (performLongRangeAction) // Charge State
         {
-            enemy.idleState.SetFlipAfterIdle(false);
-            stateMachine.ChangeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.chargeState);
         }
-    }
-
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
-
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
+        else if (!isPlayerInMaxAgroRange) // Look For Player State
+        {
+            stateMachine.ChangeState(enemy.lookForPlayerState);
+        }
     }
 }

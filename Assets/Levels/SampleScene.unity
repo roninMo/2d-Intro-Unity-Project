@@ -2115,13 +2115,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91feed7c4e724990a16264d91c96f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityData: {fileID: 11400000, guid: d014a173419cb4b6aa530a8300d43aaf, type: 2}
+  entityData: {fileID: 11400000, guid: 3238834c8608d435da0e403fac240a4f, type: 2}
   wallCheck: {fileID: 212177736}
   ledgeCheck: {fileID: 1647314367}
   playerCheck: {fileID: 385282902}
-  idleStateData: {fileID: 11400000, guid: 291b1c5ada4454783b337d01b4041520, type: 2}
-  moveStateData: {fileID: 11400000, guid: 867f87c0e89ac4be896caba68d1b8d44, type: 2}
-  playerDetectedData: {fileID: 11400000, guid: bd3b1992ec0ae424aaba32e1a080d5e8, type: 2}
+  idleStateData: {fileID: 11400000, guid: cd945796b88ef4b04ba483e4914f22c0, type: 2}
+  moveStateData: {fileID: 11400000, guid: 20287c4e5024d4722a93573c21aae989, type: 2}
+  playerDetectedStateData: {fileID: 11400000, guid: 2236e107915fe4f76bc445442dbce0fd,
+    type: 2}
+  chargeStateData: {fileID: 11400000, guid: 6c31f1dc4b19b4222b4abde330fce029, type: 2}
+  lookForPlayerData: {fileID: 11400000, guid: a2d1f487e7715497ba45a8268405825e, type: 2}
 --- !u!1 &1302721130
 GameObject:
   m_ObjectHideFlags: 3
@@ -60642,7 +60645,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069024736}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
