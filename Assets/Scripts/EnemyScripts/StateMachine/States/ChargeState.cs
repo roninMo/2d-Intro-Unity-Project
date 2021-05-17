@@ -8,6 +8,7 @@ public class ChargeState : EnemyState
     protected bool isDetectingLedge;
     protected bool isDetectingWall;
     protected bool isChargeTimeOver;
+    protected bool performCloseRangeAction;
 
     public ChargeState(Entity entity, FiniteStateMachine stateMachine, string currentAnimation, D_Charge stateData) : base(entity, stateMachine, currentAnimation)
     {
@@ -50,9 +51,10 @@ public class ChargeState : EnemyState
     public override void DoChecks()
     {
         base.DoChecks();
-        isPlayerInMinAgroRange = entity.CheckPlayerInMinRange();
+        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
         isDetectingWall = entity.CheckWall();
         isDetectingLedge = entity.CheckLedge();
+        performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
 
     }
 }

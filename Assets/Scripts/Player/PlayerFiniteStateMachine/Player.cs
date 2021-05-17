@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
         WallGrabState = new PlayerWallGrabState(this, StateMachine, playerData, "wallGrab");
         WallClimbState = new PlayerWallClimbState(this, StateMachine, playerData, "wallClimb");
         WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "inAir");
-        dashState = new PlayerDashState(this, StateMachine, playerData, "inAir");
+        dashState = new PlayerDashState(this, StateMachine, playerData, "dash");
         crouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
         crouchMoveState = new PlayerCrouchMoveState(this, StateMachine, playerData, "crouchMove");
     }

@@ -71,7 +71,7 @@ public class LookForPlayerState : EnemyState
     public override void DoChecks()
     {
         base.DoChecks();
-        isPlayerInMinAgroRange = entity.CheckPlayerInMinRange();
+        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
     }
 
 

@@ -14,8 +14,12 @@ public class Dingus_ChargeState : ChargeState
     {
         base.LogicUpdate();
 
-        // State logic
-        if(!isDetectingLedge || isDetectingWall) // Look For Player State
+        // State 
+        if (performCloseRangeAction) // Melee Attack State
+        {
+            stateMachine.ChangeState(enemy.meleeAttackState);
+        }
+        else  if (!isDetectingLedge || isDetectingWall) // Look For Player State
         {
             stateMachine.ChangeState(enemy.lookForPlayerState);
         }
@@ -24,6 +28,10 @@ public class Dingus_ChargeState : ChargeState
             if (isPlayerInMinAgroRange) // Player Detected State
             {
                 stateMachine.ChangeState(enemy.playerDetectedState);
+            }
+            else // If we're not detecting the player - Look For Player State
+            {
+                stateMachine.ChangeState(enemy.lookForPlayerState); 
             }
         }
     }

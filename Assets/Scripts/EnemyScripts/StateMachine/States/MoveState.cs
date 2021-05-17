@@ -44,6 +44,6 @@ public class MoveState : EnemyState
         base.DoChecks();
         isDetectingLedge = entity.CheckLedge();
         isDetectingWall = entity.CheckWall();
-        isPlayerInMinAgroRange = entity.CheckPlayerInMinRange();
+        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
     }
 }

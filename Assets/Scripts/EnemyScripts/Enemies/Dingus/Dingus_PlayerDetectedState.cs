@@ -15,7 +15,11 @@ public class Dingus_PlayerDetectedState : PlayerDetectedState
         base.LogicUpdate();
 
         // State logic
-        if (performLongRangeAction) // Charge State
+        if (performCloseRangeAction) // Melee Attack State
+        {
+            stateMachine.ChangeState(enemy.meleeAttackState);
+        }
+        else if (performLongRangeAction) // Charge State
         {
             stateMachine.ChangeState(enemy.chargeState);
         }
@@ -23,5 +27,6 @@ public class Dingus_PlayerDetectedState : PlayerDetectedState
         {
             stateMachine.ChangeState(enemy.lookForPlayerState);
         }
+        // TODO: Transition to attack state
     }
 }

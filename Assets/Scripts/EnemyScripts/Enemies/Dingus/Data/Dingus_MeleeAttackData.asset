@@ -9,19 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72acba69ac1bb4170a901a2de50c409e, type: 3}
-  m_Name: Dingus_BaseData
+  m_Script: {fileID: 11500000, guid: a42a663f655d14954aa1d3dfe60e6147, type: 3}
+  m_Name: Dingus_MeleeAttackData
   m_EditorClassIdentifier: 
-  maxHealth: 30
-  wallCheckDistance: 0.2
-  ledgeCheckDistance: 0.4
-  minAgroDistance: 8
-  maxAgroDistance: 12
-  closeRangeActionDistance: 1.8
-  damageKnockbackForce: 10
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 1536
+  attackRadius: 0.75
+  attackDamage: 10
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 256
