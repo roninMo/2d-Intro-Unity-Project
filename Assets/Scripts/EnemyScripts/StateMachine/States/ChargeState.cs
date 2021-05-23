@@ -22,6 +22,7 @@ public class ChargeState : EnemyState
 
         isChargeTimeOver = false;
         entity.SetVelocity(stateData.chargeSpeed);
+        DoChecks();
     }
 
 

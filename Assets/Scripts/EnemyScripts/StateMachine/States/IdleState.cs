@@ -21,6 +21,7 @@ public class IdleState : EnemyState
         entity.SetVelocity(0f);
         isIdleTimeOver = false;
         setSetRandomIdleTime();
+        DoChecks();
     }
 
 

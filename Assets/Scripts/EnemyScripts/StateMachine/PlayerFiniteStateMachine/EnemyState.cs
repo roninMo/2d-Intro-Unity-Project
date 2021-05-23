@@ -19,7 +19,7 @@ public class EnemyState
     {
         startTime = Time.time;
         entity.anim.SetBool(currentAnimation, true);
-        Debug.Log("Current Animation: " + currentAnimation);
+        //Debug.Log("Current Animation: " + currentAnimation);
     }
 
 

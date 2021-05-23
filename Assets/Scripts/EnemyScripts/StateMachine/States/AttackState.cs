@@ -19,6 +19,7 @@ public class AttackState : EnemyState
         isAnimationFinished = false;
         entity.atsm.attackState = this;
         entity.SetVelocity(0f);
+        DoChecks();
     }
 
 
@@ -50,6 +51,7 @@ public class AttackState : EnemyState
     public virtual void TriggerAttack() {}
     public virtual void FinishAttack()
     {
+        Debug.Log("Finishing Attack Animation");
         isAnimationFinished = true;
     }
 }

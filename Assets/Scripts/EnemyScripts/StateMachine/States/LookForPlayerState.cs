@@ -25,7 +25,8 @@ public class LookForPlayerState : EnemyState
         isAllTurnsTimeDone = false;
         lastTurnTime = startTime;
         amountOfTurnsDone = 0;
-        entity.SetVelocity(0f); 
+        entity.SetVelocity(0f);
+        DoChecks();
     }
 
 

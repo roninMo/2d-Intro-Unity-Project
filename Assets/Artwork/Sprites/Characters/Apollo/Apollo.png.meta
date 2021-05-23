@@ -110,6 +110,9 @@ TextureImporter:
   - first:
       213: 1770933322624285125
     second: Apollo_35
+  - first:
+      213: -8134055772292581144
+    second: Apollo_36
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -958,6 +961,27 @@ TextureImporter:
       bones: []
       spriteID: 5c93cef597e939810800000000000000
       internalID: 1770933322624285125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Apollo_36
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e8f8450f570e1f80800000000000000
+      internalID: -8134055772292581144
       vertices: []
       indices: 
       edges: []

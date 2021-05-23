@@ -19,6 +19,7 @@ public class MoveState : EnemyState
         base.Enter();
 
         entity.SetVelocity(stateData.movementSpeed);
+        DoChecks();
     }
 
 

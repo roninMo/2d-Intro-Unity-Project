@@ -21,6 +21,7 @@ public class PlayerDetectedState : EnemyState
 
         performLongRangeAction = false;
         entity.SetVelocity(0f);
+        DoChecks();
     }
 
 

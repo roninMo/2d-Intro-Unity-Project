@@ -18,6 +18,7 @@ public class MeleeAttackState : AttackState
 
         attackDetails.damageAmount = stateData.attackDamage;
         attackDetails.position = entity.aliveGameObject.transform.position;
+        DoChecks();
     }
 
 
