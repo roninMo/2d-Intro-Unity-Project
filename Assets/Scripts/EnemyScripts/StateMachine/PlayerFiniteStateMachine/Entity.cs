@@ -8,14 +8,18 @@ public class Entity : MonoBehaviour
     public Animator anim { get; private set; }
     public GameObject aliveGameObject { get; private set; }
     public AnimationToStateMachineLink atsm { get; private set; }
+    public int lastDamageDirection { get; private set; }
 
     public int facingDirection { get; private set; }
     [SerializeField] private Transform wallCheck;
     [SerializeField] private Transform ledgeCheck;
     [SerializeField] private Transform playerCheck;
+    [SerializeField] private Transform groundCheck;
 
     private float currentHealth;
-    private int lastDamageDirection;
+    private float currentStunResistance;
+    private float lastDamageTime;
+    protected bool isStunned;
 
     private Vector2 velocityWorkspace;
 
@@ -23,6 +27,7 @@ public class Entity : MonoBehaviour
     public virtual void Start()
     {
         currentHealth = entityData.maxHealth;
+        currentStunResistance = entityData.stunResistance;
         facingDirection = 1;
 
         aliveGameObject = transform.Find("Alive").gameObject;
@@ -36,6 +41,11 @@ public class Entity : MonoBehaviour
     public virtual void Update()
     {
         stateMachine.currentState.LogicUpdate();
+
+        if (Time.time >= lastDamageTime + entityData.stunRecoveryTime)
+        {
+            ResetStunResistance();
+        }
     }
 
     public virtual void FixedUpdate()
@@ -50,6 +60,13 @@ public class Entity : MonoBehaviour
     public virtual void SetVelocity(float velocity)
     {
         velocityWorkspace.Set(facingDirection * velocity, rb.velocity.y);
+        rb.velocity = velocityWorkspace;
+    }
+
+    public virtual void SetVelocity(float velocity, Vector2 angle, int direction)
+    {
+        angle.Normalize();
+        velocityWorkspace.Set(angle.x * velocity * direction, angle.y * velocity);
         rb.velocity = velocityWorkspace;
     }
     #endregion
@@ -84,13 +101,21 @@ public class Entity : MonoBehaviour
     {
         return Physics2D.Raycast(playerCheck.position, aliveGameObject.transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
     }
+
+
+    public virtual bool CheckIfTouchingGround()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, entityData.groundCheckRadius, entityData.whatIsGround);
+    }
     #endregion
 
 
     #region Attack Functions
     public virtual void Damage(AttackDetails attackDetails)
     {
+        lastDamageTime = Time.time;
         currentHealth -= attackDetails.damageAmount;
+        currentStunResistance -= attackDetails.stunDamageAmount;
         DamageHop(entityData.damageKnockbackForce);
 
         if (attackDetails.position.x > aliveGameObject.transform.position.x) // Where is the attack coming from?
@@ -101,12 +126,23 @@ public class Entity : MonoBehaviour
         { // otherwise from the left
             lastDamageDirection = 1;
         }
+
+        if (currentStunResistance <= 0)
+        {
+            isStunned = true;
+        }
     }
 
     public virtual void DamageHop(float velocity)
     {
         velocityWorkspace.Set(rb.velocity.x, velocity);
         rb.velocity = velocityWorkspace;
+    }
+
+    public virtual void ResetStunResistance()
+    {
+        isStunned = false;
+        currentStunResistance = entityData.stunResistance * 0.8f;
     }
     #endregion
 
