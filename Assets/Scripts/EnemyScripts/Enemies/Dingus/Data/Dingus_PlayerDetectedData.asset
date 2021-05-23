@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6af159042112482398abf4a1834dbe2, type: 3}
   m_Name: Dingus_PlayerDetectedData
   m_EditorClassIdentifier: 
-  longRangeActionTime: 1.5
+  longRangeActionTime: 0.5
