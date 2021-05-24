@@ -2220,7 +2220,7 @@ MonoBehaviour:
     type: 2}
   meleeAttackStateData: {fileID: 11400000, guid: 146e35d6fc3ef44f1b08d203809cf45f,
     type: 2}
-  stunStateData: {fileID: 0}
+  stunStateData: {fileID: 11400000, guid: 0c2724f3d142943d488fa96b9654e7f1, type: 2}
   meleeAttackPosition: {fileID: 988378234}
 --- !u!1 &1302721130
 GameObject:

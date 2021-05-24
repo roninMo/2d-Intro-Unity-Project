@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
 
     public void SetVelocityX(float velocity)
     {
-        workspace.Set(velocity, CurrentVelocity.y);
+        workspace.Set((Time.fixedDeltaTime * 54) * velocity, CurrentVelocity.y);
         rb.velocity = workspace;
         CurrentVelocity = workspace; // Since we're changing the velocity to avoid the physics/logic update overwriting each other, set the current velocity to the new velocity
     }
@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
 
     public void SetAirVelocityX(float velocity)
     {
-        workspace.Set(velocity, 0);
+        workspace.Set((Time.fixedDeltaTime * 54) * velocity, 0);
         rb.AddForce(workspace, ForceMode2D.Force);
         workspace.Set(rb.velocity.x, rb.velocity.y); // Use the current velocity value instead maybe?
         workspace.x = Mathf.Clamp(workspace.x, -9.4f, 9.4f);
@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
 
     public void SetVelocityY(float velocity)
     {
-        workspace.Set(CurrentVelocity.x, velocity);
+        workspace.Set(CurrentVelocity.x, (Time.fixedDeltaTime * 54) * velocity);
         rb.velocity = workspace;
         CurrentVelocity = workspace;
     }
@@ -127,14 +127,17 @@ public class Player : MonoBehaviour
     public void SetVelocity(float velocity, Vector2 angle, int direction)
     {
         angle.Normalize();
-        workspace.Set(angle.x * velocity * direction, angle.y * velocity);
+        workspace.Set(
+            (Time.fixedDeltaTime * 54) * angle.x * velocity * direction,
+            (Time.fixedDeltaTime * 54) * angle.y * velocity
+        );
         rb.velocity = workspace;
         CurrentVelocity = workspace;
     }
 
     public void SetVelocity(float velocity, Vector2 direction)
     {
-        workspace = direction * velocity;
+        workspace = (Time.fixedDeltaTime * 54) * direction * velocity;
         rb.velocity = workspace;
         CurrentVelocity = workspace;
     }
