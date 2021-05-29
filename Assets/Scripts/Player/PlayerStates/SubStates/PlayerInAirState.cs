@@ -59,6 +59,14 @@ public class PlayerInAirState : PlayerState
         CheckJumpMultiplier(); // Controls the jump height
 
         // State logic
+        if (player.InputHandler.AttackInputs[(int)CombatInputs.primary]) // Primary Attack State
+        {
+            StateMachine.ChangeState(player.primaryAttackState);
+        }
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondary]) // Secondary Attack State
+        {
+            StateMachine.ChangeState(player.secondaryAttackState);
+        }
         if (isTouchingGround && player.CurrentVelocity.y < 0.01) // Land State
         {
             StateMachine.ChangeState(player.LandState);

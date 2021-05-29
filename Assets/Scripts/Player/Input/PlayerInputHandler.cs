@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
@@ -18,6 +19,8 @@ public class PlayerInputHandler : MonoBehaviour
     public bool GrabInput { get; private set; }
     public bool CrouchInput { get; private set; }
 
+    public bool[] AttackInputs { get; private set; }
+
     [SerializeField]
     private float inputHoldTime = 0.2f;
     private float jumpInputStartTime;
@@ -27,6 +30,9 @@ public class PlayerInputHandler : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         cam = Camera.main;
+
+        int count = Enum.GetValues(typeof(CombatInputs)).Length;
+        AttackInputs = new bool[count];
     }
 
     private void Update()
@@ -40,7 +46,6 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         RawMovementInput = context.ReadValue<Vector2>();
-        //Debug.Log(RawMovementInput);
     }
 
 
@@ -79,14 +84,14 @@ public class PlayerInputHandler : MonoBehaviour
     {
         RawDashDirectionInput = context.ReadValue<Vector2>();
 
-        //// If we're using a keyboard/mouse/controller
-        //if (playerInput.currentControlScheme == "Keyboard") // If we're using a mouse for the dash direction
-        //{
-        //    // This grabs the point our mouse is clicking on the screen, and subtracts our current player position to determine the dash direction
-        //    RawDashDirectionInput = cam.ScreenToWorldPoint((Vector3)RawDashDirectionInput) - transform.position;
-        //}
+        // If we're using a keyboard/mouse/controller
+        if (playerInput.currentControlScheme == "Keyboard") // If we're using a mouse for the dash direction
+        {
+            // This grabs the point our mouse is clicking on the screen, and subtracts our current player position to determine the dash direction
+            RawDashDirectionInput = cam.ScreenToWorldPoint((Vector3)RawDashDirectionInput) - transform.position;
+        }
 
-        //NormalizedDashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
+        NormalizedDashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
     }
 
 
@@ -114,11 +119,39 @@ public class PlayerInputHandler : MonoBehaviour
             GrabInput = false;
         }
     }
+
+
+    public void OnPrimaryAttackInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            AttackInputs[(int)CombatInputs.primary] = true;
+        }
+
+        if (context.canceled)
+        {
+            AttackInputs[(int)CombatInputs.primary] = false;
+        }
+    }
+
+
+    public void OnSecondaryAttackInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            AttackInputs[(int)CombatInputs.secondary] = true;
+        }
+
+        if (context.canceled)
+        {
+            AttackInputs[(int)CombatInputs.secondary] = false;
+        }
+    }
     #endregion
+
 
     public void UseJumpInput() => JumpInput = false;
     public void UseDashInput() => DashInput = false;
-
 
     private void CheckJumpInputHoldTime()
     { // This holds a jump input we enter for 0.2 seconds while in the air, and if we touch the ground before the time is up it will jump again for us, this is awesome!
@@ -135,4 +168,13 @@ public class PlayerInputHandler : MonoBehaviour
             DashInput = false;
         }
     }
+}
+
+
+
+
+public enum CombatInputs
+{
+    primary,
+    secondary
 }

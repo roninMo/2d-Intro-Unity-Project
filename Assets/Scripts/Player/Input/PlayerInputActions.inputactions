@@ -54,10 +54,10 @@
                     "interactions": ""
                 },
                 {
-                    "name": "DashDirection(Mouse)",
-                    "type": "Button",
+                    "name": "DashDirection(Old Vector style)",
+                    "type": "Value",
                     "id": "b5024184-1476-45a7-b8b7-db8bcead403c",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 },
@@ -235,6 +235,17 @@
                 },
                 {
                     "name": "",
+                    "id": "9ea7cd08-7d55-497a-a8f6-36a0e10e92cb",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "WallGrab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "99b47976-0c56-4527-a58d-87e73c2c23d1",
                     "path": "<Keyboard>/k",
                     "interactions": "",
@@ -278,68 +289,13 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
-                    "id": "32522b78-f325-431a-8e82-0ebcfadb15b0",
-                    "path": "2DVector(mode=1)",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "DashDirection",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "7b7a3819-f06d-4902-ab32-d9b1a1062855",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "DashDirection",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "d81367d0-cf12-4212-8f1c-2b39d5e8bb8f",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "DashDirection",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "df3dce0b-f661-4efd-9c28-e5eae1752629",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "DashDirection",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "597fd984-9cb3-49c5-a025-f4ed93ff1b3f",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "DashDirection",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
-                    "id": "c5cb3f87-d031-4f4d-a365-4a25296bbeae",
-                    "path": "<Mouse>/leftButton",
+                    "id": "d5841e62-0eac-4f3c-84e8-a1a351b882de",
+                    "path": "<Pointer>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "DashDirection(Mouse)",
+                    "action": "DashDirection",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -386,6 +342,61 @@
                     "action": "Secondary Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "32522b78-f325-431a-8e82-0ebcfadb15b0",
+                    "path": "2DVector(mode=1)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "DashDirection(Old Vector style)",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "7b7a3819-f06d-4902-ab32-d9b1a1062855",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "DashDirection(Old Vector style)",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "d81367d0-cf12-4212-8f1c-2b39d5e8bb8f",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "DashDirection(Old Vector style)",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "df3dce0b-f661-4efd-9c28-e5eae1752629",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "DashDirection(Old Vector style)",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "597fd984-9cb3-49c5-a025-f4ed93ff1b3f",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "DashDirection(Old Vector style)",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

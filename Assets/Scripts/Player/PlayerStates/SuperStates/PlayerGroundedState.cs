@@ -48,6 +48,14 @@ public class PlayerGroundedState : PlayerState
             player.InAirState.StartCoyoteTime();
             StateMachine.ChangeState(player.InAirState);
         }
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.primary] && !willCollideWithCeiling) // Primary Attack State
+        {
+            StateMachine.ChangeState(player.primaryAttackState);
+        }
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondary] && !willCollideWithCeiling) // Secondary Attack State
+        {
+            StateMachine.ChangeState(player.secondaryAttackState); 
+        }
         else if (isTouchingWall && grabInput) // Wall Grab State
         {
             StateMachine.ChangeState(player.WallGrabState);
