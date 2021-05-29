@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb { get; private set; }
     public BoxCollider2D boxCollider { get; private set; }
     public Transform DashDirectionIndicator { get; private set; }
+    public PlayerInventory Inventory { get; private set; }
     #endregion
 
     #region Check Transforms
@@ -73,8 +74,13 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         DashDirectionIndicator = transform.Find("DashDirectionIndicator");
+        Inventory = GetComponent<PlayerInventory>();
 
         FacingDirection = 1;
+
+        // Initialize all the weapon states
+        primaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
+        //secondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.secondary]);
 
         StateMachine.Initialize(IdleState);
     }

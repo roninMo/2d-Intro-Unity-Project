@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerAbilityState : PlayerState
 {
     protected bool isAbilityDone;
-    protected bool isGrounded;
+    protected bool isTouchingGround;
+    protected Vector2 input;
 
     public PlayerAbilityState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string currentAnimation) : base(player, stateMachine, playerData, currentAnimation)
     {
@@ -30,10 +31,27 @@ public class PlayerAbilityState : PlayerState
     {
         base.LogicUpdate();
 
+        input = player.InputHandler.RawMovementInput;
+
+
         // State logic
         if (isAbilityDone)
         {
-            StateMachine.ChangeState(player.InAirState);
+            if(isTouchingGround) // Ground States
+            {
+                if (input.x < 0.01f && input.x > -0.01f) // Idle State
+                {
+                    StateMachine.ChangeState(player.IdleState);
+                }
+                else // Move State
+                {
+                    StateMachine.ChangeState(player.MoveState);
+                }
+            }
+            else // Air State
+            {
+                StateMachine.ChangeState(player.InAirState);
+            }
         }
     }
 
@@ -47,6 +65,6 @@ public class PlayerAbilityState : PlayerState
     public override void DoChecks()
     {
         base.DoChecks();
-        isGrounded = player.CheckIfTouchingGround();
+        isTouchingGround = player.CheckIfTouchingGround();
     }
 }

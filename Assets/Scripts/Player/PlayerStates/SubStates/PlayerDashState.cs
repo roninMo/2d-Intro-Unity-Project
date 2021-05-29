@@ -59,7 +59,9 @@ public class PlayerDashState : PlayerAbilityState
                 if (dashDirectionInput != Vector2.zero)
                 {
                     dashDirection = dashDirectionInput;
+                    Debug.Log("Dash Direction raw" + dashDirection);
                     dashDirection.Normalize();
+                    Debug.Log("Dash Direction normalized" + dashDirection);
                 }
 
                 float angle = Vector2.SignedAngle(Vector2.right, dashDirection);

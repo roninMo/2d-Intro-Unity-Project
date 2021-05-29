@@ -41,6 +41,7 @@ public class PlayerLandState : PlayerGroundedState
                 }
                 if (isAnimationFinished) // If they stand still, finish the animation
                 {
+                    Debug.Log("Idle state trransition from land state");
                     StateMachine.ChangeState(player.IdleState);
                 }
             }
@@ -49,8 +50,6 @@ public class PlayerLandState : PlayerGroundedState
                 StateMachine.ChangeState(player.MoveState);
             }
         }
-
-
     }
 
 
