@@ -234,7 +234,7 @@
 //                    {
 //                        objectsToHit[i].GetComponent<EnemyV1>().Hit(damage, 0, -YForce);
 //                    }
- 
+
 //                    if (objectsToHit[i].tag == "Enemy")
 //                    {
 //                        Mana += ManaGain;
@@ -415,4 +415,33 @@
 //        Gizmos.DrawLine(roofTransform.position + new Vector3(-roofCheckX, 0), roofTransform.position + new Vector3(-roofCheckX, roofCheckY));
 //        Gizmos.DrawLine(roofTransform.position + new Vector3(roofCheckX, 0), roofTransform.position + new Vector3(roofCheckX, roofCheckY));
 //    }
+//}
+
+
+
+
+
+
+// Also another file called PlayerStateList:
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+
+//public class PlayerStateList : MonoBehaviour
+//{
+
+//    public bool walking;
+//    public bool interact;
+//    public bool interacting;
+//    public bool lookingRight;
+//    public bool jumping;
+//    public bool recoilingX;
+//    public bool recoilingY;
+//    public bool casting;
+//    public bool castReleased;
+//    public bool onBench;
+//    public bool atBench;
+//    public bool atNPC;
+//    public bool usingNPC;
+
 //}

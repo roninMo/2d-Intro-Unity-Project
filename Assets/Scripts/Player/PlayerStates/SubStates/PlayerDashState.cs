@@ -6,7 +6,6 @@ public class PlayerDashState : PlayerAbilityState
     private bool dashInputStop;
     private float lastDashTime;
     private bool isHolding;
-    private bool isTouchingGround;
     private Vector2 dashDirection;
     private Vector2 dashDirectionInput;
     private Vector2 lastAfterImagePosition;
@@ -27,7 +26,7 @@ public class PlayerDashState : PlayerAbilityState
         Time.timeScale = playerData.holdTimeScale;
         StartTime = Time.unscaledTime; // This timer won't be affected in slow motion
 
-        player.DashDirectionIndicator.gameObject.SetActive(true);
+        //player.DashDirectionIndicator.gameObject.SetActive(true); ///// Removing dash slowdown time and direction indicator /////
     } 
 
 
@@ -59,9 +58,7 @@ public class PlayerDashState : PlayerAbilityState
                 if (dashDirectionInput != Vector2.zero)
                 {
                     dashDirection = dashDirectionInput;
-                    Debug.Log("Dash Direction raw" + dashDirection);
                     dashDirection.Normalize();
-                    Debug.Log("Dash Direction normalized" + dashDirection);
                 }
 
                 float angle = Vector2.SignedAngle(Vector2.right, dashDirection);
@@ -73,7 +70,8 @@ public class PlayerDashState : PlayerAbilityState
                     player.SetVelocityToZero();
                 }
 
-                if(dashInputStop || Time.unscaledTime >= StartTime + playerData.maxHoldTime) // the dash code 
+                //if(dashInputStop || Time.unscaledTime >= StartTime + playerData.maxHoldTime) // the dash code ///// Removing dash slowdown time and direction indicator /////
+                if (1 == 1)
                 {
                     isHolding = false;
                     Time.timeScale = 1f;
@@ -105,7 +103,6 @@ public class PlayerDashState : PlayerAbilityState
     public override void DoChecks()
     {
         base.DoChecks();
-        isTouchingGround = player.CheckIfTouchingGround();
     }
 
 

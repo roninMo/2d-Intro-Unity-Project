@@ -54,7 +54,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "DashDirection(Old Vector style)",
+                    "name": "DashDirection(old way)",
                     "type": "Value",
                     "id": "b5024184-1476-45a7-b8b7-db8bcead403c",
                     "expectedControlType": "Vector2",
@@ -180,17 +180,6 @@
                 },
                 {
                     "name": "",
-                    "id": "685bf6fa-6ab0-438c-8d5d-c9faf383dfc9",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "894d7a9f-d100-42f4-adce-52e6593bbf83",
                     "path": "<Gamepad>/leftStickPress",
                     "interactions": "",
@@ -246,6 +235,17 @@
                 },
                 {
                     "name": "",
+                    "id": "3518a924-a84c-4531-a4a5-49d2f5700cf6",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "WallGrab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "99b47976-0c56-4527-a58d-87e73c2c23d1",
                     "path": "<Keyboard>/k",
                     "interactions": "",
@@ -279,22 +279,22 @@
                 },
                 {
                     "name": "",
-                    "id": "c4d17e0b-8e51-4104-aeb5-4f1605c63c0e",
-                    "path": "<Gamepad>/leftStick",
+                    "id": "d5841e62-0eac-4f3c-84e8-a1a351b882de",
+                    "path": "<Pointer>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
+                    "groups": "Keyboard",
                     "action": "DashDirection",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "d5841e62-0eac-4f3c-84e8-a1a351b882de",
-                    "path": "<Pointer>/position",
+                    "id": "c4d17e0b-8e51-4104-aeb5-4f1605c63c0e",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "Gamepad",
                     "action": "DashDirection",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -350,7 +350,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "DashDirection(Old Vector style)",
+                    "action": "DashDirection(old way)",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -361,7 +361,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "DashDirection(Old Vector style)",
+                    "action": "DashDirection(old way)",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -372,7 +372,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "DashDirection(Old Vector style)",
+                    "action": "DashDirection(old way)",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -383,7 +383,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "DashDirection(Old Vector style)",
+                    "action": "DashDirection(old way)",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -394,7 +394,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "DashDirection(Old Vector style)",
+                    "action": "DashDirection(old way)",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
