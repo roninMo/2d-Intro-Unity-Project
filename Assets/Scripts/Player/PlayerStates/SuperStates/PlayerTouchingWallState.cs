@@ -43,7 +43,7 @@ public class PlayerTouchingWallState : PlayerState
         {
             StateMachine.ChangeState(player.IdleState);
         }
-        else if (!isTouchingWall || (input.x != player.FacingDirection && !grabInput)) // In Air State
+        else if (!isTouchingWall || (input.x != Core.Movement.FacingDirection && !grabInput)) // In Air State
         {
             StateMachine.ChangeState(player.InAirState);
         }
@@ -59,7 +59,7 @@ public class PlayerTouchingWallState : PlayerState
     public override void DoChecks()
     {
         base.DoChecks();
-        isTouchingGround = player.CheckIfTouchingGround();
-        isTouchingWall = player.CheckIfTouchingWall();
+        isTouchingGround = Core.CollisionSenses.Ground(player.BoxCollider);
+        isTouchingWall = Core.CollisionSenses.WallFront;
     }
 }

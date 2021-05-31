@@ -20,7 +20,7 @@ public class PlayerGroundedState : PlayerState
     {
         base.Enter();
         player.JumpState.ResetAmountOfJumpsLeft();
-        player.dashState.ResetCanDash();
+        player.DashState.ResetCanDash();
     }
 
 
@@ -50,19 +50,19 @@ public class PlayerGroundedState : PlayerState
         }
         else if (player.InputHandler.AttackInputs[(int)CombatInputs.primary] && !willCollideWithCeiling) // Primary Attack State
         {
-            StateMachine.ChangeState(player.primaryAttackState);
+            StateMachine.ChangeState(player.PrimaryAttackState);
         }
         else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondary] && !willCollideWithCeiling) // Secondary Attack State
         {
-            StateMachine.ChangeState(player.secondaryAttackState); 
+            StateMachine.ChangeState(player.SecondaryAttackState); 
         }
         else if (isTouchingWall && grabInput) // Wall Grab State
         {
             StateMachine.ChangeState(player.WallGrabState);
         }
-        else if (dashInput && player.dashState.CheckIfCanDash() && !willCollideWithCeiling) // Dash State
+        else if (dashInput && player.DashState.CheckIfCanDash() && !willCollideWithCeiling) // Dash State
         {
-            StateMachine.ChangeState(player.dashState);
+            StateMachine.ChangeState(player.DashState);
         }
     }
 
@@ -76,8 +76,8 @@ public class PlayerGroundedState : PlayerState
     public override void DoChecks()
     {
         base.DoChecks();
-        isTouchingGround = player.CheckIfTouchingGround();
-        isTouchingWall = player.CheckIfTouchingWall();
-        willCollideWithCeiling = player.CheckIfTouchingCeiling();
+        isTouchingGround = Core.CollisionSenses.Ground(player.BoxCollider);
+        isTouchingWall = Core.CollisionSenses.WallFront;
+        willCollideWithCeiling = Core.CollisionSenses.Ceiling(player.BoxCollider);
     }
 }

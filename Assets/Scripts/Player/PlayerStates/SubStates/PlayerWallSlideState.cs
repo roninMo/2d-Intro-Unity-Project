@@ -13,7 +13,7 @@ public class PlayerWallSlideState : PlayerTouchingWallState
 
         if (!isExitingState) // Do not set the velocity when exiting the state (otherwise it will cancel out other velocity calls (wallJump))
         {
-            player.SetVelocityY(-playerData.wallslideVelocity);
+            Core.Movement.SetVelocityY(-playerData.wallslideVelocity);
 
             // State logic
             if (grabInput && input.y >= 0)

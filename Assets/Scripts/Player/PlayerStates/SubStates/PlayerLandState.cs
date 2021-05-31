@@ -17,7 +17,7 @@ public class PlayerLandState : PlayerGroundedState
         if (input.x == 0)
         {
             finishAnimation = true;
-            player.SetVelocityX(0);
+            Core.Movement.SetVelocityX(0);
         }
         else
         {
@@ -41,11 +41,10 @@ public class PlayerLandState : PlayerGroundedState
                 }
                 if (isAnimationFinished) // If they stand still, finish the animation
                 {
-                    Debug.Log("Idle state trransition from land state");
                     StateMachine.ChangeState(player.IdleState);
                 }
             }
-            else if (player.CurrentVelocity.x != 0 && isTouchingGround) // If they landing moving, don't freeze them in a landing animation
+            else if (Core.Movement.CurrentVelocity.x != 0 && isTouchingGround) // If they landing moving, don't freeze them in a landing animation
             {
                 StateMachine.ChangeState(player.MoveState);
             }
@@ -56,6 +55,6 @@ public class PlayerLandState : PlayerGroundedState
     public override void DoChecks()
     {
         base.DoChecks();
-        isTouchingGround = player.CheckIfTouchingGround();
+        isTouchingGround = Core.CollisionSenses.Ground(player.BoxCollider);
     }
 }

@@ -65,6 +65,6 @@ public class PlayerAbilityState : PlayerState
     public override void DoChecks()
     {
         base.DoChecks();
-        isTouchingGround = player.CheckIfTouchingGround();
+        isTouchingGround = Core.CollisionSenses.Ground(player.BoxCollider);
     }
 }

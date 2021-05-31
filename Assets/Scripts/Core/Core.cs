@@ -1,18 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Core : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Movement Movement { get; private set; }
+    public CollisionSenses CollisionSenses { get; private set; }
+
+    private void Awake()
     {
-        
+        Movement = GetComponentInChildren<Movement>();
+        CollisionSenses = GetComponentInChildren<CollisionSenses>();
+
+        if (!Movement || !CollisionSenses)
+        {
+            Debug.LogError("Missing Core Component");
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void LogicUpdate()
     {
-        
+        Movement.LogicUpdate();
     }
 }

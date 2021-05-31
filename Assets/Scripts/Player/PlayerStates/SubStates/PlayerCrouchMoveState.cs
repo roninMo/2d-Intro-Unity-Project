@@ -37,12 +37,12 @@ public class PlayerCrouchMoveState : PlayerGroundedState
             }
             else if (input.x == 0) // Crouch Idle State
             {
-                StateMachine.ChangeState(player.crouchIdleState);
+                StateMachine.ChangeState(player.CrouchIdleState);
             }
             else // Crouch Move State logic
             {
-                player.CheckIfShouldFlip(input.x);
-                player.SetVelocityX(playerData.crouchMovementVelocity * player.FacingDirection);
+                Core.Movement.CheckIfShouldFlip(input.x);
+                Core.Movement.SetVelocityX(playerData.crouchMovementVelocity * Core.Movement.FacingDirection);
             }
         }
     }

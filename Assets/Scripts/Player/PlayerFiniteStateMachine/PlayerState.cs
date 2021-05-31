@@ -2,6 +2,7 @@
 
 public class PlayerState
 {
+    protected Core Core;
     protected Player player; // protected means private but shared between components that inherit the class
     protected PlayerStateMachine StateMachine;
     protected PlayerData playerData;
@@ -16,6 +17,7 @@ public class PlayerState
         this.StateMachine = stateMachine;
         this.playerData = playerData;
         this.currentAnimation = currentAnimation;
+        Core = player.Core;
     }
 
 
@@ -30,7 +32,7 @@ public class PlayerState
         StartTime = Time.time;
         isAnimationFinished = false;
         isExitingState = false;
-        //Debug.Log("Current Animation: " + currentAnimation);
+        Debug.Log("Current Animation: " + currentAnimation);
     }
 
 

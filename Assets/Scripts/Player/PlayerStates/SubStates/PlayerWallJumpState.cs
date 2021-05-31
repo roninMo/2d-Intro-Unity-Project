@@ -24,12 +24,12 @@ public class PlayerWallJumpState : PlayerAbilityState
         // WalljumpDirection
         if (yInput > 0)
         {
-            player.SetVelocityY(playerData.verticalWallJumpVelocity);
+            Core.Movement.SetVelocityY(playerData.verticalWallJumpVelocity);
         }
         else
         {
-            player.SetVelocity(playerData.wallJumpVelocity, playerData.wallJumpAngle, wallJumpDirection);
-            player.CheckIfShouldFlip(wallJumpDirection);
+            Core.Movement.SetVelocity(playerData.wallJumpVelocity, playerData.wallJumpAngle, wallJumpDirection);
+            Core.Movement.CheckIfShouldFlip(wallJumpDirection);
         }
         player.JumpState.DecreaseAmountOfJumpsLeft();
     }
@@ -42,13 +42,13 @@ public class PlayerWallJumpState : PlayerAbilityState
         xInput = player.InputHandler.RawMovementInput.x;
         yInput = player.InputHandler.RawMovementInput.y;
         jumpInput = player.InputHandler.JumpInput;
-        player.Anim.SetFloat("yVelocity", player.CurrentVelocity.y);
-        player.Anim.SetFloat("xVelocity", Mathf.Abs(player.CurrentVelocity.x));
+        player.Anim.SetFloat("yVelocity", Core.Movement.CurrentVelocity.y);
+        player.Anim.SetFloat("xVelocity", Mathf.Abs(Core.Movement.CurrentVelocity.x));
 
         if (Time.time > StartTime + (playerData.wallJumpTime / 2.5))
         {
-            player.SetAirVelocityX(playerData.airMovementVelocity * xInput);
-            player.CheckIfShouldFlip(xInput);
+            Core.Movement.SetAirVelocityX(playerData.airMovementVelocity * xInput);
+            Core.Movement.CheckIfShouldFlip(xInput);
         }
         if (Time.time > StartTime + playerData.wallJumpTime)
         {
@@ -58,7 +58,7 @@ public class PlayerWallJumpState : PlayerAbilityState
         // State Logic (If they're consecutively jumping from wall to wall)
         if (jumpInput && (isTouchingWall || isBackTouchingWall) && yInput != 1)
         {
-            isTouchingWall = player.CheckIfTouchingWall();
+            isTouchingWall = Core.CollisionSenses.WallFront;
             player.WallJumpState.DetermineWallJumpDirection(isTouchingWall);
             StateMachine.ChangeState(player.WallJumpState);
         }
@@ -69,18 +69,18 @@ public class PlayerWallJumpState : PlayerAbilityState
     {
         if (isTouchingWall)
         {
-            wallJumpDirection = -player.FacingDirection;
+            wallJumpDirection = -Core.Movement.FacingDirection;
         }
         else
         {
-            wallJumpDirection = player.FacingDirection;
+            wallJumpDirection = Core.Movement.FacingDirection;
         }
     }
 
     public override void DoChecks()
     {
         base.DoChecks();
-        isTouchingWall = player.CheckIfTouchingWall();
-        isBackTouchingWall = player.CheckIfBackTouchingWall();
+        isTouchingWall = Core.CollisionSenses.WallFront;
+        isBackTouchingWall = Core.CollisionSenses.WallBack;
     }
 }

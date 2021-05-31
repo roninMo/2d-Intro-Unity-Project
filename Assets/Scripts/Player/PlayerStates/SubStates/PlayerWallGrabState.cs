@@ -42,6 +42,6 @@ public class PlayerWallGrabState : PlayerTouchingWallState
     private void HoldPosition() // Freeze the player, and stop the physics update velocity step
     {
         player.transform.position = holdPosition;
-        player.SetVelocityToZero();
+        Core.Movement.SetVelocityToZero();
     }
 }

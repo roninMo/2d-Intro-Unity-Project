@@ -48,16 +48,16 @@ public class PlayerData : ScriptableObject
     public float slideColliderHeight = 1f; // Implement a sliding mechanic
     public float slideColliderWidth = 1f;
     // Implement the raycast data for the uncrouch detection
-    public float ceilingCheckDistance = 4f;
 
     [Header("Ledge Climb State")]
     public Vector2 startOffset;
     public Vector2 stopOffset;
 
-    [Header("Check Variables")]
-    public float groundCheckRadius = 0.4f;
-    public LayerMask whatIsGround;
-    public float wallCheckDistance = 0.5f;
+    //[Header("Check Variables")]
+    //public float groundCheckRadius = 0.4f;
+    //public float wallCheckDistance = 0.5f;
+    //public float ceilingCheckDistance = 4f;
+    //public LayerMask whatIsGround;
 
     //[Header("Misc Mechanics")]
 }

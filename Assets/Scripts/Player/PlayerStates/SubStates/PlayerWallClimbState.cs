@@ -11,7 +11,7 @@ public class PlayerWallClimbState : PlayerTouchingWallState
     {
         base.Enter();
 
-        player.SetVelocityY(playerData.wallClimbVelocity);
+        Core.Movement.SetVelocityY(playerData.wallClimbVelocity);
     }
 
 
@@ -21,7 +21,7 @@ public class PlayerWallClimbState : PlayerTouchingWallState
 
         if (!isExitingState) // Do not set the velocity when exiting the state (otherwise it will cancel out other velocity calls (wallJump))
         {
-            player.SetVelocityY(playerData.wallClimbVelocity);
+            Core.Movement.SetVelocityY(playerData.wallClimbVelocity);
 
             // State logic
             if (input.y != 1)

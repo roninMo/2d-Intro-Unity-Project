@@ -23,8 +23,8 @@ public class PlayerMoveState : PlayerGroundedState
     {
         base.LogicUpdate();
 
-        player.CheckIfShouldFlip(input.x);
-        player.SetVelocityX(playerData.movementVelocity * input.x);
+        Core.Movement.CheckIfShouldFlip(input.x);
+        Core.Movement.SetVelocityX(playerData.movementVelocity * input.x);
 
         // State logic
         if (!isExitingState)
@@ -35,7 +35,7 @@ public class PlayerMoveState : PlayerGroundedState
             }
             else if (input.y == -1) // Crouch Move State
             {
-                StateMachine.ChangeState(player.crouchMoveState);
+                StateMachine.ChangeState(player.CrouchMoveState);
             }
         }
     }

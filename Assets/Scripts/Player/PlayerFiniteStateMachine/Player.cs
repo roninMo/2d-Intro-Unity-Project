@@ -3,6 +3,7 @@
 public class Player : MonoBehaviour
 {
     # region State Variables
+    public Core Core { get; private set; }
     public PlayerStateMachine StateMachine { get; private set; }
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
@@ -13,12 +14,12 @@ public class Player : MonoBehaviour
     public PlayerWallGrabState WallGrabState { get; private set; }
     public PlayerWallClimbState WallClimbState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
-    public PlayerDashState dashState { get; private set; }
-    public PlayerCrouchIdleState crouchIdleState { get; private set; }
-    public PlayerCrouchMoveState crouchMoveState { get; private set; }
+    public PlayerDashState DashState { get; private set; }
+    public PlayerCrouchIdleState CrouchIdleState { get; private set; }
+    public PlayerCrouchMoveState CrouchMoveState { get; private set; }
 
-    public PlayerAttackState primaryAttackState { get; private set; }
-    public PlayerAttackState secondaryAttackState { get; private set; }
+    public PlayerAttackState PrimaryAttackState { get; private set; }
+    public PlayerAttackState SecondaryAttackState { get; private set; }
 
     [SerializeField] private PlayerData playerData;
     #endregion
@@ -26,22 +27,13 @@ public class Player : MonoBehaviour
     #region Components    
     public PlayerInputHandler InputHandler { get; private set; } // This is like chaining values together via funnel. Playerinput get goes to the player, which then goes to the states. So each state as access to the inputs
     public Animator Anim { get; private set; } // We add the getters and setters so our states have access to the animator
-    public Rigidbody2D rb { get; private set; }
-    public BoxCollider2D boxCollider { get; private set; }
+    public Rigidbody2D Rb { get; private set; }
+    public BoxCollider2D BoxCollider { get; private set; }
     public Transform DashDirectionIndicator { get; private set; }
     public PlayerInventory Inventory { get; private set; }
     #endregion
 
-    #region Check Transforms
-    [SerializeField] private Transform wallCheck;
-    [SerializeField] private Transform ledgeCheck;
-
-    #endregion
-
     #region Other Variables
-    public Vector2 CurrentVelocity { get; private set; }
-    public int FacingDirection { get; private set; }
-
     private Vector2 workspace; // Everytime we want to apply velocity we don't have to create a new vector2 when we say what we want the velocity to be, just use this variable
     #endregion
 
@@ -49,6 +41,7 @@ public class Player : MonoBehaviour
     #region Unity Callback Functions 
     private void Awake()
     {
+        Core = GetComponentInChildren<Core>();
         StateMachine = new PlayerStateMachine();
         IdleState = new PlayerIdleState(this, StateMachine, playerData, "idle");
         MoveState = new PlayerMoveState(this, StateMachine, playerData, "move");
@@ -59,11 +52,11 @@ public class Player : MonoBehaviour
         WallGrabState = new PlayerWallGrabState(this, StateMachine, playerData, "wallGrab");
         WallClimbState = new PlayerWallClimbState(this, StateMachine, playerData, "wallClimb");
         WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "inAir");
-        dashState = new PlayerDashState(this, StateMachine, playerData, "dash");
-        crouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
-        crouchMoveState = new PlayerCrouchMoveState(this, StateMachine, playerData, "crouchMove");
-        primaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
-        secondaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
+        DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
+        CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
+        CrouchMoveState = new PlayerCrouchMoveState(this, StateMachine, playerData, "crouchMove");
+        PrimaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
+        SecondaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
     }
 
 
@@ -71,15 +64,13 @@ public class Player : MonoBehaviour
     {
         Anim = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
-        rb = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        Rb = GetComponent<Rigidbody2D>();
+        BoxCollider = GetComponent<BoxCollider2D>();
         DashDirectionIndicator = transform.Find("DashDirectionIndicator");
         Inventory = GetComponent<PlayerInventory>();
 
-        FacingDirection = 1;
-
         // Initialize all the weapon states
-        primaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
+        PrimaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
         //secondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.secondary]);
 
         StateMachine.Initialize(IdleState);
@@ -88,8 +79,9 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        Core.LogicUpdate();
+
         // Instead of running the logic for each and every mechanic, we run the LogicUpdate Function, and the state machine handle the individual mechanic within this call
-        CurrentVelocity = rb.velocity; // Instead of calling rb.velocity.x/y multiple times, save memory and call it once
         StateMachine.CurrentState.LogicUpdate();
     }
 
@@ -101,146 +93,20 @@ public class Player : MonoBehaviour
     #endregion
 
 
-    #region Set Functions
-    public void SetVelocityToZero()
-    {
-        rb.velocity = Vector2.zero;
-        CurrentVelocity = Vector2.zero;
-    }
-
-
-    public void SetVelocityX(float velocity)
-    {
-        workspace.Set((Time.fixedDeltaTime * 54) * velocity, CurrentVelocity.y);
-        rb.velocity = workspace;
-        CurrentVelocity = workspace; // Since we're changing the velocity to avoid the physics/logic update overwriting each other, set the current velocity to the new velocity
-    }
-
-
-    public void SetAirVelocityX(float velocity)
-    {
-        workspace.Set((Time.fixedDeltaTime * 54) * velocity, 0);
-        rb.AddForce(workspace, ForceMode2D.Force);
-        workspace.Set(rb.velocity.x, rb.velocity.y); // Use the current velocity value instead maybe?
-        workspace.x = Mathf.Clamp(workspace.x, -9.4f, 9.4f);
-        rb.velocity = workspace;
-        CurrentVelocity = workspace;
-    }
-
-
-    public void SetVelocityY(float velocity)
-    {
-        workspace.Set(CurrentVelocity.x, (Time.fixedDeltaTime * 54) * velocity);
-        rb.velocity = workspace;
-        CurrentVelocity = workspace;
-    }
-
-    public void SetVelocity(float velocity, Vector2 angle, int direction)
-    {
-        angle.Normalize();
-        workspace.Set(
-            (Time.fixedDeltaTime * 54) * angle.x * velocity * direction,
-            (Time.fixedDeltaTime * 54) * angle.y * velocity
-        );
-        rb.velocity = workspace;
-        CurrentVelocity = workspace;
-    }
-
-    public void SetVelocity(float velocity, Vector2 direction)
-    {
-        workspace = (Time.fixedDeltaTime * 54) * direction * velocity;
-        rb.velocity = workspace;
-        CurrentVelocity = workspace;
-    }
-    #endregion
-
-
-    #region Check Functions
-    public bool CheckIfTouchingGround()
-    {
-        int numberOfGroundCollisions = boxCollider.Cast(Vector2.down, new RaycastHit2D[10], playerData.groundCheckRadius, true);
-        return numberOfGroundCollisions != 0 ? true : false;
-        // The other way to do this with layermasks (Though cast is awesome, it creates a rectangle not a circle), is this:
-        //return Physics2D.OverlapCircle(groundCheck.position, playerData.groundCheckRadius, playerData.whatIsGround); // groundChekc is the transform of a gameobject attached to the player
-    }
-
-
-    public bool CheckIfTouchingCeiling()
-    {
-        int numberOfCeilingCollisions = boxCollider.Cast(Vector2.up, new RaycastHit2D[10], playerData.ceilingCheckDistance, true);
-        return numberOfCeilingCollisions != 0 ? true : false;
-        // The other way to do this with layermasks (Though cast is awesome, it creates a rectangle not a circle), is this:
-        //return Physics2D.OverlapCircle(groundCheck.position, playerData.groundCheckRadius, playerData.whatIsGround); // groundChekc is the transform of a gameobject attached to the player
-    }
-
-
-    public bool CheckIfTouchingWall()
-    {
-        return Physics2D.Raycast(wallCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
-    }
-
-
-    public bool CheckIfBackTouchingWall()
-    {
-        return Physics2D.Raycast(wallCheck.position, Vector2.right * -FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
-    }
-
-
-    public bool CheckIfTouchingLedge()
-    {
-        return Physics2D.Raycast(ledgeCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
-    }
-
-
-    public void CheckIfShouldFlip(float input)
-    {
-        if (input != 0 && input != FacingDirection)
-        {
-            Flip();
-        }
-    }
-    #endregion
-
-
     #region Other Functions
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
     private void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
 
 
-    private void Flip()
-    {
-        FacingDirection *= -1;
-        transform.Rotate(0, 180.0f, 0);
-    }
-
-
     public void SetColliderHeight(float height)
     {
-        Vector2 center = boxCollider.offset;
-        workspace.Set(boxCollider.size.x, height);
+        Vector2 center = BoxCollider.offset;
+        workspace.Set(BoxCollider.size.x, height);
 
-        center.y += (height - boxCollider.size.y) / 2;
+        center.y += (height - BoxCollider.size.y) / 2;
 
-        boxCollider.size = workspace;
-        boxCollider.offset = center;
-    }
-
-
-    public Vector2 DetermineCornerPosition()
-    {
-        // This function takes our wall and ledge check positions, and creates a raycast in the y direction between them to calculate where the ledge is exactly
-        // So - The wallCheck finds the distance from the player to the side of the wall, then stores it
-        // The raycast we create goes out that distance from from the ledgeCheck, and then goes down to find the distance to the top of the ledge and stores it
-        // this is how it determines the corner position and where our player should climb up to
-
-        RaycastHit2D xHit = Physics2D.Raycast(wallCheck.position, Vector2.right, playerData.wallCheckDistance, playerData.whatIsGround);
-        float xDistance = xHit.distance;
-        workspace.Set(xDistance * FacingDirection, 0f); // the distance the player is from the wall
-        RaycastHit2D yHit = Physics2D.Raycast(ledgeCheck.position + (Vector3)(workspace), Vector2.down, ledgeCheck.position.y - wallCheck.position.y, playerData.whatIsGround);
-        float yDistance = yHit.distance;
-
-        workspace.Set(wallCheck.position.x + (xDistance * FacingDirection), ledgeCheck.position.y - yDistance);
-        return workspace;
+        BoxCollider.size = workspace;
+        BoxCollider.offset = center;
     }
     #endregion
 }

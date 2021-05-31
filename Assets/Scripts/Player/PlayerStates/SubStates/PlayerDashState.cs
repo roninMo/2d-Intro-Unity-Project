@@ -22,7 +22,7 @@ public class PlayerDashState : PlayerAbilityState
         CanDash = false;
         player.InputHandler.UseDashInput();
         isHolding = true;
-        dashDirection = Vector2.right * player.FacingDirection;
+        dashDirection = Vector2.right * Core.Movement.FacingDirection;
         Time.timeScale = playerData.holdTimeScale;
         StartTime = Time.unscaledTime; // This timer won't be affected in slow motion
 
@@ -34,9 +34,9 @@ public class PlayerDashState : PlayerAbilityState
     {
         base.Exit();
 
-        if (player.CurrentVelocity.y > 0)
+        if (Core.Movement.CurrentVelocity.y > 0)
         {
-            player.SetVelocityY(player.CurrentVelocity.y * playerData.dashEndYMultiplier);
+            Core.Movement.SetVelocityY(Core.Movement.CurrentVelocity.y * playerData.dashEndYMultiplier);
         }
     }
 
@@ -47,12 +47,13 @@ public class PlayerDashState : PlayerAbilityState
 
         if (!isExitingState)
         {
-            player.Anim.SetFloat("yVelocity", player.CurrentVelocity.y);
-            player.Anim.SetFloat("xVelocity", Mathf.Abs(player.CurrentVelocity.x));
+            player.Anim.SetFloat("yVelocity", Core.Movement.CurrentVelocity.y);
+            player.Anim.SetFloat("xVelocity", Mathf.Abs(Core.Movement.CurrentVelocity.x));
 
             if (isHolding) // While choosing a dash direction
             {
-                dashDirectionInput = player.InputHandler.NormalizedDashDirectionInput;
+                //dashDirectionInput = player.InputHandler.NormalizedDashDirectionInput;
+                dashDirectionInput = player.InputHandler.RawDashDirectionInput;
                 dashInputStop = player.InputHandler.DashInputStop;
 
                 if (dashDirectionInput != Vector2.zero)
@@ -67,7 +68,7 @@ public class PlayerDashState : PlayerAbilityState
                 // If the player touches the ground while in slow mo, stop him from sliding
                 if (isTouchingGround)
                 {
-                    player.SetVelocityToZero();
+                    Core.Movement.SetVelocityToZero();
                 }
 
                 //if(dashInputStop || Time.unscaledTime >= StartTime + playerData.maxHoldTime) // the dash code ///// Removing dash slowdown time and direction indicator /////
@@ -76,21 +77,21 @@ public class PlayerDashState : PlayerAbilityState
                     isHolding = false;
                     Time.timeScale = 1f;
                     StartTime = Time.time;
-                    player.CheckIfShouldFlip(Mathf.RoundToInt(dashDirection.x));
-                    player.rb.drag = playerData.drag;
+                    Core.Movement.CheckIfShouldFlip(Mathf.RoundToInt(dashDirection.x));
+                    player.Rb.drag = playerData.drag;
                     player.DashDirectionIndicator.gameObject.SetActive(false);
-                    player.SetVelocity(playerData.dashVelocity, dashDirection);
+                    Core.Movement.SetVelocity(playerData.dashVelocity, dashDirection);
                     PlaceAfterImage();
                 }
             }
             else // While dashing
             {
-                player.SetVelocity(playerData.dashVelocity, dashDirection);
+                Core.Movement.SetVelocity(playerData.dashVelocity, dashDirection);
                 CheckIfShouldPlaceAfterImage();
 
                 if (Time.time >= StartTime + playerData.dashTime)
                 {
-                    player.rb.drag = 0;
+                    player.Rb.drag = 0;
                     isAbilityDone = true;
                     lastDashTime = Time.time;
                 }

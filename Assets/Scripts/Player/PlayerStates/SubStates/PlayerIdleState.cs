@@ -11,7 +11,7 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.Enter();
 
-        player.SetVelocityX(0f);
+        Core.Movement.SetVelocityX(0f);
     }
 
 
@@ -34,7 +34,7 @@ public class PlayerIdleState : PlayerGroundedState
             }
             else if (input.y == -1) // Crouch Idle State
             {
-                StateMachine.ChangeState(player.crouchIdleState);
+                StateMachine.ChangeState(player.CrouchIdleState);
             }
         }
     }
