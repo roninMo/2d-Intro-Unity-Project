@@ -39,7 +39,7 @@ public class PlayerLandState : PlayerGroundedState
                 {
                     StateMachine.ChangeState(player.MoveState);
                 }
-                if (isAnimationFinished) // If they stand still, finish the animation
+                else if (isAnimationFinished) // If they stand still, finish the animation
                 {
                     StateMachine.ChangeState(player.IdleState);
                 }
@@ -47,6 +47,10 @@ public class PlayerLandState : PlayerGroundedState
             else if (Core.Movement.CurrentVelocity.x != 0 && isTouchingGround) // If they landing moving, don't freeze them in a landing animation
             {
                 StateMachine.ChangeState(player.MoveState);
+            }
+            else // Else if they land without moving, go to Idle State
+            {
+                StateMachine.ChangeState(player.IdleState);
             }
         }
     }

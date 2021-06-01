@@ -32,7 +32,7 @@ public class PlayerState
         StartTime = Time.time;
         isAnimationFinished = false;
         isExitingState = false;
-        Debug.Log("Current Animation: " + currentAnimation);
+        //Debug.Log("Current Animation: " + currentAnimation);
     }
 
 
