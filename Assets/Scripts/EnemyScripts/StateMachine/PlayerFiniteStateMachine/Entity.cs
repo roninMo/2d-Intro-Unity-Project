@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Entity : MonoBehaviour
+public class Entity : MonoBehaviour, IDamageable
 {
     public FiniteStateMachine stateMachine;
     public D_Entity entityData;
@@ -9,6 +9,7 @@ public class Entity : MonoBehaviour
     public GameObject aliveGameObject { get; private set; }
     public AnimationToStateMachineLink atsm { get; private set; }
     public int lastDamageDirection { get; private set; }
+    public Dingus_DamageReceiver damageReceiver { get; private set; }
 
     public int facingDirection { get; private set; }
     [SerializeField] private Transform wallCheck;
@@ -34,7 +35,9 @@ public class Entity : MonoBehaviour
         rb = aliveGameObject.GetComponent<Rigidbody2D>();
         anim = aliveGameObject.GetComponent<Animator>();
         atsm = aliveGameObject.GetComponent<AnimationToStateMachineLink>();
+        damageReceiver = aliveGameObject.GetComponent<Dingus_DamageReceiver>();
 
+        damageReceiver.entity = this;
         stateMachine = new FiniteStateMachine();
     }
 
@@ -111,21 +114,26 @@ public class Entity : MonoBehaviour
 
 
     #region Attack Functions
-    public virtual void Damage(AttackDetails attackDetails)
+    //public virtual void Damage(AttackDetails attackDetails)
+    public virtual void Damage(float amount, float knockback)
     {
         lastDamageTime = Time.time;
-        currentHealth -= attackDetails.damageAmount;
-        currentStunResistance -= attackDetails.stunDamageAmount;
-        DamageHop(entityData.damageKnockbackForce);
+        //currentHealth -= attackDetails.damageAmount;
+        //currentStunResistance -= attackDetails.stunDamageAmount;
+        currentHealth -= amount;
+        Debug.Log("Current health!" + currentHealth);
+        currentStunResistance -= knockback;
+        //DamageHop(entityData.damageKnockbackForce);
+        DamageHop(knockback);
 
-        if (attackDetails.position.x > aliveGameObject.transform.position.x) // Where is the attack coming from?
-        { // meaning it came from the right
-            lastDamageDirection = -1;
-        }
-        else
-        { // otherwise from the left
-            lastDamageDirection = 1;
-        }
+        //if (attackDetails.position.x > aliveGameObject.transform.position.x) // Where is the attack coming from?
+        //{ // meaning it came from the right
+        //    lastDamageDirection = -1;
+        //}
+        //else
+        //{ // otherwise from the left
+        //    lastDamageDirection = 1;
+        //}
 
         if (currentStunResistance <= 0)
         {

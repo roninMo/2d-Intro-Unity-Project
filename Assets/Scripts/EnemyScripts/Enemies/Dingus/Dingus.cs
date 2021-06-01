@@ -36,9 +36,10 @@ public class Dingus : Entity
     }
 
 
-    public override void Damage(AttackDetails attackDetails)
+    //public override void Damage(AttackDetails attackDetails)
+    public override void Damage(float amount, float knockback)
     {
-        base.Damage(attackDetails);
+        base.Damage(amount, knockback);
 
         // unique state logic
         if (isStunned && stateMachine.currentState != stunState) // Stun State
@@ -53,5 +54,10 @@ public class Dingus : Entity
         base.OnDrawGizmos();
 
         Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
+    }
+
+    public void Damage(float amount)
+    {
+        Debug.Log("Damage dealt to dingus: " + amount);
     }
 }

@@ -2347,7 +2347,8 @@ MonoBehaviour:
   m_AnimatedTarget: {fileID: 946708837}
   m_LayerIndex: 0
   m_ShowDebugText: 0
-  m_ChildCameras: []
+  m_ChildCameras:
+  - {fileID: 1682784343}
   m_Instructions:
   - m_FullHash: -189196415
     m_VirtualCamera: {fileID: 1682784343}
@@ -60671,7 +60672,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1587942470}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 79, y: -1, z: 0}
+  m_LocalPosition: {x: 103.83, y: -1.994, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 940797608}
@@ -60689,6 +60690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d760b932ccefe46a78500aea9001d513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitParticles: {fileID: 0}
 --- !u!1 &1647314366
 GameObject:
   m_ObjectHideFlags: 0
@@ -61041,6 +61043,7 @@ GameObject:
   - component: {fileID: 2069024740}
   - component: {fileID: 2069024739}
   - component: {fileID: 2069024738}
+  - component: {fileID: 2069024743}
   - component: {fileID: 2069024742}
   m_Layer: 11
   m_Name: Alive
@@ -61057,7 +61060,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069024736}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41, y: -9, z: 0}
+  m_LocalPosition: {x: 14, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1647314367}
@@ -61198,3 +61201,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a935621cd0e4645bfd00b52f7a97b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2069024743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069024736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58340959c4b1405b87fac73798e3df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 0}

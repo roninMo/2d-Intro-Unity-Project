@@ -17,7 +17,6 @@ public class Dingus_ChargeState : ChargeState
         // State logic
         if (performCloseRangeAction) // Melee Attack State
         {
-            Debug.Log("Perform Close Range Action: Charge State");
             stateMachine.ChangeState(enemy.meleeAttackState);
         }
         else  if (!isDetectingLedge || isDetectingWall) // Look For Player State
