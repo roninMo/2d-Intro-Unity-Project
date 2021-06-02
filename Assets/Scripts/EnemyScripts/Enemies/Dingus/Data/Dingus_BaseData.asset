@@ -12,13 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72acba69ac1bb4170a901a2de50c409e, type: 3}
   m_Name: Dingus_BaseData
   m_EditorClassIdentifier: 
-  maxHealth: 30
-  wallCheckDistance: 0.2
-  ledgeCheckDistance: 0.4
-  minAgroDistance: 8
-  maxAgroDistance: 12
+  maxHealth: 43
   closeRangeActionDistance: 1.8
   damageKnockbackForce: 10
+  stunResistance: 3
+  stunRecoveryTime: 1
+  wallCheckDistance: 0.2
+  ledgeCheckDistance: 0.4
+  groundCheckRadius: 0.3
+  minAgroDistance: 8
+  maxAgroDistance: 12
+  hitParticle: {fileID: 8115120865798552416, guid: 916de921c91de4cb5907db4ace1c3295,
+    type: 3}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1536

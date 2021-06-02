@@ -32,7 +32,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Particles
   - 
   - 
   - 
@@ -54,4 +54,7 @@ TagManager:
     locked: 0
   - name: Platforms
     uniqueID: 3274095715
+    locked: 0
+  - name: Particles
+    uniqueID: 3074931379
     locked: 0

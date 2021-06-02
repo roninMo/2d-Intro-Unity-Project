@@ -20,7 +20,7 @@ public class D_Entity : ScriptableObject
     public float minAgroDistance = 9f;
     public float maxAgroDistance = 15f;
 
-
+    public GameObject hitParticle;
 
     public LayerMask whatIsGround;
     public LayerMask whatIsPlayer;

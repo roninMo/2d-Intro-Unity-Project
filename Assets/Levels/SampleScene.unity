@@ -2477,6 +2477,7 @@ MonoBehaviour:
   meleeAttackStateData: {fileID: 11400000, guid: 146e35d6fc3ef44f1b08d203809cf45f,
     type: 2}
   stunStateData: {fileID: 11400000, guid: 0c2724f3d142943d488fa96b9654e7f1, type: 2}
+  deadStateData: {fileID: 11400000, guid: 5bcbb282d9d4e4f86ae98a400137071a, type: 2}
   meleeAttackPosition: {fileID: 988378234}
 --- !u!1 &1298230097
 GameObject:
@@ -60690,7 +60691,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d760b932ccefe46a78500aea9001d513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitParticles: {fileID: 0}
+  hitParticles: {fileID: 8115120865798552416, guid: b75697a1885ea4ad2bc7981bf56f7aaf,
+    type: 3}
 --- !u!1 &1647314366
 GameObject:
   m_ObjectHideFlags: 0
@@ -61132,7 +61134,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 8
   m_Material: {fileID: 6200000, guid: 4a411a6a71ada40f997d5406c9492349, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1

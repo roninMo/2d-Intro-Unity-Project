@@ -21,6 +21,7 @@ public class Entity : MonoBehaviour, IDamageable
     private float currentStunResistance;
     private float lastDamageTime;
     protected bool isStunned;
+    protected bool isDead;
 
     private Vector2 velocityWorkspace;
 
@@ -28,7 +29,7 @@ public class Entity : MonoBehaviour, IDamageable
     public virtual void Start()
     {
         currentHealth = entityData.maxHealth;
-        currentStunResistance = entityData.stunResistance;
+        currentStunResistance = entityData.stunResistance; 
         facingDirection = 1;
 
         aliveGameObject = transform.Find("Alive").gameObject;
@@ -114,17 +115,16 @@ public class Entity : MonoBehaviour, IDamageable
 
 
     #region Attack Functions
-    //public virtual void Damage(AttackDetails attackDetails)
-    public virtual void Damage(float amount, float knockback)
+    //public virtual void Damage(AttackDetail s attackDetails)
+    public virtual void Damage(float amount, float stunAmount, float knockback)
     {
         lastDamageTime = Time.time;
-        //currentHealth -= attackDetails.damageAmount;
-        //currentStunResistance -= attackDetails.stunDamageAmount;
         currentHealth -= amount;
         Debug.Log("Current health!" + currentHealth);
-        currentStunResistance -= knockback;
-        //DamageHop(entityData.damageKnockbackForce);
+        currentStunResistance -= stunAmount;
+
         DamageHop(knockback);
+        Instantiate(entityData.hitParticle, aliveGameObject.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
 
         //if (attackDetails.position.x > aliveGameObject.transform.position.x) // Where is the attack coming from?
         //{ // meaning it came from the right
@@ -138,6 +138,10 @@ public class Entity : MonoBehaviour, IDamageable
         if (currentStunResistance <= 0)
         {
             isStunned = true;
+        }
+        if (currentHealth <= 0)
+        {
+            isDead = true;
         }
     }
 

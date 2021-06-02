@@ -35,7 +35,7 @@ public class AggressiveWeapon : Weapon
 
         foreach (IDamageable item in detectedDamageable)
         {
-            item.Damage(details.damageAmount, details.knockbackForce);
+            item.Damage(details.damageAmount, details.stunDamageAmount, details.knockbackForce);
         }
     }
 
