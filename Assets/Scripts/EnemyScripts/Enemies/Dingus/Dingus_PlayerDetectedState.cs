@@ -27,7 +27,7 @@ public class Dingus_PlayerDetectedState : PlayerDetectedState
         {
             stateMachine.ChangeState(enemy.lookForPlayerState);
         } 
-        else if (isDetectingLedge) // Move State
+        else if (!isDetectingLedge) // Move State
         {
             entity.Flip();
             stateMachine.ChangeState(enemy.moveState);
