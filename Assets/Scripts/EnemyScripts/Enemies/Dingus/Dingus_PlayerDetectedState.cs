@@ -26,7 +26,11 @@ public class Dingus_PlayerDetectedState : PlayerDetectedState
         else if (!isPlayerInMaxAgroRange) // Look For Player State
         {
             stateMachine.ChangeState(enemy.lookForPlayerState);
+        } 
+        else if (isDetectingLedge) // Move State
+        {
+            entity.Flip();
+            stateMachine.ChangeState(enemy.moveState);
         }
-        // TODO: Transition to attack state
     }
 }

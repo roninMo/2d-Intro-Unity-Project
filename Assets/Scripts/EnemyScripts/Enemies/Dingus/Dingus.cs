@@ -44,8 +44,8 @@ public class Dingus : Entity
     {
         base.Damage(amount, stunAmount, knockback);
 
-        // unique state logic
-        if (isDead)
+        // State logic
+        if (isDead) // Dead State
         {
             stateMachine.ChangeState(deadState);
         }

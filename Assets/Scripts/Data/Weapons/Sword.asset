@@ -16,15 +16,15 @@ MonoBehaviour:
   - attackName: Slash
     movementSpeed: 3
     damageAmount: 10
-    stunDamageAmount: 0.5
+    stunDamageAmount: 1
     knockbackForce: 8
   - attackName: Wack
     movementSpeed: 4
     damageAmount: 8
-    stunDamageAmount: 0.4
+    stunDamageAmount: 0.8
     knockbackForce: 6
   - attackName: Uppercut
     movementSpeed: 2
     damageAmount: 12
-    stunDamageAmount: 1
+    stunDamageAmount: 1.4
     knockbackForce: 14
