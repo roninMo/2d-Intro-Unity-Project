@@ -95,6 +95,19 @@ A `Sub State` inherits from the super state, and are what states your player inv
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    *Just Start by creating the State Machine, A player script, a player state script and a couple states to understand how all this stuff ties together!*
 
 
+## After Diving into State machine for the player and ai, I found that... 
+you will be recreating code and functions everywhere. `Don't do that`, it's a bad practice. It's okay, I found a solid way to handle this for when you're creating you character and enemy ai code. 
+
+#### Implementing the core
+`AdamCYouncis` came up with an idea called a core, essentially it's a file that holds sections of code to pull in for everything, and you just attach it to each game object that will use the functions. `This way you only create a any velocity or raycast check function once, instead of recreating this code for every character and enemy out there.`
+
+* Start by creating a file named core, and in the awake function have it grab section components within it's game object. 
+- Then create a file for example `collision senses` and initialize it in the core on start. This way you'll create one groundcheck for all characters and enemies in the game
+- The movement functions are slightly different because you pass in the logic update function as well, and call it in the core. This way you keep track of the current velocity for each object (that's the only reason). 
+
+        `Congrats! Now you've saved code and time, and you just dynamically attach the core script to whatever is calling the function`
+
+
 # But Wait, There's More!
 ## Pixel Art for Aspiring Autists!
 ![Yee haww](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
