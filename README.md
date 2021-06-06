@@ -105,7 +105,8 @@ you will be recreating code and functions everywhere. `Don't do that`, it's a ba
 - Then create a file for example `collision senses` and initialize it in the core on start. This way you'll create one groundcheck for all characters and enemies in the game
 - The movement functions are slightly different because you pass in the logic update function as well, and call it in the core. This way you keep track of the current velocity for each object (that's the only reason). 
 
-        `Congrats! Now you've saved code and time, and you just dynamically attach the core script to whatever is calling the function`
+        `Congrats! Now you've saved code and time, and you just 
+        dynamically attach the core script to whatever is calling the function`
 
 
 # But Wait, There's More!
