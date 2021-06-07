@@ -53,6 +53,11 @@ public class Dingus : Entity
         {
             stateMachine.ChangeState(stunState);
         }
+        else if (!CheckPlayerInMinAgroRange())
+        {
+            lookForPlayerState.SetTurnImmediately(true);
+            stateMachine.ChangeState(lookForPlayerState);
+        }
     }
 
 

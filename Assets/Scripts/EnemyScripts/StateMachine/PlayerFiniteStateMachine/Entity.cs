@@ -9,7 +9,7 @@ public class Entity : MonoBehaviour, IDamageable
     public GameObject aliveGameObject { get; private set; }
     public AnimationToStateMachineLink atsm { get; private set; }
     public int lastDamageDirection { get; private set; }
-    public Dingus_DamageReceiver damageReceiver { get; private set; }
+    public DamageReceiver dingus_DamageReceiver { get; private set; }
 
     public int facingDirection { get; private set; }
     [SerializeField] private Transform wallCheck;
@@ -36,9 +36,9 @@ public class Entity : MonoBehaviour, IDamageable
         rb = aliveGameObject.GetComponent<Rigidbody2D>();
         anim = aliveGameObject.GetComponent<Animator>();
         atsm = aliveGameObject.GetComponent<AnimationToStateMachineLink>();
-        damageReceiver = aliveGameObject.GetComponent<Dingus_DamageReceiver>();
+        dingus_DamageReceiver = aliveGameObject.GetComponent<DamageReceiver>();
 
-        damageReceiver.entity = this;
+        dingus_DamageReceiver.entity = this;
         stateMachine = new FiniteStateMachine();
     }
 
