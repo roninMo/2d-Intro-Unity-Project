@@ -36,7 +36,7 @@ A good example of what I mean is:
         The physics for your movement will override the logic of your wall jump, all the logic 
         tangles together into a cluttered mess. It's really annoying, and state machine stops that
 
-You just create a file to hold or change the current state, and then files for the functionality of each of your states, making it a lot easier on both you and the system.
+You run the functionality individually, and transition between each state respectively. Just create a file to hold or change the current state, and then files for the functionality of each of your states, making it a lot easier on both you and the system.
 
 ---
 
