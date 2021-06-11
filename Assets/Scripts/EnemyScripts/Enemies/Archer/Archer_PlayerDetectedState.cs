@@ -15,9 +15,16 @@ public class Archer_PlayerDetectedState : PlayerDetectedState
         base.LogicUpdate();
 
         // State logic
-        if (performCloseRangeAction) // Melee Attack State
+        if (performCloseRangeAction)
         {
-            stateMachine.ChangeState(enemy.MeleeAttackState);
+            if (Time.time >= enemy.DodgeState.startTime + enemy.dodgeStateData.dodgeCooldown) // Dodge State
+            {
+                stateMachine.ChangeState(enemy.DodgeState);
+            }
+            else // Melee Attack State
+            {
+                stateMachine.ChangeState(enemy.MeleeAttackState);
+            }
         }
         else if (!isPlayerInMaxAgroRange) // Look For Player State
         {

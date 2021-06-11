@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72acba69ac1bb4170a901a2de50c409e, type: 3}
   m_Name: Dingus_BaseData
   m_EditorClassIdentifier: 
-  maxHealth: 43
+  maxHealth: 64
   closeRangeActionDistance: 1.8
   damageKnockbackForce: 10
   stunResistance: 3

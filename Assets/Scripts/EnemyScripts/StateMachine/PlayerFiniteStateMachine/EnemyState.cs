@@ -4,7 +4,7 @@ public class EnemyState
 {
     protected FiniteStateMachine stateMachine;
     protected Entity entity;
-    protected float startTime;
+    public float startTime { get; protected set; }
     protected string currentAnimation;
 
     public EnemyState(Entity entity, FiniteStateMachine stateMachine, string currentAnimation)

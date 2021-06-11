@@ -9,6 +9,7 @@ public class Archer : Entity
     public Archer_LookForPlayerState LookForPlayerState { get; private set; }
     public Archer_StunState StunState { get; private set; }
     public Archer_DeadState DeadState { get; private set; }
+    public Archer_DodgeState DodgeState { get; private set; }
 
     [SerializeField] private D_Move moveStateData;
     [SerializeField] private D_Idle idleStateData;
@@ -17,6 +18,7 @@ public class Archer : Entity
     [SerializeField] private D_LookForPlayer lookForPlayerStateData;
     [SerializeField] private D_Stun stunStateData;
     [SerializeField] private D_Dead deadStateData;
+    public D_Dodge dodgeStateData;
 
     [SerializeField] private Transform meleeAttackPosition;
 
@@ -31,6 +33,7 @@ public class Archer : Entity
         LookForPlayerState = new Archer_LookForPlayerState(this, stateMachine, "lookForPlayer", lookForPlayerStateData, this);
         StunState = new Archer_StunState(this, stateMachine, "stun", stunStateData, this);
         DeadState = new Archer_DeadState(this, stateMachine, "dead", deadStateData, this);
+        DodgeState = new Archer_DodgeState(this, stateMachine, "dodge", dodgeStateData, this);
 
         stateMachine.Initialize(IdleState);
     }

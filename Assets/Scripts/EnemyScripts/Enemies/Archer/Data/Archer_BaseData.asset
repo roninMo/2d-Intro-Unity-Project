@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72acba69ac1bb4170a901a2de50c409e, type: 3}
   m_Name: Archer_BaseData
   m_EditorClassIdentifier: 
-  maxHealth: 30
+  maxHealth: 43
   closeRangeActionDistance: 2.25
   damageKnockbackForce: 10
   stunResistance: 3
   stunRecoveryTime: 1
-  wallCheckDistance: 0.2
-  ledgeCheckDistance: 0.4
+  wallCheckDistance: 0.4
+  ledgeCheckDistance: 0.1
   groundCheckRadius: 0.3
   minAgroDistance: 9
   maxAgroDistance: 15
